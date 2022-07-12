@@ -1,0 +1,44 @@
+<div class="modal-header" style="background-color: #616691">
+    <h4>{{comp.Tag}} - {{comp.Name}}</h4>
+</div>
+<div class="modal-body">
+    <table class="table">
+        <tbody>
+        <tr ng-hide="isNew">
+            <td><span style="font-weight:bold;">Facility:</span></td>
+            <td><span>{{par.FacilityName}}</span></td>
+        </tr>
+        <tr ng-hide="isNew">
+            <td><span style="font-weight:bold;">Location:</span></td>
+            <td><span>{{par.FacilityLocation}}</span></td>
+        </tr>
+        <tr>
+            <td><span style="font-weight:bold;">Asset:</span></td>
+            <td><span>{{comp.Name}}</span></td>
+        </tr>
+        <tr>
+            <td><span style="font-weight:bold;">Tag:</span></td>
+            <td><span>{{comp.Tag}}</span></td>
+        </tr>
+        <tr>
+            <td><span style="font-weight:bold;">Cost:</span></td>
+            <td><span>{{cost}}</span></td>
+        </tr>
+        <tr>
+            <td><span style="font-weight:bold;">Acquisition Date:</span></td>
+            <td><span>{{adate}}</span></td>
+        </tr>
+        <tr ng-hide="isNew">
+            <td><span style="font-weight:bold;">Status:</span></td>
+            <td><span>{{comp.Status}}</span></td>
+        </tr>
+        <tr>
+            <td><span style="font-weight:bold;">Notes:</span></td>
+            <td><span>{{comp.Note}}</span></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="modal-footer" style="padding: 5px;">
+    <button class="btn btn-primary c-btn-back" ng-click="cancel()">OK</button>
+</div>

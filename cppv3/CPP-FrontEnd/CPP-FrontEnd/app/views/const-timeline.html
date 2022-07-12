@@ -1,0 +1,43 @@
+
+
+<div class="timemap-options">
+    <div class="col-md-4 ct-opts">
+        <!--<button type="button" id="filt-btn">Construction Only</button>-->
+        <button type="button" id="test1">TEST</button>
+        <span><input type="radio" name="conops" value="all" selected> All </span>
+        <span><input type="radio" name="conops" value="con"> Construction </span>
+    </div>
+    <div class="col-md-4 ct-opts ct-goto">
+        <select id="month">
+            <option value="">Select Month</option>
+            <option ng-repeat="option in months" value="{{option.id}}">{{option.name}}</option>
+        </select>
+        <select id="year">
+            <option value="">Select Year</option>
+            <option ng-repeat="option in years" value="{{option.id}}">{{option.name}}</option>
+        </select>
+        <button type="button" id="select_date" class="select-date">GO</button>
+    </div>
+    <div class="col-md-4 ct-opts"></div>
+</div>
+
+<div id="timemap">
+    <div id="timelinecontainer">
+        <!--<div class="row" style="height:50px;">-->
+            <div class="col-lg-6" style="text-align: left;">
+                {{tl.MinDate}}
+            </div>
+            <div class="col-lg-6" style="text-align: right;">
+                {{tl.MaxDate}}
+            </div>
+        <!--</div>-->
+        <!--<div class="row">-->
+            <button type="button" id="p-item" class="nav-button t-lineitem"> < </button>
+            <div id="timeline" class="t-line t-lineitem" style="width:94%; float: left;margin-top: 5px;height: 150px;"></div>
+            <button type="button" id="n-item" class="nav-button t-lineitem"> > </button>
+        <!--</div>-->
+    </div>
+    <div id="mapcontainer">
+        <div id="map"></div>
+    </div>
+</div>

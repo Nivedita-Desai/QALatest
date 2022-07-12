@@ -1,0 +1,135 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="modalInstance.close();">X</button>
+    <h3 class="modal-title">Access Control</h3>
+</div>
+<div class="modal-body">
+
+    <div class="_form-group">
+        <label class="control-label _bold">Role Name</label>
+
+        <input class="form-control" placeholder="Role Name" ng-model="ACItem.Role">
+
+    </div>
+
+    <div class="_form-group " style="margin-bottom:-10px;"><label class="_bold">Privileges</label></div>
+    <div class="row _form-group">
+
+        <div class="col-sm-6">
+            <div class="checkbox">
+                <label style="padding-left:40px;"> <input type="checkbox" ng-model ="viewProgram">
+                    <span class="c-padding-label">View Program </span>
+                </label>
+            </div>
+            <div class="checkbox">
+                <label style="padding-left:40px;">
+                    <input type="checkbox"  ng-model ="modifyProgram"
+                               ng-checked="{{ACItem.AccessControlList[1]}}">
+                    <span class="c-padding-label">Modify Program</span>
+                </label>
+            </div>
+            <div class="checkbox">
+                <label style="padding-left:40px;"> <input type="checkbox"  ng-model="viewProgramElement"
+                               ng-checked="{{ACItem.AccessControlList[2]}}" >
+                    <span class="c-padding-label">View Project</span> <!--Original: View Program Element-->
+                </label>
+            </div>
+            <div class="checkbox">
+                <label style="padding-left:40px;">
+                    <input type="checkbox"  ng-model="modifyProgramElement"
+                               ng-checked="{{ACItem.AccessControlList[3]}}">
+                    <span class="c-padding-label">Modify Project</span> <!--Original: Modify Program Element-->
+                </label>
+            </div>
+            <div class="checkbox">
+                <label style="padding-left:40px;"> <input type="checkbox" ng-click="setViewProject(viewProject)" ng-model="viewProject"
+                               ng-checked="{{ACItem.AccessControlList[4]}}">
+                    <span class=c-padding-label>View Project Element</span> <!--Original: View Project-->
+                </label>
+            </div>
+            <div class="checkbox">
+                <label style="padding-left:40px;">
+                    <input type="checkbox" ng-click="setModifyProject(modifyProject)" ng-model="modifyProject"
+                               ng-checked="{{ACItem.AccessControlList[5]}}">
+                    <span class="c-padding-label">Modify Project Element</span> <!--Original: Modify Project-->
+                </label>
+            </div>
+
+        </div>
+        <div class="col-sm-6">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-click="setViewTrend(viewTrend)" ng-model="viewTrend"
+                           ng-checked="{{ACItem.AccessControlList[6]}}">
+                    <span class="c-padding-label">View Trend</span>
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-click="setModifyTrend(modifyTrend)" ng-model="modifyTrend"
+                           ng-checked="{{ACItem.AccessControlList[7]}}">
+                    <span class="c-padding-label">Modify Trend</span>
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-click="setViewAcitvity(viewActivity)" ng-model="viewActivity"
+                           ng-checked="{{ACItem.AccessControlList[8]}}">
+                    <span class="c-padding-label">View Activity</span>
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-click="setModifyActivity(modifyActivity)" ng-model="modifyActivity"
+                           ng-checked="{{ACItem.AccessControlList[9]}}">
+                    <span class="c-padding-label">Modify Activity</span>
+                </label>
+            </div>
+           <!-- <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-click="setMemberManagement(memberManagement)" ng-model="memberManagement"
+                           ng-checked="{{ACItem.AccessControlList[10]}}">
+                    <span class=c-padding-label>Admin</span>
+                </label>
+            </div>
+            <!--<div class="checkbox">-->
+            <!--<label> <input type="checkbox" ng-click="setRoleManagement(roleManagement)" ng-model="roleManagement"-->
+            <!--ng-checked="{{ACItem.AccessControlList[11]}}">-->
+            <!--<span class="c-padding-label">Role Management</span>-->
+            <!--</label>-->
+            <!--</div>-->
+            <!--<div class="checkbox">-->
+            <!--<label> <input type="checkbox" ng-click="setLookupManagement(lookupMangement)" ng-model="lookupMangement"-->
+            <!--ng-checked="{{ACItem.AccessControlList[12]}}">-->
+            <!--<span class="c-padding-label">Admin</span>-->
+            <!--</label>-->
+            <!--</div>-->
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-click="setViewReport(viewReport)" ng-model="viewReport"
+                           ng-checked="{{ACItem.AccessControlList[13]}}">
+                    <span class="c-padding-label">View Report</span>
+                </label>
+            </div>
+            <!--<div class="checkbox">-->
+            <!--<label> <input type="checkbox" ng-click="setViewChart(viewChart)" ng-model="viewChart"-->
+            <!--ng-checked="{{ACItem.AccessControlList[14]}}">-->
+            <!--<span class="c-padding-label">View Chart</span>-->
+            <!--</label>-->
+            <!--</div>-->
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-click="setViewLabor(viewLabor)" ng-model="viewLabor"
+                           ng-checked="{{ACItem.AccessControlList[15]}}">
+                    <span class="c-padding-label">View Labor</span>
+                </label>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="c-modal-footer">
+    <button type="button" class="btn btn-info" data-dismiss="modal" ng-click="modalInstance.close();">Close</button>
+    <button type="button" class="btn btn-info" ng-click = "saveChanges()">Save</button>
+</div>

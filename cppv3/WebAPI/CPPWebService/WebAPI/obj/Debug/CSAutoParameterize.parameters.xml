@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="CPP_MySQL-Web.config Connection String" description="CPP_MySQL Connection String used in web.config by the application to access the database." defaultValue="server=localhost;user id=root;password=aladin90;persistsecurityinfo=True;database=cpptest;port=3306; Convert Zero Datetime=True; Max Pool Size=500" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\Nivedita\\Softlabs\\BackUp\\Birdi\\12-02-2022\\WebAPI\\CPPWebService\\WebAPI\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='CPP_MySQL']/@connectionString" />
+  </parameter>
+  <parameter name="cppConnectionString-Web.config Connection String" description="cppConnectionString Connection String used in web.config by the application to access the database." defaultValue="User Id=root;Password=dk011289;Host=localhost;Database=cpp_prod_cosline_issue" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\Nivedita\\Softlabs\\BackUp\\Birdi\\12-02-2022\\WebAPI\\CPPWebService\\WebAPI\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='cppConnectionString']/@connectionString" />
+  </parameter>
+  <parameter name="WebAPI.Properties.Settings.CPP_MySQL-Web.config Connection String" description="WebAPI.Properties.Settings.CPP_MySQL Connection String used in web.config by the application to access the database." defaultValue="server=localhost;user id=root;password=123456;persistsecurityinfo=True;database=cppdev;port=3306" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\Nivedita\\Softlabs\\BackUp\\Birdi\\12-02-2022\\WebAPI\\CPPWebService\\WebAPI\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='WebAPI.Properties.Settings.CPP_MySQL']/@connectionString" />
+  </parameter>
+</parameters>

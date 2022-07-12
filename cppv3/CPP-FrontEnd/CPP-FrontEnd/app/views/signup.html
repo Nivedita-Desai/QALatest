@@ -1,0 +1,73 @@
+
+<div class="login-container">
+
+    <div class="row">
+
+        <div class="col-sm-6">
+
+            <!-- Errors container -->
+            <div class="errors-container">
+
+
+            </div>
+
+            <!-- Add class "fade-in-effect" for login form effect -->
+            <form method="post" role="form" ng-submit="submit()" id="singup" class="login-form fade-in-effect">
+
+                <div class="login-header">
+                    <span><h3>New User Registration</h3></span>
+                </div>
+                <div class="form-group ">
+                    <label class="control-label" >First Name</label>
+                    <input type="text" class="form-control input-dark" ng-model="registerData.FirstName"  name="FirstName" id="FirstName" autocomplete="off" />
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" >Last Name</label>
+                    <input type="text" class="form-control input-dark" ng-model="registerData.LastName"  name="LastName" id="LastName" autocomplete="off" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label" >Username</label>
+                    <input type="text" ng-change="checkUserName()" class="form-control input-dark" ng-model="registerData.UserID"  name="UserID" id="UserID" autocomplete="off" />
+                    <span ng-show ="userNameRequired" style="color:red">UserName is Required</span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" >Email</label>
+                    <input type="email" ng-change="checkEmail()" class="form-control input-dark" ng-model="registerData.Email"  name="Email" id="email" autocomplete="off"    ng-required="string" />
+                    <span ng-show ="emailRequired" style="color:red" >Email is Required</span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label"  >Password</label>
+                    <input type="password" ng-change="checkPassword()" ng-model="registerData.LoginPassword" class="form-control input-dark" name="passwd"  autocomplete="off" />
+                    <span ng-show ="passwordRequired" style="color:red">Password is Required</span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label"  for="conpasswd">Confirm Password</label>
+                    <input type="password" ng-model="registerData.confirmPassword" class="form-control input-dark" name="conpasswd" id="passwd" autocomplete="off" />
+                </div>
+                <div class="form-group ">
+
+                    <button ng-click="cancel()" class="btn btn-dark   text-left">
+                        <i class="fa-lock"></i>
+                        Cancel
+                    </button>
+                    <button ng-click="register()" class="btn btn-dark   text-left">
+                        <i class="fa-lock"></i>
+                        Submit
+                    </button>
+                </div>
+
+
+
+            </form>
+            <div data-ng-hide="message == ''" class="alert alert-danger">
+                {{message}}
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>

@@ -1,0 +1,35 @@
+
+
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="modalInstance.close();">X</button>
+    <h3 class="modal-title">Budget Categories</h3>
+</div>
+<div class="modal-body">
+    <div class="_form-group">
+        <label class="label-control _bold">Category ID</label>
+        <input class="form-control " placeholder="Category ID" ng-model="budgetCategoryItem.CategoryID">
+    </div>
+    <div class="_form-group">
+        <label class="label-control _bold">Category Description</label>
+        <input class="form-control" placeholder="Budget Category Description" ng-model="budgetCategoryItem.CategoryDescription">
+    </div>
+    <div class="_form-group">
+        <label class="control-label _bold">Sub Category ID</label>
+        <input class="form-control " placeholder="Sub Category ID" ng-model="budgetCategoryItem.SubCategoryID">
+    </div>
+    <div class="_form-group">
+        <label class="label-control _bold">Sub Category Description</label>
+        <input class="form-control" placeholder="Sub Category Description" ng-model="budgetCategoryItem.SubCategoryDescription">
+    </div>
+
+    <div class="_form-group">
+        <label class="label-control _bold">Phase</label>
+        <input class="form-control" placeholder="Phase" ng-model="budgetCategoryItem.Phase">
+    </div>
+
+</div>
+<div class=" c-modal-footer">
+    <button type="button" class="btn btn-info" data-dismiss="modal" ng-click="goBack()">Close</button>
+    <button type="button" id="save" class="btn btn-info" ng-click="saveChanges()">Save</button>
+</div>

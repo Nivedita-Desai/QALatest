@@ -1,0 +1,372 @@
+﻿
+<div>
+    <script type="text/ng-template" id="modal-3">
+        <div class="modal-header">
+            <h4 class="modal-title">Confirm Modal</h4>
+        </div>
+
+        <div class="modal-body">
+
+            You can close this modal when you click on button only!
+
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-info" ng-click="currentModal.dismiss();">Continue</button>
+        </div>
+    </script>
+    <div class="row" id="firstRow" style="width:100%;">
+        <!--Trend-->
+        <div class="col-sm-12" style="height:41px;">
+            <!-- First ROW-->
+            <div ng-if="!isBaseline" style="margin-bottom: 10px" class="row">
+
+                <div class="col-sm-1"></div>
+
+                <div class="col-sm-11 col-sm-height vcenter" style="margin-bottom:10px;margin-top:-20px;">
+                    <div class="phase-widget">
+                        <!--<label style="width:5%;"></label>-->
+                        <input type="text" ng-model="planning_duration" ng-disabled="true" class="c-input"
+                               style="color:red;margin-left:5.25%">
+                        <input type="text" ng-model="schematic_design_duration" ng-disabled="true" class="c-input"
+                               style="color:red">
+                        <input type="text" ng-model="design_bidding_duration" ng-disabled="true" class="c-input"
+                               style="color:red">
+                        <input type="text" ng-model="construction_duration" ng-disabled="true" class="c-input"
+                               style="color:red">
+                        <input type="text" ng-model="closeout_duration" ng-disabled="true" class="c-input"
+                               style="color:red">
+                        <!--</div>-->
+                    </div>
+                </div>
+
+            </div>
+
+            <div ng-if="isBaseline" style="margin-bottom: 10px" class="row">
+                <div class="col-sm-1 "></div>
+                <div class="col-sm-10 col-sm-height vcenter" style=" margin-bottom:10px;margin-top:-20px;">
+                    <div class="phase-widget" style="width:100%;">
+
+                        <div style="float:left;width:25%;border:none;margin-left:1.5%">
+                            <input type="text" ng-model="planning_start_date" ng-disabled="true" class="c-baseline-input"
+                                   style="width:30%;color:red;">
+                            <input type="text" ng-model="planning_value" ng-disabled="true" class="c-baseline-input"
+                                   style="width:40%;color:red;">
+                            <input type="text" ng-model="planning_end_date" ng-disabled="true" class="c-baseline-input"
+                                   style="width:30%;color:red;">
+                        </div>
+                        <div style="float:left;width:11%;border:none;">
+                            <input type="text" ng-disabled="true" class="c-baseline-input"
+                                   style="background-color:transparent;">
+                        </div>
+                        <div style="float:left;width:25%;border:none;">
+                            <input type="text" ng-model="design_bidding_start_date" ng-disabled="true" class="c-baseline-input"
+                                   style="width:30%;color:red;">
+                            <input type="text" ng-model="design_bidding_value" ng-disabled="true" class="c-baseline-input"
+                                   style="width:40%;color:red;">
+                            <input type="text" ng-model="design_bidding_end_date" ng-disabled="true" class="c-baseline-input"
+                                   style="width:30%;color:red;">
+                        </div>
+                        <div style="float:left;width:11%;border:none;">
+                            <input type="text" ng-disabled="true" class="c-baseline-input"
+                                   style="background-color:transparent;">
+                        </div>
+                        <div style="float:left;width:25%;border:none;">
+                            <input type="text" ng-model="closeout_start_date" ng-disabled="true" class="c-baseline-input"
+                                   style="width:30%;color:red;">
+                            <input type="text" ng-model="closeout_value" ng-disabled="true" class="c-baseline-input"
+                                   style="width:40%;color:red;">
+                            <input type="text" ng-model="closeout_end_date" ng-disabled="true" class="c-baseline-input"
+                                   style="width:30%;color:red;">
+
+                        </div>
+
+
+                        <!--<input type="text" ng-model="planning_start_date" ng-disabled="true" class="c-baseline-input"-->
+                        <!--style="width:6.33%; margin-left: -2%; text-align: center; color:red;">-->
+                        <!--<input type="text" ng-model="planning_value" ng-disabled="true" class="c-baseline-input"-->
+                        <!--style="width:9%;color:red;">-->
+                        <!--<input type="text" ng-model="planning_end_date" ng-disabled="true" class="c-baseline-input"-->
+                        <!--style="width:6.33%;text-align:center;color:red;">-->
+                        <!--<input type="text" ng-disabled="true" class="c-baseline-input"-->
+                        <!--style="background-color:transparent;width:13.7%;">-->
+                        <!--<input type="text" ng-model="design_bidding_start_date" ng-disabled="true"-->
+                        <!--class="c-baseline-input"-->
+                        <!--style="width:6.33%;text-align: center;color:red;">-->
+                        <!--<input type="text" ng-model="design_bidding_value" ng-disabled="true" class="c-baseline-input"-->
+                        <!--style="width:9%;color:red; ">-->
+                        <!--<input type="text" ng-model="design_bidding_end_date" ng-disabled="true"-->
+                        <!--class="c-baseline-input"-->
+                        <!--style="width:6.33%;text-align:center;color:red;">-->
+                        <!--<input type="text" ng-disabled="true" class="c-baseline-input"-->
+                        <!--style="background-color:transparent;width:13.7%;">-->
+                        <!--<input type="text" ng-model="closeout_start_date" ng-disabled="true" class="c-baseline-input"-->
+                        <!--style="width:6.33%;text-align: center;color:red;">-->
+                        <!--<input type="text" ng-model="closeout_value" ng-disabled="true" class="c-baseline-input"-->
+                        <!--style="width:9%;color:red; ">-->
+                        <!--<input type="text" ng-model="closeout_end_date" ng-disabled="true" class="c-baseline-input"-->
+                        <!--style="width:6.33%;text-align:center;color:red;">-->
+
+                    </div>
+                </div>
+
+            </div>
+            <!--Second Row-->
+            <div style="margin-bottom: 10px" class="row">
+                <div class="col-sm-1 col-sm-height vcenter" style="margin-top:-20px;padding-right:0px;">
+                    <div class="scale-widget" style="width: 100%">
+                        <div class="btn-group  btn-group-sm" ng-init="scheduleScale='week'" style="width:100%;">
+
+                            <button id="weekBtn" class="btn  btn-black"
+                                    style="background-color: black;width:30%;padding-left:9%;padding-right:9%;text-align:center;"
+                                    ng-click="setWeek()"
+                                    ng-class="{'active' : scheduleScale == 'week'}">
+                                W
+                            </button> <!--width:33.33%;-->
+                            <button id="monthBtn" class="btn  btn-black"
+                                    style="background-color: black;width:30%;padding-left:9%;padding-right:9%;text-align:center;"
+                                    ng-click="setMonth()"
+                                    ng-class="{'active' : scheduleScale == 'month'}">
+                                M
+                            </button><!--width:33.33%;-->
+                            <button id="yearBtn" class="btn  btn-black"
+                                    style="background-color: black;width:30%;padding-left:9%;padding-right:9%;text-align:center;"
+                                    ng-click="setYear()"
+                                    ng-class="{'active' : scheduleScale == 'year'}">
+                                Y
+                            </button><!--width:33.33%;-->
+                        </div>
+                    </div>
+                </div>
+
+                <!--<div class="col-sm-10 col-sm-height vcenter" style="margin-top:-20px;">
+                        <div class="phase-widget">
+
+                            <div ng-init="schedulePhase='ALL'" style="width:100%;">
+                                <div class="col-md-1">
+                                    <label>Phase : </label>
+                                </div>
+                                <div class="col-md-3">
+                                    <select style="margin-top:-5px;" class="form-control" ng-model="schedulePhase" ng-change="filterPhase()" data-ng-options="phase.Order as phase.PhaseDescription for phase in phases">
+                                        <option value="" ng-show="true">All</option>
+
+                                    </select>
+                                </div>
+                                <div id="approvalProgressBar" class="">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-sm-1 col-sm-height vcenter " style="margin-top:-20px;">
+
+                        <select style="margin-top:-5px;width:140%;" class="form-control" ng-model="selectedFilterTrend" ng-change="filterTrend(selectedFilterTrend)">
+                            <option ng-class="{'green' : tr.TrendStatusID === 1, 'yellow' : tr.TrendStatusID === 3}"
+                                    value="{{tr.TrendNumber}}" data-ng-repeat="tr in trends">
+                                {{tr.TrendDescription}}
+                            </option>
+                        </select>
+
+
+                    </div>
+                </div>-->
+                <!--Third ROW-->
+                <div ng-if="!isBaseline" style="margin-bottom: 10px" class="row">
+                    <div class=" col-sm-1"></div>
+
+
+                    <div class="col-sm-10 col-sm-height vcenter" style=" margin-top:-20px;">
+                        <div class="phase-widget" style="width:100%;">
+                            <label style="width:5%;"></label>
+                            <input type="text" ng-model="planning_value" ng-disabled="true" class="c-input"
+                                   style="color:green;">
+                            <input type="text" ng-model="schematic_design_value" ng-disabled="true" class="c-input"
+                                   style="color:green;">
+                            <input type="text" ng-model="design_bidding_value" ng-disabled="true" class="c-input"
+                                   style="color:green;">
+                            <input type="text" ng-model="construction_value" ng-disabled="true" class="c-input"
+                                   style="color:green;">
+                            <input type="text" ng-model="closeout_value" ng-disabled="true" class="c-input"
+                                   style="color:green;">
+                            <!--</div>-->
+                        </div>
+                    </div>
+
+                </div>
+
+                <div ng-if="isBaseline" style="margin-bottom: 10px" class="row">
+                    <div class="col-sm-1"></div>
+                    <!--
+                        -->
+                    <div class="col-sm-10 col-sm-height vcenter" style=" margin-top:-20px;">
+                        <div class="phase-widget" style="width:100%;">
+                            <!--<h5>Phase</h5>-->
+                            <!--<div class="btn-group btn-group-sm" ng-init="schedulePhase='all'">-->
+                            <!--<input class="input-small" ng-hide="true" ng-click="schedulePhase = 'all'" style="width:50px;"-->
+                            <!--ng-class="{'active' : schedulePhase == 'all'}">All-->
+                            <!--</input>-->
+                            <div style="float:left;width:19.5%;border:none;">
+                                <input type="text" ng-disabled="true" class="c-baseline-input"
+                                       style="background-color:transparent;">
+                            </div>
+
+                            <div style="float:left;width:25%;border:none;">
+                                <input type="text" ng-model="schematic_design_start_date" ng-disabled="true" class="c-baseline-input"
+                                       style="width:30%;color:green;">
+                                <input type="text" ng-model="schematic_design_value" ng-disabled="true" class="c-baseline-input"
+                                       style="width:40%;color:green;">
+                                <input type="text" ng-model="schematic_design_end_date" ng-disabled="true" class="c-baseline-input"
+                                       style="width:30%;color:green;">
+                            </div>
+
+                            <div style="float:left;width:11%;border:none;">
+                                <input type="text" ng-disabled="true" class="c-baseline-input"
+                                       style="background-color:transparent;">
+                            </div>
+
+                            <div style="float:left;width:25%;border:none;">
+                                <input type="text" ng-model="construction_start_date" ng-disabled="true" class="c-baseline-input"
+                                       style="width:30%;color:green;">
+                                <input type="text" ng-model="construction_value" ng-disabled="true" class="c-baseline-input"
+                                       style="width:40%;color:green;">
+                                <input type="text" ng-model="construction_end_date" ng-disabled="true" class="c-baseline-input"
+                                       style="width:30%;color:green;">
+                            </div>
+
+                            <!--</div>-->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!--Hidden Hiding Hide-->
+            <!--Baseline-->
+            <!--<div class="col-sm-2 " style="margin-right:-30px;margin-top:-20px;float:right;padding:0px;">
+                <table class="table table-bordered" id="bcf-table">
+                    <tbody>
+                    <tr>
+
+                        <td style="padding:0px;font-weight:bold">Baseline:</td>
+                        <td style="padding:0px;text-align:right;">{{baselineTotalValue | currency:'$': (baselineTotalValue %1 > 0)?2:0}}</td>
+                        <td style="padding:0px;text-align:right;">{{baselineDuration}}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:0px;font-weight:bold">Current:</td>
+                        <td style="padding:0px;text-align:right;">{{currentTotalValue | currency:'$':(currentTotalValue %1 > 0)?2:0}}</td>
+                        <td style="padding:0px;text-align:right;">{{currentDuration}}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:0px;font-weight:bold">Forecast:</td>
+                        <td style="padding:0px;text-align:right;">{{futureTotalValue | currency:'$':(futureTotalValue % 1> 0) ?2:0}}</td>
+                        <td style="padding:0px;text-align:right;">{{forecastDuration}}</td>
+
+                    </tr>
+                </table>
+            </div>-->
+        </div>
+
+
+        <div class="row" id="#secondRow" style="margin-bottom:-25px;">
+            <div class="panel panel-default" style="padding-top:10px;">
+                <div class="panel-body" style="padding-top:5px;">
+                    <div id="schedule-gantt" style='width:100%; height:300px;'></div>
+                    <div id="cost-gantt" style='width:100%; height:350px;'></div>
+                    <div class="row" id="buttonRow" style="margin-top:0.3%;">
+
+                        <!--<div class="" style="display: inline-block; text-align: left; margin-left:1%">
+                            <button id="saveCost" class="btn btn-black" ng-click="saveCost()" style="width:90px;margin:0px;">Save</button>
+
+                        </div>-->
+                        <div class="" id="bfc-container" style="display: inline-block; text-align:left; margin-left: 27%; padding-right:0%">
+                            <label id="total_label" style="font-weight:bold;"> Total: </label>
+                            <label id="total_cost" ng-model="allCostTotal" style="border:none;font-weight:bold;">{{allCostTotal|currency:'$':(allCostTotal %1 >0)?2:0}}</label>
+                        </div>
+
+                        <div style="background-color: #73c9db; width: 25px; border: 1px solid #000000; height:12px; margin-left: 100px; display:inline-block"></div><span id="budget" style="font-weight:bold;"> : Budget</span>
+                        <div style="background-color: #98FB98; width: 25px; border: 1px solid #000000; height:12px; margin-left: 30px; display:inline-block"></div><span id="actual" style="font-weight:bold;"> : Actual</span>
+                        <div style="background-color: #FFDAB9; width: 25px; border: 1px solid #000000; height:12px; margin-left: 30px; display:inline-block"></div><span id="forecast" style="font-weight:bold;"> : Forecast</span>
+
+                        <!--<div id="loading" style="display:none;"></div>
+                         <div class="pull-right" style="display: inline-block; text-align: right; margin-right:1%">
+                             <button id="ExportToMPP" style="width:160px;margin:0px;" class="btn btn-black" ng-click="ExportToMPP()">Export to MS Project</button>
+                             <button ng-show="trend.TrendNumber==1000" id="PurchaseOrderID" class="btn btn-black" ng-click="getPurchaseOrder()" style="width:140px;margin:0px; display:none;">Purchase Order</button>
+                             <button ng-show="trend.TrendNumber!=1000" id="customCostOverhead" class="btn btn-black" ng-click="customCostOverhead()" style="width:190px;margin:0px;">Custom Cost Overhead</button>
+                             <button id="reportManagerBtn" class="btn btn-black" ng-click="openReports()" style="width:140px;margin:0px;">Report Manager</button>
+                             <span id="spnSubmitForApproval" title="">
+                                 <button id="submitForApproval" data-toggle="tooltip" data-placement="left" class="btn btn-black"
+                                         ng-click="submitForApproval()" title="" style="width:90px;margin:0px;">
+                                     <span ng-model="approvalLabel">Submit</span>
+                                 </button>
+                             </span>
+
+                             <button id="ResendApprovlLinkBtn" ng-click="ResendApprovlLinkFun()" class="btn btn-black" style="width:140px;margin:0px;display:none;">Resend Mail</button>
+                             <span id="spnApprovalBtn" title="">
+                                 <button id="ApprovalBtn" data-toggle="tooltip" data-placement="left" class="btn btn-black"
+                                         ng-click="submitForApproval()" title="" style="width:90px;margin:0px;display:none;">
+                                     <span ng-model="approvalLabel">Approve</span>
+                                 </button>
+                             </span>-->
+
+                        <button id="exit" class="btn btn-red" ng-click="exit()" style="width:90px;margin:0px;">Exit</button>
+                    </div>
+                </div>
+                <div class="row" id="buttonRow" style="margin-top:0.3%;">
+                    <div class="col-sm-2" style="text-align: left; ">
+                    </div>
+                    <!--<h5 style="padding-left:42%; " h5 id="amount">Amount {{amount|currency:'$'}}</h5>-->
+                    <div class="col-sm-1" style="padding-left:35px;"></div>
+                    <div class="col-sm-3" id="bfc-container" style="text-align:left;">
+                    </div>
+                    <div class="col-sm-6" style="text-align: right;">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--<span id="spin" us-spinner="{lenght:0}" spinner-theme="white"   spinner-key="spinner-14" spinner-on="showSpinner12"   ></span>-->
+
+    </div>
+
+    <style>
+        .ganttBg {
+            'Color:red';
+        }
+
+        .gantt_hor_scroll::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+            border-radius: 10px;
+            background-color: #F5F5F5;
+        }
+
+        ::-webkit-scrollbar {
+            width: auto !important;
+            height: 12px;
+            background-color: #F5F5F5;
+        }
+
+        .gantt_hor_scroll::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+            background-color: lightgrey;
+        }
+
+        .page {
+            background-color: white !important;
+        }
+    </style>
+    <style media="print" type="text/css">
+        .page {
+            background-color: white !important;
+        }
+    </style>
+
+    <style type="text/css">
+        #loading {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: url(loader.gif) no-repeat center center; /*Luan here - making same pathing for IIS deployment, Original: ../../assets/js/select2/loader.gif*/
+            z-index: 9999;
+        }
+    </style>

@@ -1,0 +1,62 @@
+div, p {
+font-family: Verdana, Arial, sans-serif;
+}
+
+p.content {
+font-size: 12px;
+width: 30em;
+}
+
+div#help {
+font-size: 12px;
+width: 45em;
+padding: 1em;
+}
+
+div#timemap {
+padding: 1em;
+}
+
+div#timelinecontainer{
+width: inherit;
+height: 0px;
+}
+
+div#timeline{
+ width: inherit;
+ height: 0px;
+ font-size: 12px;
+ background: #CCCCCC;
+}
+
+div#mapcontainer {
+ width: 100%;
+ height: 350px;
+}
+
+div#map {
+ width: 100%;
+ height: 100%;
+ background: #EEEEEE;
+}
+
+div.infotitle {
+    /*font-size: 14px;
+    font-weight: bold;*/
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 1em;
+    /*font-style: italic;*/
+    width: 25em;
+}
+div.infodescription {
+    font-size: 14px;
+    font-style: italic;
+}
+
+div.custominfostyle {
+    font-family: Georgia, Garamond, serif;
+    font-size: 1.5em;
+    font-style: italic;
+    width: 20em;
+}
+

@@ -1,0 +1,43 @@
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="modalInstance.close();">X</button>
+    <h3 class="modal-title">User Information</h3>
+</div>
+<div class="modal-body">
+    <div class="_form-group">
+        <label class="control-label _bold">Username</label>
+        <input class="form-control" placeholder="Username" ng-model="userItem.UserID">
+    </div>
+    <div class="_form-group">
+        <label class="control-label _bold">First Name</label>
+        <input class="form-control" placeholder="First Name" ng-model="userItem.FirstName">
+    </div>
+    <div class="_form-group">
+        <label class="control-label _bold">Middle Name</label>
+        <input class="form-control " placeholder="Middle Name" ng-model="userItem.MiddleName" >
+    </div>
+    <div class="_form-group">
+        <label class="control-label _bold">Last Name</label>
+        <input class="form-control" placeholder="Last Name" ng-model="userItem.LastName">
+    </div>
+    <div class="_form-group">
+        <label class="control-label _bold">Email</label>
+        <input type="email" class="form-control" placeholder="Email"
+               ng-model="userItem.Email">
+    </div>
+    <div class="_form-group">
+        <label class="control-label _bold">Role</label>
+        <select class="form-control" placeholder="Role"
+               ng-model="userItem.Role" >
+            <option value="">Select role</option>
+            <option ng-repeat="s in Role">{{s.Role}}</option>
+        </select>
+    </div>
+</div>
+<div class="c-modal-footer">
+    <button type="button" class="btn btn-info" data-dismiss="modal" ng-click="modalInstance.close();">Close</button>
+    <button type="button" class="btn btn-info" ng-click="saveChanges()  ">Save</button>
+</div>
+
+
+

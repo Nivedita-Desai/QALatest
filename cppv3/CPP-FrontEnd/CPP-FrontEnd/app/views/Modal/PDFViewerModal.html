@@ -1,0 +1,161 @@
+﻿<head>
+    <style type="text/css">
+        .col-sm-7 {
+            margin-top: 0px;
+        }
+
+        .input-required {
+            border-color: #cc3f44 !important;
+        }
+
+        .label-required {
+            color: #cc3f44 !important;
+        }
+
+        div.asterik label.label-required:before {
+            content: " *";
+            color: #cc3f44;
+        }
+
+        div.asterik input.input-required:before {
+            content: " *";
+            color: #cc3f44;
+        }
+
+        .inputAsterik:after {
+            content: " *";
+            color: #cc3f44;
+            margin-right: -10px;
+        }
+
+        .btn {
+            margin-bottom: 0;
+        }
+
+        .modal-dialog {
+            height: 100%;
+            vertical-align: middle;
+            margin-top: 5%;
+        }
+
+        /*@media (min-width: 768px) {
+            .modal-dialog {
+                width: 90%;
+                height: 100%;
+                max-width: 1200px;
+            }
+        }*/
+    </style>
+</head>
+<script>
+    $(document).ready(function () {
+       // alert();
+        // $(".modal-content").css({ "margin-left": "-20%" });
+
+        $('.modal-dialog:nth-child(2)').attr('id', 'pdfModal');
+        $('#pdfModal').css('width', '1600px');
+        $('#pdfModal').css('margin-left', '-85%');
+
+    });
+</script>
+<section id="pdfModal" style="height:100%;vertical-align:middle;  ">
+    <div class="row" id="draggable">
+
+
+        <div class="col-xs-12 col-sm-12" style="height:800px" ;margin-right:-15px;">
+            <div class="gadget color-my" style="height: 900px;margin-top:-5%;margin-bottom:-20px;">
+
+                <div id="pdfModalGadgetHeadID" class="gadget-head" style="display: block">
+                    <h3 class="modal-title">{{pdfTitle}}</h3>
+                    <button class="pull-right" ng-click="goBack()"
+                            style="background-color:red;color:white;border-radius:50px;width:40px;font-weight:bolder;margin-top:-5px;">
+                        X
+                    </button>
+                </div>
+
+
+                <div class="gadget-content" style="padding:10px;">
+                    <div id="testIDtest" style="height:800px" class="pdfobject-container">
+                        <!--<object style="width:100%;height:100%" data="{{blobtesturl}}" type="application/pdf"></object>-->
+                      
+
+                        <iframe ng-src="{{contentData}}" type="application/pdf" style="width: 100%; height: 100%;" frameborder="1"> </iframe>
+
+                        <!--<iframe src="about:blank"  style="width: 100%; height: 100%;" frameborder="0"></iframe>-->
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top:-60px;padding-left:10px;padding-right:10px;">
+                <hr>
+            </div>
+            <div class="col-sm-12 pull-right" style="margin-right:5px; align-content:center; align-items: center; text-align: center;">
+
+
+                <button ng-show="params.excelDownloadable" style="margin-left: 10%;" class="btn btn-info rmis-btn" data-ng-click="downloadAsExcel()">
+                    <i class="fa fa-download"></i>  Excel
+                </button>
+
+                <button ng-show="params.pdfDownloadable" class="btn btn-info rmis-btn" data-ng-click="downloadAsPDF()">
+                    <i class="fa fa-download"></i>  PDF
+                </button>
+
+                <button class="btn btn-info rmis-btn pull-right" data-ng-click="goBack('close')">
+                    <i class="fa fa-hand-o-left"></i>  Back
+                </button>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal-content-->
+
+</section>
+
+<script type="text/javascript">
+  /*  $(function () {
+        $('#on').datetimepicker({
+            keepOpen:false
+        });
+    });*/
+/*  $(".modal-dialog").draggable();*/
+  $(document).ready(function(){
+      $('.modal-dialog').draggable({
+          handle: "#draggable"
+      });
+
+  });
+
+</script><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+    /*  $(function () {
+          $('#on').datetimepicker({
+              keepOpen:false
+          });
+      });*/
+    /*  $(".modal-dialog").draggable();*/
+    $(document).ready(function(){
+        $('.modal-dialog').draggable({
+            handle: "#pdfModalGadgetHeadID"
+        });
+
+    });
+
+</script>

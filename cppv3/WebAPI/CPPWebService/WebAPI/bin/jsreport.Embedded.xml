@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>jsreport.Embedded</name>
+    </assembly>
+    <members>
+        <member name="T:jsreport.Embedded.IEmbeddedReportingServer">
+            <summary>
+            Class able to start jsreport nodejs server allong with .net process, synchronize local templates with it and mange it's lifecycle
+            </summary>
+        </member>
+        <member name="M:jsreport.Embedded.IEmbeddedReportingServer.StartAsync">
+            <summary>
+            Extracts jsreport-net-embedded.zip into path to server directory, starts jsreport using nodejs from bin folder
+            </summary>
+        </member>
+        <member name="M:jsreport.Embedded.IEmbeddedReportingServer.StopAsync">
+            <summary>
+            Sends kill signal to jsreport server and wait for it's exit
+            </summary>
+        </member>
+        <member name="P:jsreport.Embedded.IEmbeddedReportingServer.EmbeddedServerUri">
+            <summary>
+            Full uri to running jsreport server like http://localhost:2000/
+            </summary>
+        </member>
+        <member name="P:jsreport.Embedded.IEmbeddedReportingServer.RelativePathToServer">
+            <summary>
+            Relative path (from bin) to directory where the jsreport server should be exreacted  and where it should run
+            You want to use something like ../App_Data for web applications and just null for other types of applications 
+            where jsreport can stay in bin folder
+            </summary>
+        </member>
+        <member name="P:jsreport.Embedded.IEmbeddedReportingServer.AbsolutePathToServer">
+            <summary>
+            Takes precedence over RelativePathToServer and specifies directory where jsreport server should be extracted and run
+            </summary>
+        </member>
+        <member name="P:jsreport.Embedded.IEmbeddedReportingServer.ReportingService">
+            <summary>
+            Shortcut to new ReportingService(EmbeddedServerUri)
+            </summary>
+        </member>
+        <member name="T:jsreport.Embedded.EmbeddedReportingServer">
+            <summary>
+                Class able to start jsreport nodejs server allong with .net process, synchronize local templates with it and mange it's lifecycle
+            </summary>
+        </member>
+        <member name="M:jsreport.Embedded.EmbeddedReportingServer.StartAsync">
+            <summary>
+                Extracts jsreport-net-embedded.zip into path to server directory, starts jsreport using nodejs from bin folder
+            </summary>
+        </member>
+        <member name="M:jsreport.Embedded.EmbeddedReportingServer.StopAsync">
+            <summary>
+                Sends kill signal to jsreport server and wait for it's exit
+            </summary>
+        </member>
+        <member name="P:jsreport.Embedded.EmbeddedReportingServer.PingTimeout">
+            <summary>
+                Visual Studio prevents from properly killing jsreport server when debugging ends.
+                To avoid orphans of nodejs processes jsreport server kills itself when no ping is comming from .NET process during debug.
+                EmbeddedReportingServer takes care of sending regular ping to jsreport server.
+                PingTimeout specifies time how to keep jsreport nodejs process runing when no ping is comming from .NET
+            </summary>
+        </member>
+        <member name="P:jsreport.Embedded.EmbeddedReportingServer.ReportingService">
+            <summary>
+                Shortcut to new ReportingService(EmbeddedServerUri)
+            </summary>
+        </member>
+        <member name="P:jsreport.Embedded.EmbeddedReportingServer.EmbeddedServerUri">
+            <summary>
+                Full uri to running jsreport server like http://localhost:2000/
+            </summary>
+        </member>
+        <member name="P:jsreport.Embedded.EmbeddedReportingServer.RelativePathToServer">
+            <summary>
+                Relative path (from bin) to directory where the jsreport server should be exreacted  and where it should run
+                You want to use something like ../App_Data for web applications and just null for other types of applications
+                where jsreport can stay in bin folder
+            </summary>
+        </member>
+        <member name="P:jsreport.Embedded.EmbeddedReportingServer.AbsolutePathToServer">
+            <summary>
+                Takes precedence over RelativePathToServer and specifies directory where jsreport server should be extracted and run
+            </summary>
+        </member>
+    </members>
+</doc>

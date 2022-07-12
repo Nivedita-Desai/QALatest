@@ -1,0 +1,84 @@
+
+<nav class="navbar user-info-navbar" style="height:50px; margin-bottom:10px;"
+     ng-class="{'mobile-is-visible': layoutOptions.userInfoNavVisible}"
+     ng-click="mobileUserInfoToggle()" role="navigation"><!-- User Info, Notifications and Menu Bar -->
+
+    <!-- Left links for user info navbar -->
+    <ul class="user-info-menu left-links list-inline list-unstyled logo-expanded" >
+
+        <li class="hidden-sm hidden-xs " ng-if="layoutOptions.sidebar.isCollapsed" style="padding-top:5px;">
+            <a class="logo-collapsed" href="" ng-click="sidebarToggle()" style="cursor:pointer;padding-top:13px; height:0px">
+                <i class="fa-angle-double-right arrow-size" alt=""></i>
+            </a>
+
+
+        </li>
+        <li class="hidden-sm hidden-xs " ng-if="!layoutOptions.sidebar.isCollapsed" style="padding-top:5px;">
+            <a class="logo-collapsed" href="" ng-click="sidebarToggle()" style="cursor:pointer;padding-top:13px; height:0px">
+                <i class="fa-angle-double-left arrow-size" alt=""></i>
+            </a>
+
+
+        </li>
+
+    </ul>
+
+
+    <ul class="user-info-menu left-links list-inline list-unstyled">
+
+        <li class="hidden-sm hidden-xs">
+            <h5 class="nav-titles header-page-title" style="font-weight: bold;width:100%; padding-top:15px; height:0px">{{ Page.title() }}</h5>
+        </li>
+        <li>
+            <h5 class="nav-titles header-page-title" style="font-weight: bold;padding-top:15px; height:0px" ng-class="{'statusVisibility' : status.status() === '','statusTitleVisibility' : Page.title() === 'Current' || Page.title() === ''}">Status : </h5>
+        </li>
+        <li>
+            <h5 class="nav-titles header-page-title" style="font-weight: bold;padding-top:15px; height:0px" ng-class="{'statusApprove' : status.status() === 'Approved', 'statusPending' : status.status() === 'Pending', 'statusVisibility' : Page.title() === 'Current'}">{{status.status()}}</h5>
+        </li>
+    </ul>
+
+    <!-- Right links for user info navbar -->
+    <ul class="user-info-menu right-links list-inline list-unstyled">
+        <!--<li class="fullscreen" ng-show="isFullscreenSupported" >-->
+            <!--<a href="" ng-click="goFullscreen()" title="Fullscreen">-->
+                <!--<i id="fullscreen" ng-class="{'fa-expand': ! isFullscreen, 'fa-compress': isFullscreen == true}"></i>-->
+            <!--</a>-->
+        <!--</li>-->
+        <li class="hidden-sm hidden-xs">
+            <h5 class="nav-titles header-page-title" style="font-weight: bold;padding-top:15px; height:0px">{{ProjectTitle.title()}}</h5>
+        </li>
+        <li class="" ng-show="false">
+            <button ng-click="generateReport()" class="fa fa-question" style= "background-color: dodgerblue; border: none; color: white; padding: 12px 16px; font-size: 16px; cursor: pointer"></button>
+        </li>
+        <li class="dropdown user-profile">
+            <a style="padding-top:15px; height:0px" href="" class="dropdown-toggle" ng-click="removeClass(e)" data-toggle="dropdown">
+                <img src="assets/images/user-4.png" alt="user-image" class="img-circle img-inline userpic-32" width="28" />
+				<span>
+					{{user}}
+					<i class="fa-angle-down"></i>
+				</span>
+            </a>
+
+            <ul class="dropdown-menu user-profile-menu list-unstyled">
+
+                <li class="last">
+
+                    <a href="" ng-click="changePassword()">
+                        <i class="fa-key"></i>
+                        Change Password
+                    </a>
+                </li>
+
+                <li class="last" >
+
+                    <a href="" ng-click="logout()">
+                        <i class="fa-lock"></i>
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+    </ul>
+</nav>
+

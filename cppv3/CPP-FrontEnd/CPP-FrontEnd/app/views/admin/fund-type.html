@@ -1,0 +1,52 @@
+
+<div class="row">
+    <div class="col-centered" style="width: 900px">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title" style="font-size:30px;">Funding Source
+    <!--<span>-->
+        <!--<button type="button" class="btn btn-info btn-sm" ng-click="addRow()">-->
+            <!--<i class="fa fa-plus"><label style="padding-left: 3px; ">Add</label></i></button>-->
+    <!--</span>-->
+                </h3>
+                <a href="#/app/wbs" class="exit-button">X</a>
+            </div>
+            <div class="form-group">
+                <label for="selectOrg">Organization</label>
+
+                <select class="input-medium form-control" ng-change="filterChangeOrg()" ng-model="filterOrg" id="selectOrg">
+                    <!--<option value="">Select Organization</option>-->
+                    <option data-ng-repeat="filterOrg in organizationList" value={{filterOrg.OrganizationID}}>
+                        {{filterOrg.OrganizationName}}
+                    </option>
+                </select>
+            </div>
+            <div class="panel-body"  style="height: 550px; overflow: auto">
+                <!--<div class="gridStyle" ng-grid="gridOptions" style="height:500px;">
+                </div>-->
+                <div id="grid1" class="grid" ui-grid="gridOptions" ui-grid-edit ui-grid-cellnav style="height:500px;">
+                </div>
+            </div>
+            <div class="panel-footer" id="right_panel-footer" style="text-align:center">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <button type="button" class="btn btn-primary c-btn-delete"  ng-click="delete()">Delete</button>
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="button" class="btn btn-primary c-btn-save" ng-click="save()">Save</button>
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="button" class="btn btn-primary c-btn-back" ng-click="addRow()">New</button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .sortable:after{
+        content : none !important;
+    }
+</style>

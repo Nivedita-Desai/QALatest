@@ -1,0 +1,314 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>jsreport.Client</name>
+    </assembly>
+    <members>
+        <member name="T:jsreport.Client.Entities.DataItem">
+            <summary>
+            Allows to store example json schemas representing future report input data
+            See data extension
+            </summary>
+        </member>
+        <member name="T:jsreport.Client.Entities.Image">
+            <summary>
+            Image entity used in images extension
+            </summary>
+        </member>
+        <member name="T:jsreport.Client.Entities.Phantom">
+            <summary>
+            Complex object used to configure phantom-pdf rendering. It's embedded in Template
+            </summary>
+        </member>
+        <member name="P:jsreport.Client.Entities.Phantom.margin">
+            <summary>
+            Paper margin like 2cm, see phantom doc for details http://phantomjs.org/
+            </summary>
+        </member>
+        <member name="P:jsreport.Client.Entities.Phantom.header">
+            <summary>
+            Html used for page header, you can use special tags to insert page numbers: {#pageNum}/{#numPages}
+            </summary>
+        </member>
+        <member name="P:jsreport.Client.Entities.Phantom.headerHeight">
+            <summary>
+            Height of header like 2cm
+            </summary>
+        </member>
+        <member name="P:jsreport.Client.Entities.Phantom.footer">
+            <summary>
+            Html used for page footer, you can use special tags to insert page numbers: {#pageNum}/{#numPages}
+            </summary> 
+        </member>
+        <member name="P:jsreport.Client.Entities.Phantom.footerHeight">
+            <summary>
+            Height of footer like 2cm
+            </summary>
+        </member>
+        <member name="P:jsreport.Client.Entities.Phantom.orientation">
+            <summary>
+            Paper orientation, possible values "landscape" and "portrait"
+            </summary>
+        </member>
+        <member name="P:jsreport.Client.Entities.Phantom.format">
+            <summary>
+            Paper format, possible values "A5", "A4", "A3", "Letter", "Tabloid", "Legal"
+            width or height specification takes precedence
+            </summary>
+        </member>
+        <member name="P:jsreport.Client.Entities.Phantom.width">
+            <summary>
+            Paper width like 2cm
+            </summary>
+        </member>
+        <member name="P:jsreport.Client.Entities.Phantom.height">
+            <summary>
+            Paper height like 2cm
+            </summary>
+        </member>
+        <member name="T:jsreport.Client.IReportingService">
+            <summary>
+            jsreport API .net Wrapper
+            </summary>
+        </member>
+        <member name="M:jsreport.Client.IReportingService.RenderAsync(System.String,System.Object)">
+            <summary>
+            The simpliest rendering using template shortid and input data
+            </summary>
+            <param name="templateShortid">template shortid can be taken from jsreport studio or from filename in jsreport embedded</param>
+            <param name="data">any json serializable object</param>
+            <exception cref="T:jsreport.Client.JsReportException"></exception>
+            <returns>Report result promise</returns>
+        </member>
+        <member name="M:jsreport.Client.IReportingService.RenderAsync(System.String,System.String)">
+            <summary>
+            The simpliest rendering using template shortid and input data
+            </summary>
+            <param name="templateShortid">template shortid can be taken from jsreport studio or from filename in jsreport embedded</param>
+            <param name="jsonData">any json string</param>
+            <exception cref="T:jsreport.Client.JsReportException"></exception>
+            <returns>Report result promise</returns>
+        </member>
+        <member name="M:jsreport.Client.IReportingService.RenderAsync(jsreport.Client.RenderRequest)">
+            <summary>
+            Overload for more sophisticated rendering.
+            </summary>
+            <param name="request">ram name="request"&gt;Description of rendering process <see cref="T:jsreport.Client.RenderRequest"/></param>
+            <exception cref="T:jsreport.Client.JsReportException"></exception>
+            <returns>Report result promise</returns>
+        </member>
+        <member name="M:jsreport.Client.IReportingService.ReadReportAsync(System.String)">
+            <summary>
+            Reads previously rendered report. see http://jsreport.net/learn/reports
+            </summary>
+            <param name="permanentLink">link Report.PernamentLink from previously rendered report</param>
+            <exception cref="T:jsreport.Client.JsReportException"></exception>
+            <returns>Report result promise</returns>
+        </member>
+        <member name="M:jsreport.Client.IReportingService.GetRecipesAsync">
+            <summary>
+            Request list of recipes registered in jsreport server
+            </summary>
+            <returns>list of recipes names</returns>
+        </member>
+        <member name="M:jsreport.Client.IReportingService.GetEnginesAsync">
+            <summary>
+            Request list of engines registered in jsreport server
+            </summary>
+            <returns>list of recipes names</returns>
+        </member>
+        <member name="M:jsreport.Client.IReportingService.GetServerVersionAsync">
+            <summary>
+            Request jsreport package version
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:jsreport.Client.IReportingService.SynchronizeTemplatesAsync">
+            <summary>
+            Synchronize all *.jsrep files into jsreport server including images and sample json files
+            </summary>
+        </member>
+        <member name="P:jsreport.Client.IReportingService.ServiceUri">
+            <summary>
+            Uri to jsreport server like http://localhost:2000/ or https://subdomain.jsreportonline.net 
+            </summary>
+        </member>
+        <member name="T:jsreport.Client.JsReportException">
+            <summary>
+            Exception used when communication with jsreport fails
+            </summary>
+        </member>
+        <member name="P:jsreport.Client.JsReportException.ResponseErrorMessage">
+            <summary>
+            Parsed error message from jsreport response
+            </summary>
+        </member>
+        <member name="P:jsreport.Client.JsReportException.Response">
+            <summary>
+            Original response from jsreport server
+            </summary>
+        </member>
+        <member name="P:jsreport.Client.JsReportException.ResponseContent">
+            <summary>
+            Raw string response content from jsreport server
+            </summary>
+        </member>
+        <member name="P:jsreport.Client.RenderOptions.additional">
+            <summary>
+            Any additional dynamic attributes, Value is copied into options root before sending to jsreport.
+            </summary>
+        </member>
+        <member name="T:jsreport.Client.RenderRequest">
+            <summary>
+            Detailed configuration of jsreport rendering request
+            </summary>
+        </member>
+        <member name="P:jsreport.Client.RenderRequest.template">
+            <summary>
+            Report template specification, REQUIRED
+            </summary>
+        </member>
+        <member name="P:jsreport.Client.RenderRequest.data">
+            <summary>
+            Rendering input data, any serializable object, OPTIONAL
+            </summary>
+        </member>
+        <member name="P:jsreport.Client.RenderRequest.options">
+            <summary>
+            Rendering custom options, OPTIONAL
+            </summary>
+        </member>
+        <member name="T:jsreport.Client.Report">
+            <summary>
+            Output of jsreport rendering process
+            </summary>
+        </member>
+        <member name="P:jsreport.Client.Report.Content">
+            <summary>
+            Stream with report
+            </summary>
+        </member>
+        <member name="P:jsreport.Client.Report.ContentType">
+            <summary>
+            Report content type like application/pdf
+            </summary>
+        </member>
+        <member name="P:jsreport.Client.Report.FileExtension">
+            <summary>
+            Report file extension like "html" or "pdf"
+            </summary>
+        </member>
+        <member name="P:jsreport.Client.Report.PermanentLink">
+            <summary>
+            Optional pernament link to report
+            </summary>
+        </member>
+        <member name="T:jsreport.Client.ReportingService">
+            <summary>
+            jsreport API .net Wrapper
+            </summary>
+        </member>
+        <member name="M:jsreport.Client.ReportingService.RenderAsync(System.String,System.Object)">
+            <summary>
+            The simpliest rendering using template shortid and input data
+            </summary>
+            <param name="templateShortid">template shortid can be taken from jsreport studio or from filename in jsreport embedded</param>
+            <param name="data">any json serializable object</param>
+            <exception cref="T:jsreport.Client.JsReportException"></exception>
+            <returns>Report result promise</returns>
+        </member>
+        <member name="M:jsreport.Client.ReportingService.RenderAsync(System.String,System.String)">
+            <summary>
+            The simpliest rendering using template shortid and input data
+            </summary>
+            <param name="templateShortid">template shortid can be taken from jsreport studio or from filename in jsreport embedded</param>
+            <param name="jsonData">any json string</param>
+            <exception cref="T:jsreport.Client.JsReportException"></exception>
+            <returns>Report result promise</returns>
+        </member>
+        <member name="M:jsreport.Client.ReportingService.RenderAsync(jsreport.Client.RenderRequest)">
+            <summary>
+            Overload for more sophisticated rendering.
+            </summary>
+            <param name="request">ram name="request"&gt;Description of rendering process <see cref="T:jsreport.Client.RenderRequest"/></param>
+            <exception cref="T:jsreport.Client.JsReportException"></exception>
+            <returns>Report result promise</returns>
+        </member>
+        <member name="M:jsreport.Client.ReportingService.ReadReportAsync(System.String)">
+            <summary>
+            Reads previously rendered report. see http://jsreport.net/learn/reports
+            </summary>
+            <param name="permanentLink">link Report.PernamentLink from previously rendered report</param>
+            <exception cref="T:jsreport.Client.JsReportException"></exception>
+            <returns>Report result promise</returns>
+        </member>
+        <member name="M:jsreport.Client.ReportingService.GetRecipesAsync">
+            <summary>
+            Request list of recipes registered in jsreport server
+            </summary>
+            <returns>list of recipes names</returns>
+        </member>
+        <member name="M:jsreport.Client.ReportingService.GetEnginesAsync">
+            <summary>
+            Request list of engines registered in jsreport server
+            </summary>
+            <returns>list of recipes names</returns>
+        </member>
+        <member name="M:jsreport.Client.ReportingService.GetServerVersionAsync">
+            <summary>
+            Request jsreport package version
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:jsreport.Client.ReportingService.SynchronizeTemplatesAsync">
+            <summary>
+            Synchronize all *.jsrep files into jsreport server including images and sample json files
+            </summary>
+        </member>
+        <member name="T:jsreport.Client.Entities.Template">
+            <summary>
+            Main report specification entity. Required for every rendering specification
+            </summary>
+        </member>
+        <member name="P:jsreport.Client.Entities.Template.shortid">
+            <summary>
+            Unique 9 alfanum id
+            </summary>
+        </member>
+        <member name="P:jsreport.Client.Entities.Template.content">
+            <summary>
+            Content of report, most often this is html with javasript templating engines
+            </summary>
+        </member>
+        <member name="P:jsreport.Client.Entities.Template.helpers">
+            <summary>
+            Javascript helper functions in format: function a() { }; function b() { };
+            </summary>
+        </member>
+        <member name="P:jsreport.Client.Entities.Template.engine">
+            <summary>
+            Used javascript templating engine like "jsrender" or "handlebars"
+            </summary>
+        </member>
+        <member name="P:jsreport.Client.Entities.Template.recipe">
+            <summary>
+            Used recipe defining rendering process like "html", "phantom-pdf" or "fop"
+            </summary>
+        </member>
+        <member name="P:jsreport.Client.Entities.Template.name">
+            <summary>
+            Readable name, does not need to be unique
+            </summary>
+        </member>
+        <member name="P:jsreport.Client.Entities.Template.additional">
+            <summary>
+            Any additional dynamic attributes, Value is copied into Template root before sending to jsreport.
+            </summary>
+        </member>
+        <member name="P:jsreport.Client.Entities.Template.phantom">
+            <summary>
+            Optional specification for phantom-pdf
+            </summary>
+        </member>
+    </members>
+</doc>

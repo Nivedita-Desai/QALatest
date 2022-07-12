@@ -1,0 +1,30 @@
+﻿
+        <div class="panel panel-default" >
+            <div class="panel-heading">
+                <h3 class="panel-title" style="font-size:30px;">
+                    File Download
+                </h3>
+                <a href="#/app/wbs" class="exit-button">X</a>
+            </div>
+            <div class="panel-body" style="height: 550px">
+                <div id="documentUpload" style="height:450px;width:98%;border: #cbcbcb;border-style: solid; border-width: thin;">
+                    <div class="row" id="buttonRow" style="margin-top:0.3%;">
+                        <div class="col-sm-6" id="bfc-container" style="text-align:left;">
+                            <input class="fileInput" style="margin-top: 30px; margin-bottom: -10px;" id="fileUpload" sizeLimit="5MB" ngf-multiple="false" type="file" name="file" value="Upload Files" />
+                            <!--<input type="file" id="myFile" multiple size="50" onchange="getTheFiles()">-->
+                            <!--<p id="selectedFile"></p>-->
+
+                           <br>
+                            <br>
+                            <button id="uploadBtn" class="btn btn-black" style="width:90px;margin:5px;" ">Upload</button>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    
+    <style>
+        .sortable:after {
+            content: none !important;
+        }
+    </style>

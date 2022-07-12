@@ -1,0 +1,177 @@
+﻿<head>
+    <style type="text/css">
+        .col-sm-7 {
+            margin-top: 0px;
+        }
+
+        .input-required {
+            border-color: #cc3f44 !important;
+        }
+
+        .label-required {
+            color: #cc3f44 !important;
+        }
+
+        div.requiredBefore .checkboxRequired:before {
+            content: " *";
+            color: blue;
+        }
+
+        div.required .control-label:after {
+            content: " *";
+            color: blue;
+        }
+
+        div.asterik label.label-required:before {
+            content: " *";
+            color: #cc3f44;
+        }
+
+        div.asterik input.input-required:before {
+            content: " *";
+            color: #cc3f44;
+        }
+
+        .inputAsterik:after {
+            content: " *";
+            color: #cc3f44;
+            margin-right: -10px;
+        }
+
+        .btn {
+            margin-bottom: 0;
+            border: 1px solid !important;
+        }
+
+        .modal-dialog {
+            height: 100%;
+            vertical-align: middle;
+            margin-top: 5%;
+            align-self: center;
+        }
+
+        .fa {
+            color: white !important;
+        }
+
+        /*.btn-info {
+            color: #fff;
+            background-color: #222;
+        }*/
+
+        @media (min-width: 768px) {
+            /*.modal-dialog {
+                width: 50%;
+                max-width: 500px;
+                vertical-align: middle;
+            }*/
+        }
+    </style>
+</head>
+
+<!--LEGACY-->
+<!--<section id="projectdetail-view" style="height:100%;vertical-align:middle;  ">
+    <div class="row" id="draggable">
+        <form novalidate name="addForm" role="form" id="reportManagerForm">
+
+            <div class="col-xs-12 col-sm-12" style="padding:0;margin-right:-15px;">
+                <div class="gadget color-my" style="height: 575px;margin-top:-5%;margin-bottom:-20px;">
+
+                    <div id="reportManagerGadgetHeadID" class="gadget-head" style="display: block">
+                        <h3 class="modal-title">Add Subcontractor Type</h3>
+                        <button class="pull-right" data-ng-click="goBack('close')"
+                                style="background-color:red;color:white;border-radius:50px;width:40px;font-weight:bolder;margin-top:-5px;">
+                            X
+                        </button>
+                    </div>
+                    <div class="gadget-content" style="padding:10px;">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+
+                            <div class="form-group required" style="padding-left:0;padding-right:0;"
+                                 ng-class="{ 'has-error' : addForm.subcontractorTypeName.$error.required}">
+
+                                <label class="control-label">Subcontractor Type </label>
+                                <input class="form-control" name="subcontractorTypeName" ng-model="subcontractorType.SubcontractorTypeName" required />
+                            </div>
+
+                            <div class="form-group required" style="padding-left:0;padding-right:0;">
+
+                                <label class="">Hourly Rate </label>
+                                <input class="form-control" name="subcontractorTypeDescription" ng-model="subcontractorType.SubcontractorTypeDescription" />
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div style="margin-top:-60px;padding-left:10px;padding-right:10px;">
+                    <hr>
+                </div>
+                <div class="col-sm-12 pull-right" style="margin-right:5px;">
+
+                    <button class="btn btn-info rmis-btn pull-right" data-ng-click="save()">
+                        <i class="fa fa-file-pdf-o"></i>  Save
+                    </button>
+                    <button class="btn btn-info rmis-btn pull-right" data-ng-click="goBack('close')">
+                        <i class="fa fa-hand-o-left"></i>  Back
+                    </button>
+
+                </div>
+            </div>
+
+        </form>
+    </div>
+</section>-->
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="goBack('close')">X</button>
+    <h3 class="modal-title">Add New Subcontractor Type</h3>
+</div>
+<div class="modal-body" style="height:270px;">
+    <form novalidate name="addForm" role="form" id="reportManagerForm">
+        <div class="form-group required" style="padding-left:0;padding-right:0;"
+             ng-class="{ 'has-error' : addForm.subcontractorTypeName.$error.required}">
+
+            <label class="control-label">Subcontractor Type </label>
+            <input class="form-control" name="subcontractorTypeName" ng-model="subcontractorType.SubcontractorTypeName" required />
+        </div>
+
+        <div class="form-group required" style="padding-left:0;padding-right:0;">
+
+            <label class="">Description </label>
+            <input class="form-control" name="subcontractorTypeDescription" ng-model="subcontractorType.SubcontractorTypeDescription" />
+        </div>
+
+		<div class="form-group required" style="padding-left:0;padding-right:0;"
+			 ng-class="{ 'has-error' : addForm.uniqueIdentityNumber.$error.required}">
+
+			<label class="control-label">Unique Identifier</label>
+			<input class="form-control" name="uniqueIdentityNumber" ng-model="subcontractorType.UniqueIdentityNumber" required />
+		</div>
+    </form>
+</div>
+
+<div class="c-modal-footer">
+    <button type="button" class="btn btn-info" data-dismiss="modal" ng-click="goBack('close')">Close</button>
+    <button type="button" class="btn btn-info" ng-click="save()">Save</button>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+      //Dragging modal
+      $('.modal-dialog').draggable({
+          handle: ".modal-header"
+      });
+  });
+</script><!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>

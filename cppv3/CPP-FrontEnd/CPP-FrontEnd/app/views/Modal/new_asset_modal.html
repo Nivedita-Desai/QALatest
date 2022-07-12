@@ -1,0 +1,191 @@
+<script>
+    $(function(){
+        $("#asset_ad").datepicker();
+    });
+</script>
+
+<div class="modal-header" style="background-color: lightsteelblue;">
+    <h4>New Asset</h4>
+</div>
+
+<div class="modal-body" style="height:720px;">
+    <div class="row" style="height:75%;margin:0;padding:0;">
+        <div class="col-lg-6" style="height:100%;margin:0;padding:0;border-right:1px solid #333;">
+            <form>
+                <div class="_form-group _form-group-short">
+                    <label for="" class="_control-label _bold">Name:</label>
+                    <input ng-model="asset.Name" type="text" class="form-control" id="asset_name">
+                </div>
+                <div class="_form-group _form-group-short">
+                    <label for="" class="_control-label _bold">Tag:</label>
+                    <input ng-model="asset.Tag" type="text" class="form-control" id="asset_tag">
+                </div>
+                <div class="_form-group _form-group-short">
+                    <label for="" class="_control-label _bold">Acquisition Date:</label>
+                    <input ng-model="asset.AcquisitionDate" type="text" class="form-control" id="asset_ad">
+                </div>
+                <div class="_form-group _form-group-short">
+                    <label for="" class="_control-label _bold">Cost:</label>
+                    <input ng-model="asset.Cost" blur-to-currency type="text" class="form-control" amount="asset_cost">
+                </div>
+                <div class="_form-group _form-group-short">
+                    <label for="" class="_control-label _bold">EOL:</label>
+                    <input ng-model="asset.EOL" type="text" class="form-control" id="asset_eol">
+                </div>
+                <div class="_form-group _form-group-short">
+                    <label for="" class="_control-label _bold">Status:</label>
+                    <select class="form-control" id="statusSelect">
+                        <option ng-repeat="option in statusCollection" value="{{option.Status}}">{{option.Status}}</option>
+                    </select>
+                </div>
+                <div class="_form-group _form-group-short">
+                    <label for="" class="_control-label _bold">Note: (optional)</label>
+                    <input ng-model="asset.Note" type="text" class="form-control" id="asset_note">
+                </div>
+                <div class="_form-group _form-group-short">
+                    <label for="" class="_control-label _bold">Facility:</label>
+                    <select class="form-control" id="facilitySelect">
+                        <option ng-repeat="option in facilityCollection" value="{{option.ID}}">{{option.Name}}</option>
+
+                    </select>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-6" style="height:100%;margin:0;padding:0;">
+            <div class="row" style="height:50%;margin:0;padding:0;border-bottom:1px solid black">
+                <div class="col-lg-12" style="height:100%;">
+                    <div class="row" style="height:20%;">
+                        <div class="col-lg-8" style="text-align:left;height:100%;">
+                            <h4 class="am-sub-header">Components List <button type="button" class="btn-va btn-link btn-sm btn-va" ng-click="viewAllComp()" ng-hide="clistempty">(view all)</button></h4>
+                        </div>
+                        <div class="col-lg-4" style="text-align:right;height:100%;">
+                            <button class="btn btn-info btn-sm" type="button" ng-click="addComp()">+ Component</button>
+                        </div>
+                    </div>
+                    <div class="row" style="height:80%;">
+                        <div class="gridStyle col-lg-12" ng-hide="clistempty" ng-grid="CompGrid" style="height:100%;"></div>
+                        <div class="clist col-lg-12" ng-show="clistempty" style="height:100%;">
+                            There are currently no components..
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="height:50%;padding:5px 0 0 0;margin:0;">
+                <div class="col-lg-12" style="height:100%;">
+                    <div class="row" style="height:15%;">
+                        <div class="col-lg-6" style="text-align:left;">
+                            <h4>Licenses and Warranties: <button type="button" class="btn-va btn-link btn-sm" ng-click="viewAllAttc()" ng-hide="dlistempty">(view all)</button></h4>
+                        </div>
+                        <div class="col-lg-6" style="text-align:right;">
+                            <button class="btn btn-info btn-sm" type="button" ng-click="addAttc()">+ Attachment</button>
+                        </div>
+                    </div>
+                    <div class="row" style="height:85%;">
+                        <div class="col-lg-12" style="height:90%;">
+                            <div class="row" ng-hide="dlistempty" style="height:50%;">
+                                <div class="col-lg-3" style="height:100%;">
+                                    <div class="row" id="doc" style="height:90%;">
+                                    </div>
+                                    <div class="row" style="height:10%;text-align:center;">
+                                        License
+                                    </div>
+                                </div>
+                                <div class="col-lg-3" style="height:100%;">
+                                    <div class="row" id="doc" style="height:90%;">
+                                    </div>
+                                    <div class="row" style="height:10%;text-align:center;">
+                                        Warranty
+                                    </div>
+                                </div>
+                                <div class="col-lg-3" style="height:100%;">
+                                    <div class="row" style="height:90%;">
+                                    </div>
+                                    <div class="row" style="height:10%;">
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-3" style="height:100%;">
+                                    <div class="row" style="height:90%;">
+
+                                    </div>
+                                    <div class="row" style="height:10%;">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" ng-hide="dlistempty" style="height:50%;">
+                                <div class="col-lg-3" style="height:100%;">
+                                    <div class="row" style="height:90%;">
+
+                                    </div>
+                                    <div class="row" style="height:10%;">
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-3" style="height:100%;">
+                                    <div class="row" style="height:90%;">
+
+                                    </div>
+                                    <div class="row" style="height:10%;">
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-3" style="height:100%;">
+                                    <div class="row" style="height:90%;">
+
+                                    </div>
+                                    <div class="row" style="height:10%;">
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-3" style="height:100%;">
+                                    <div class="row" style="height:90%;">
+
+                                    </div>
+                                    <div class="row" style="height:10%;">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dlist" ng-show="dlistempty">
+                                There are no documents attached...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="height:25%;margin:0;padding:5px 0 0 0;border-top:1px solid black;">
+        <div class="col-lg-12" style="height:100%;">
+            <div class="row" style="height:25%;">
+                <div class="col-lg-6" style="text-align:left;">
+                    <h4 class="am-sub-header">Asset History:<button type="button" class="btn-va btn-link btn-sm" ng-click="viewAllHist()" ng-hide="hlistempty">(view all)</button></h4>
+                </div>
+                <div class="col-lg-6" style="text-align:right;">
+                    <button id="addLogBtn" class="btn btn-info btn-sm" type="button" ng-click="addHist()">+ Log</button>
+                </div>
+            </div>
+            <div class="row" style="height:75%;">
+                <div class="col-lg-12" style="height:100%;">
+                    <div class="gridStyle" ng-hide="hlistempty" ng-grid="HistGrid" style="height:80%;"></div>
+                    <div class="hlist" ng-show="hlistempty">
+                        There are no history logs...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer" style="padding:5px;">
+    <!--<div class="row" style="text-align:right;">-->
+        <!--<div class="col-lg-12">-->
+    <button type="button" class="btn-primary" ng-click="test()">TEST</button>
+    <button type="button" class="btn-primary" ng-click="test2()">TEST2</button>
+            <button id="new-asset-btn-save" type="button" class="btn btn-primary c-btn-save" ng-click="save()">Save</button>
+            <button id="new-asset-btn-cancel" type="button" class="btn btn-primary c-btn-back" ng-click="cancel()">Cancel</button>
+        <!--</div>-->
+    <!--</div>-->
+</div>

@@ -1,0 +1,39 @@
+﻿<div class="row">
+    <div class="col-centered" style="width: 650px">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title" style="font-size:30px;">
+                    Project Type
+                </h3>
+                <a href="#/app/wbs" class="exit-button">X</a>
+            </div>
+            <div class="panel-body" style="height: 550px; overflow: auto">
+                <div id="grid1" class="gird" ui-grid="gridOptions" ui-grid-edit ui-grid-cellnav>
+
+                </div>
+            </div>
+            <div class="panel-footer" id="right_panel-footer" style="text-align:center">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <button type="button" class="btn btn-primary c-btn-delete" ng-click="delete()">Delete</button>
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="button" class="btn btn-primary c-btn-save" ng-click="save()">Save</button>
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="button" class="btn btn-primary c-btn-back" ng-click="addRow()">New</button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .sortable:after {
+        content: none !important;
+    }
+</style>

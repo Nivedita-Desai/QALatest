@@ -1,0 +1,34 @@
+
+
+
+//-------------------------------- Swapnil 29/10/2021 --------------------------------------------
+
+CREATE TABLE `project_access_control` (
+`Id` int NOT NULL AUTO_INCREMENT,
+`UserId` int DEFAULT NULL,
+`ProgramId` int DEFAULT NULL,
+`IsProgramCreator` tinyint(1) DEFAULT NULL,
+`ProgramElementID` int DEFAULT NULL,
+`IsProgramEleCreator` tinyint(1) DEFAULT NULL,
+`IsPrgmEleApprover` tinyint(1) DEFAULT NULL,
+`ProjectID` int DEFAULT NULL,
+`IsProjectCreator` tinyint(1) DEFAULT NULL,
+`IsProjectApprover` tinyint(1) DEFAULT NULL,
+`IsAllowedUser` tinyint(1) DEFAULT NULL,
+PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+//---------------------------------------03/11/2021 Nivedita---------------------------------------------------------------
+create table UserLicenseMapping
+(
+id int primary key auto_increment,
+userId int not null,
+licenseKey varchar(100) not null,
+productId varchar(100) ,
+expirationDate date,
+licenseStatus varchar(45)
+);
+
+
+

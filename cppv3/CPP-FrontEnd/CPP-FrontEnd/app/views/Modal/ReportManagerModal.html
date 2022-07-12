@@ -1,0 +1,110 @@
+﻿<head>
+    <style type="text/css">
+        .col-sm-7 {
+            margin-top: 0px;
+        }
+
+        .input-required {
+            border-color: #cc3f44 !important;
+        }
+
+        .label-required {
+            color: #cc3f44 !important;
+        }
+
+        div.asterik label.label-required:before {
+            content: " *";
+            color: #cc3f44;
+        }
+
+        div.asterik input.input-required:before {
+            content: " *";
+            color: #cc3f44;
+        }
+
+        .inputAsterik:after {
+            content: " *";
+            color: #cc3f44;
+            margin-right: -10px;
+        }
+
+        .btn {
+            margin-bottom: 0;
+            border: 1px solid !important;
+        }
+
+        .modal-dialog {
+            height: 100%;
+            vertical-align: middle;
+            margin-top: 5%;
+            align-self: center;
+        }
+
+        .fa {
+            color: white !important;
+        }
+
+        @media (min-width: 768px) {
+
+        }
+    </style>
+</head>
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="goBack('close')">X</button>
+    <h3 class="modal-title">Report Manager</h3>
+</div>
+<div class="modal-body" style="height:270px;">
+    <div class="form-group required" style="padding-left:0;padding-right:0;"
+         ng-class="{ 'has-error' : reportManagerForm.reportType.$error.required}">
+
+        <label class="control-label">Report Type </label>
+        <ui-select ng-model="reportTypeFilter" name="reportType" on-select="selectReportType($item)" required>
+            <ui-select-match>
+                <span ng-bind="$select.selected"></span>
+            </ui-select-match>
+            <ui-select-choices repeat="item in (reportTypeList | filter: $select.search)">
+                <span ng-bind="item"></span>
+            </ui-select-choices>
+        </ui-select>
+    </div>
+    <!--Budget Summary Report-->
+    <div ng-show="reportTypeFilter==''" class="form-group required" style="padding-left:0;padding-right:0;"
+         ng-class="{ 'has-error' : reportManagerForm.granularityFilter.$error.required}">
+
+        <label class="control-label">Granularity </label>
+        <ui-select ng-model="granularityFilter" name="granularityFilter" on-select="selectGranularity($item)" required>
+            <ui-select-match>
+                <span ng-bind="$select.selected"></span>
+            </ui-select-match>
+            <ui-select-choices repeat="item in (granularityList | filter: $select.search)">
+                <span ng-bind="item"></span>
+            </ui-select-choices>
+        </ui-select>
+    </div>
+</div>
+
+<div class="c-modal-footer">
+    <button type="button" id='ganttReportClose' class="btn btn-info w100" data-dismiss="modal" ng-click="goBack('close')" style="
+    margin-bottom: 10px;">Close</button>
+    <button type="button" id='ganttReportRun' class="btn btn-info w100" ng-click="generateReport()" style="
+    margin-bottom: 10px;">Run</button>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+      //Dragging modal
+      $('.modal-dialog').draggable({
+          handle: ".modal-header"
+      });
+  });
+</script><!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>

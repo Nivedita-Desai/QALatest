@@ -1,0 +1,26 @@
+<div>
+    <table class="table table-striped table-bordered">
+        <thead>
+            <th>Order ID</th>
+            <th>Customer</th>
+            <th>City</th>
+            <th>Shipped</th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="o in orders">
+                <td>{{o.orderID}}</td>
+                <td>{{o.customerName}}</td>
+                <td>{{o.shipperCity}}</td>
+                <td>{{o.isShipped}}</td>
+
+
+            </tr>
+        </tbody>
+        <div>
+            <button class="btn btn-danger" ng-click="logOut()">Log out</button>
+        </div>
+
+
+    </table>
+
+</div>

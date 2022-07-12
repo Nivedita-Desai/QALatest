@@ -1,0 +1,52 @@
+<input id="address-bar" class="controls" type="text">
+<div id="map-canvas"></div>
+<div id="map-style">
+
+    <div id="dropdown-style">
+
+        <select autofocus id="program" style="width:200px"></select><br><br>
+
+        <select autofocus id="programElement" style="width:200px" ></select><br><br>
+
+        <select autofocus id="project" style="width:200px" ></select>
+
+        <div id="button-style"><br>
+            <button type="button" id = "new_location">New</button>
+            <button type="button" onClick="editBtnClick()">Edit</button>
+            <button type="button" onClick="viewBtnClick()">View</button>
+
+        </div>
+
+        <select autofocus id="projID" style="visibility:hidden"></select>
+    </div>
+
+    <div id="newbtn-section">
+        <br><font color="white">Search Address:</font>
+        <input id="address-bar" size="27" type="text" name="AddressBar" style="height:20px"><br><br>
+        <font color="white">User Defined Address <br>
+            (Same as above ?)</font>
+        <input type="checkbox" id="user-chkbox" name=others onclick="enable_text(this.checked)">
+        <input type=text id="user-addr" size="27" style="height:20px"><br><br>
+
+      <span class="colorpicker">
+        <span class="bgbox"></span>
+        <span class="hexbox"></span>
+        <span class="clear"></span>
+        <span class="colorbox">
+            <b class="selected" style="background:#292421" title="Black"></b>
+            <b style="background:#B0171F" title="Red"></b>
+            <b style="background:#A49381" title="Sand"></b>
+            <b style="background:#626878" title="Charcoal"></b>
+            <b style="background:#2E436E" title="Navy Blue"></b>
+            <b style="background:#FF00FF " title="Pink"></b>
+
+
+        </span>
+    </span><br><br>
+        <button type="button" id = "save_location" >Save</button>
+        <button type="button" id = "cancel_location" onClick="cancelBtnClick()">Cancel</button>
+    </div>
+
+
+
+</div>

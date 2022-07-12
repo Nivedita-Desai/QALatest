@@ -1,0 +1,115 @@
+﻿<style>
+    .label-margin {
+        margin-left: 10px;
+        margin-right: 3px;
+    }
+
+    .c-input-sm {
+        width: 100px;
+    }
+
+    .reportview {
+        background-color: lightgray;
+    }
+
+    .key {
+        padding: 5px;
+        width: 30%;
+        text-align: center;
+        background-color: lightgray;
+        border: 2px solid;
+    }
+
+    .value {
+        text-align: center;
+        border: 2px solid;
+    }
+
+    .transactionQBody > tbody > tr > td {
+        vertical-align: middle;
+        text-align: center;
+        font-size: 13px !important;
+    }
+
+    .transactionQHeader > thead > tr > th {
+        /*text-align:center;*/
+    }
+
+    .filter-btn {
+        margin-top: 1%;
+    }
+
+    .access-btn {
+        margin-top: 3%;
+    }
+
+    .btn-border {
+        width: 100px;
+        border-radius: 15px;
+    }
+
+    .popover {
+        max-width: 500px;
+    }
+
+    .popover-title {
+        color: black;
+        font-weight: 800;
+    }
+
+    .search-detail {
+        min-height: 34px;
+        height: 100%;
+    }
+
+    .search-detail-label {
+        background-color: white;
+    }
+
+    .center-header {
+        text-align: center;
+    }
+
+    .header-font {
+        color: #4a4a4a;
+        font-weight: 500;
+        font-family: Roboto,Arial,Tahoma,Verdana,sans-serif;
+    }
+
+    .dhx-round-corner {
+        border-radius: 4px;
+    }
+</style>
+
+<section id="dashboard-view" class="mainbar">
+    <section class="matter" style="margin-left:0;">
+
+        <div>
+            <div style="height: 100%; margin-right:-6%; margin-left:0;" id="grid"></div>
+        </div>
+        <div>
+            <button ng-click="newRequest()" style="margin-left:40%;">New Request</button>
+            <button ng-click="updateRequest()" style="margin-left:2%;">Update Request</button>
+            <button ng-click="received()" style="margin-left:2%;">Received</button>
+        </div>
+        <!-- <span id="spin" us-spinner="{color:'white',length:0, radius:56,width:17}"
+              class="fademe" spinner-key="spinner-1"  spinner-on="showSpinner">
+        </span>-->
+
+    </section>
+</section>
+
+<script>
+
+    $(document).ready(function () {
+        //        $('#fromDate').on('change',function(){
+        //            $('.datepicker').hide();
+        //        })
+        //
+        //        $('#toDate').on('change',function(){
+        //            $('.datepicker').hide();
+        //        })
+    });
+</script>
+
+

@@ -1,0 +1,258 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ForecastTrendDataSet" targetNamespace="http://tempuri.org/ForecastTrendDataSet.xsd" xmlns:mstns="http://tempuri.org/ForecastTrendDataSet.xsd" xmlns="http://tempuri.org/ForecastTrendDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="cppConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="cppConnectionString (Web.config)" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.cppConnectionString.ConnectionString" Provider="Devart.Data.MySql" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ForecastTrendTableAdapter" GeneratorDataComponentClassName="ForecastTrendTableAdapter" Name="ForecastTrend" UserDataComponentName="ForecastTrendTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="cppConnectionString (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT c.ID, c.OrganizationID, c.CategoryID, c.CategoryDescription, c.SubCategoryID, c.SubCategoryDescription, i_1.CurrentAuthorizedBudget, j_1.ForecastAmount
+FROM     activity_category c LEFT OUTER JOIN
+                      (SELECT actCat.ID, actCat.OrganizationID, act.BudgetCategory, act.BudgetSubCategory, SUM(act.FTECost + act.LumpsumCost + act.UnitCost + act.OdcCost) AS CurrentAuthorizedBudget
+                       FROM      project proj INNER JOIN
+                                         program prg ON prg.ProgramID = proj.ProgramID INNER JOIN
+                                         trend tr ON tr.ProjectID = proj.ProjectID INNER JOIN
+                                         activity act ON act.TrendID = tr.TrendID INNER JOIN
+                                         activity_category actCat ON actCat.SubCategoryDescription = act.BudgetSubCategory AND actCat.CategoryDescription = act.BudgetCategory AND actCat.OrganizationID = prg.OrganizationID
+                       WHERE   (proj.ProjectID = :ProjectID) AND (tr.TrendNumber &lt;&gt; '1000') AND (act.TrendNumber &lt;&gt; '1000') AND (tr.TrendStatusID = 1)
+                       GROUP BY act.BudgetCategory, act.BudgetSubCategory) i_1 ON i_1.ID = c.ID LEFT OUTER JOIN
+                      (SELECT actCat.ID, actCat.OrganizationID, act.BudgetCategory, act.BudgetSubCategory, SUM(act.FTECost + act.LumpsumCost + act.UnitCost + act.OdcCost) AS ForecastAmount
+                       FROM      project proj INNER JOIN
+                                         program prg ON prg.ProgramID = proj.ProgramID INNER JOIN
+                                         trend tr ON tr.ProjectID = proj.ProjectID INNER JOIN
+                                         activity act ON act.TrendID = tr.TrendID INNER JOIN
+                                         activity_category actCat ON actCat.SubCategoryDescription = act.BudgetSubCategory AND actCat.CategoryDescription = act.BudgetCategory AND actCat.OrganizationID = prg.OrganizationID
+                       WHERE   (proj.ProjectID = :ProjectID) AND (tr.TrendNumber &lt;&gt; '1000') AND (act.TrendNumber &lt;&gt; '1000')
+                       GROUP BY act.PhaseCode, act.BudgetCategory, act.BudgetSubCategory) j_1 ON j_1.ID = c.ID
+WHERE  (c.OrganizationID =
+                      (SELECT OrganizationID
+                       FROM      program
+                       WHERE   (ProgramID =
+                                             (SELECT ProgramID
+                                              FROM      Project
+                                              WHERE   (ProjectID = :ProjectID)))))
+ORDER BY c.SubCategoryID</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="ProjectID" ColumnName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="ProjectID" Precision="0" Scale="0" Size="0" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="CategoryID" DataSetColumn="CategoryID" />
+              <Mapping SourceColumn="CategoryDescription" DataSetColumn="CategoryDescription" />
+              <Mapping SourceColumn="SubCategoryID" DataSetColumn="SubCategoryID" />
+              <Mapping SourceColumn="SubCategoryDescription" DataSetColumn="SubCategoryDescription" />
+              <Mapping SourceColumn="CurrentAuthorizedBudget" DataSetColumn="CurrentAuthorizedBudget" />
+              <Mapping SourceColumn="ForecastAmount" DataSetColumn="ForecastAmount" />
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="OrganizationID" DataSetColumn="OrganizationID" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="PhaseDateDetailsTableAdapter" GeneratorDataComponentClassName="PhaseDateDetailsTableAdapter" Name="PhaseDateDetails" UserDataComponentName="PhaseDateDetailsTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="cppConnectionString (Web.config)" DbObjectName="cpp.phase_lookup" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT p.ActivityPhaseCode AS PhaseID, p.PhaseDescription AS PhaseTitle, MAX(ps.ActivityStartDate) AS StartDate, MAX(ps.ActivityEndDate) AS EndDate, MAX(psp.ActivityStartDate) AS PriorStartDate, MAX(psp.ActivityEndDate) 
+                  AS PriorEndDate
+FROM     phase_lookup p LEFT OUTER JOIN
+                  activity ps ON ps.PhaseCode = p.ActivityPhaseCode AND ps.ProjectID = :ProjectID AND ps.TrendNumber = :TrendNumber LEFT OUTER JOIN
+                  activity psp ON psp.PhaseCode = p.ActivityPhaseCode AND psp.ProjectID = :ProjectID AND psp.TrendNumber =
+                      (SELECT MAX(TrendNumber) AS EXPR1
+                       FROM      trend
+                       WHERE   (ProjectID = :ProjectID) AND (TrendNumber &lt; :TrendNumber) AND (TrendStatusID = 1))
+GROUP BY p.PhaseID
+ORDER BY PhaseID</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="ProjectID" ColumnName="ProjectID" DataSourceName="cpp.activity" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="ProjectID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ProjectID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="TrendNumber" ColumnName="TrendNumber" DataSourceName="cpp.activity" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="TrendNumber" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="TrendNumber" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="PhaseTitle" DataSetColumn="PhaseTitle" />
+              <Mapping SourceColumn="PhaseID" DataSetColumn="PhaseID" />
+              <Mapping SourceColumn="StartDate" DataSetColumn="StartDate" />
+              <Mapping SourceColumn="EndDate" DataSetColumn="EndDate" />
+              <Mapping SourceColumn="PriorStartDate" DataSetColumn="PriorStartDate" />
+              <Mapping SourceColumn="PriorEndDate" DataSetColumn="PriorEndDate" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Group2SummaryTableAdapter" GeneratorDataComponentClassName="Group2SummaryTableAdapter" Name="Group2Summary" UserDataComponentName="Group2SummaryTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="cppConnectionString (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT ag.gr2Code, ag.gr2CatID, ag.AuthorizedBudget, ag.ForecastedBudgetChange, ac.ID, ac.OrganizationID, ac.CategoryID, ac.CategoryDescription, ac.SubCategoryID, ac.SubCategoryDescription, ac.Phase, ac.CreatedDate, ac.UpdatedDate, 
+                  ac.CreatedBy, ac.UpdatedBy
+FROM     (SELECT LEFT(SubCategoryID, 1) AS gr2Code, MIN(CategoryID) AS gr2CatID, SUM(CurrentAuthorizedBudget) AS AuthorizedBudget, SUM(ForecastAmount) AS ForecastedBudgetChange
+                  FROM      (SELECT c.SubCategoryID, c.CategoryID, i_1.CurrentAuthorizedBudget, j_1.ForecastAmount
+                                     FROM      activity_category c LEFT OUTER JOIN
+                                                           (SELECT j.CategoryDescription, j.CategoryID, j.SubCategoryDescription, j.SubCategoryID, SUM(IFNULL(i.FTECost, 0) + IFNULL(i.LumpsumCost, 0) + IFNULL(i.UnitCost, 0)) AS CurrentAuthorizedBudget
+                                                            FROM      activity_category j LEFT OUTER JOIN
+                                                                              activity i ON i.BudgetSubCategory = j.SubCategoryDescription AND i.BudgetCategory = j.CategoryDescription AND i.ProjectID = :ProjectID AND i.TrendNumber &lt;= :TrendNumber
+                                                            GROUP BY j.SubCategoryID, j.SubCategoryDescription) i_1 ON i_1.SubCategoryID = c.SubCategoryID LEFT OUTER JOIN
+                                                           (SELECT j.CategoryDescription, j.CategoryID, j.SubCategoryDescription, j.SubCategoryID, SUM(IFNULL(i.FTECost, 0) + IFNULL(i.LumpsumCost, 0) + IFNULL(i.UnitCost, 0)) AS ForecastAmount
+                                                            FROM      activity_category j LEFT OUTER JOIN
+                                                                              activity i ON i.BudgetSubCategory = j.SubCategoryDescription AND i.BudgetCategory = j.CategoryDescription AND i.ProjectID = :ProjectID AND i.TrendNumber &lt;= :TrendNumber
+                                                            GROUP BY j.SubCategoryID, j.SubCategoryDescription) j_1 ON j_1.SubCategoryID = c.SubCategoryID) m
+                  GROUP BY LEFT(SubCategoryID, 1)) ag INNER JOIN
+                  activity_category ac ON ag.gr2CatID = ac.SubCategoryID</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="ProjectID" ColumnName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="ProjectID" Precision="0" Scale="0" Size="0" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="TrendNumber" ColumnName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="TrendNumber" Precision="0" Scale="0" Size="0" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="gr2Code" DataSetColumn="gr2Code" />
+              <Mapping SourceColumn="gr2CatID" DataSetColumn="gr2CatID" />
+              <Mapping SourceColumn="AuthorizedBudget" DataSetColumn="AuthorizedBudget" />
+              <Mapping SourceColumn="ForecastedBudgetChange" DataSetColumn="ForecastedBudgetChange" />
+              <Mapping SourceColumn="CategoryID" DataSetColumn="CategoryID" />
+              <Mapping SourceColumn="CategoryDescription" DataSetColumn="CategoryDescription" />
+              <Mapping SourceColumn="SubCategoryID" DataSetColumn="SubCategoryID" />
+              <Mapping SourceColumn="SubCategoryDescription" DataSetColumn="SubCategoryDescription" />
+              <Mapping SourceColumn="Phase" DataSetColumn="Phase" />
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="OrganizationID" DataSetColumn="OrganizationID" />
+              <Mapping SourceColumn="CreatedDate" DataSetColumn="CreatedDate" />
+              <Mapping SourceColumn="UpdatedDate" DataSetColumn="UpdatedDate" />
+              <Mapping SourceColumn="CreatedBy" DataSetColumn="CreatedBy" />
+              <Mapping SourceColumn="UpdatedBy" DataSetColumn="UpdatedBy" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TrendDetailsTableAdapter" GeneratorDataComponentClassName="TrendDetailsTableAdapter" Name="TrendDetails" UserDataComponentName="TrendDetailsTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="cppConnectionString (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT tre.TrendID, tre.TrendNumber, tre.ProjectID, tre.TrendDescription, tre.TrendJustification, tre.TrendImpact, proj.ProjectName, ProjectManager.Name AS ProjectManagerName, Director.Name AS DirectorName, 
+                  Scheduler.Name AS SchedulerName, VicePresident.Name AS VicePresidentName, FinancialAnalyst.Name AS FinancialAnalystName, CapitalProjectAssistant.Name AS CapitalProjectAssistantName
+FROM     trend tre INNER JOIN
+                  project proj ON tre.ProjectID = proj.ProjectID INNER JOIN
+                  employee ProjectManager ON proj.ProjectManagerID = ProjectManager.ID INNER JOIN
+                  employee Director ON proj.DirectorID = Director.ID INNER JOIN
+                  employee Scheduler ON proj.SchedulerID = Scheduler.ID INNER JOIN
+                  employee VicePresident ON proj.VicePresidentID = VicePresident.ID INNER JOIN
+                  employee FinancialAnalyst ON proj.FinancialAnalystID = FinancialAnalyst.ID INNER JOIN
+                  employee CapitalProjectAssistant ON proj.CapitalProjectAssistantID = CapitalProjectAssistant.ID
+WHERE  (tre.ProjectID = :ProjectID) AND (tre.TrendNumber = :TrendNumber)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="ProjectID" ColumnName="ProjectID" DataSourceName="cpp.trend" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="ProjectID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ProjectID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="TrendNumber" ColumnName="TrendNumber" DataSourceName="cpp.trend" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="TrendNumber" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="TrendNumber" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="TrendID" DataSetColumn="TrendID" />
+              <Mapping SourceColumn="TrendNumber" DataSetColumn="TrendNumber" />
+              <Mapping SourceColumn="ProjectID" DataSetColumn="ProjectID" />
+              <Mapping SourceColumn="TrendDescription" DataSetColumn="TrendDescription" />
+              <Mapping SourceColumn="TrendJustification" DataSetColumn="TrendJustification" />
+              <Mapping SourceColumn="TrendImpact" DataSetColumn="TrendImpact" />
+              <Mapping SourceColumn="ProjectName" DataSetColumn="ProjectName" />
+              <Mapping SourceColumn="ProjectManagerName" DataSetColumn="ProjectManagerName" />
+              <Mapping SourceColumn="DirectorName" DataSetColumn="DirectorName" />
+              <Mapping SourceColumn="SchedulerName" DataSetColumn="SchedulerName" />
+              <Mapping SourceColumn="VicePresidentName" DataSetColumn="VicePresidentName" />
+              <Mapping SourceColumn="FinancialAnalystName" DataSetColumn="FinancialAnalystName" />
+              <Mapping SourceColumn="CapitalProjectAssistantName" DataSetColumn="CapitalProjectAssistantName" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ForecastTrendDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ForecastTrendDataSet" msprop:Generator_UserDSName="ForecastTrendDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ForecastTrend" msprop:Generator_TableClassName="ForecastTrendDataTable" msprop:Generator_TableVarName="tableForecastTrend" msprop:Generator_RowChangedName="ForecastTrendRowChanged" msprop:Generator_TablePropName="ForecastTrend" msprop:Generator_RowDeletingName="ForecastTrendRowDeleting" msprop:Generator_RowChangingName="ForecastTrendRowChanging" msprop:Generator_RowEvHandlerName="ForecastTrendRowChangeEventHandler" msprop:Generator_RowDeletedName="ForecastTrendRowDeleted" msprop:Generator_RowClassName="ForecastTrendRow" msprop:Generator_UserTableName="ForecastTrend" msprop:Generator_RowEvArgName="ForecastTrendRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CategoryID" msprop:Generator_ColumnVarNameInTable="columnCategoryID" msprop:Generator_ColumnPropNameInRow="CategoryID" msprop:Generator_ColumnPropNameInTable="CategoryIDColumn" msprop:Generator_UserColumnName="CategoryID" type="xs:string" />
+              <xs:element name="CategoryDescription" msprop:Generator_ColumnVarNameInTable="columnCategoryDescription" msprop:Generator_ColumnPropNameInRow="CategoryDescription" msprop:Generator_ColumnPropNameInTable="CategoryDescriptionColumn" msprop:Generator_UserColumnName="CategoryDescription" type="xs:string" minOccurs="0" />
+              <xs:element name="SubCategoryID" msprop:Generator_ColumnVarNameInTable="columnSubCategoryID" msprop:Generator_ColumnPropNameInRow="SubCategoryID" msprop:Generator_ColumnPropNameInTable="SubCategoryIDColumn" msprop:Generator_UserColumnName="SubCategoryID" type="xs:string" />
+              <xs:element name="SubCategoryDescription" msprop:Generator_ColumnVarNameInTable="columnSubCategoryDescription" msprop:Generator_ColumnPropNameInRow="SubCategoryDescription" msprop:Generator_ColumnPropNameInTable="SubCategoryDescriptionColumn" msprop:Generator_UserColumnName="SubCategoryDescription" type="xs:string" minOccurs="0" />
+              <xs:element name="CurrentAuthorizedBudget" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCurrentAuthorizedBudget" msprop:Generator_ColumnPropNameInRow="CurrentAuthorizedBudget" msprop:Generator_ColumnPropNameInTable="CurrentAuthorizedBudgetColumn" msprop:Generator_UserColumnName="CurrentAuthorizedBudget" type="xs:double" minOccurs="0" />
+              <xs:element name="ForecastAmount" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnForecastAmount" msprop:Generator_ColumnPropNameInRow="ForecastAmount" msprop:Generator_ColumnPropNameInTable="ForecastAmountColumn" msprop:Generator_UserColumnName="ForecastAmount" type="xs:double" minOccurs="0" />
+              <xs:element name="ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
+              <xs:element name="OrganizationID" msprop:Generator_ColumnVarNameInTable="columnOrganizationID" msprop:Generator_ColumnPropNameInRow="OrganizationID" msprop:Generator_ColumnPropNameInTable="OrganizationIDColumn" msprop:Generator_UserColumnName="OrganizationID" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="PhaseDateDetails" msprop:Generator_TableClassName="PhaseDateDetailsDataTable" msprop:Generator_TableVarName="tablePhaseDateDetails" msprop:Generator_RowChangedName="PhaseDateDetailsRowChanged" msprop:Generator_TablePropName="PhaseDateDetails" msprop:Generator_RowDeletingName="PhaseDateDetailsRowDeleting" msprop:Generator_RowChangingName="PhaseDateDetailsRowChanging" msprop:Generator_RowEvHandlerName="PhaseDateDetailsRowChangeEventHandler" msprop:Generator_RowDeletedName="PhaseDateDetailsRowDeleted" msprop:Generator_RowClassName="PhaseDateDetailsRow" msprop:Generator_UserTableName="PhaseDateDetails" msprop:Generator_RowEvArgName="PhaseDateDetailsRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PhaseTitle" msprop:Generator_ColumnVarNameInTable="columnPhaseTitle" msprop:Generator_ColumnPropNameInRow="PhaseTitle" msprop:Generator_ColumnPropNameInTable="PhaseTitleColumn" msprop:Generator_UserColumnName="PhaseTitle" type="xs:string" minOccurs="0" />
+              <xs:element name="PhaseID" msprop:Generator_ColumnVarNameInTable="columnPhaseID" msprop:Generator_ColumnPropNameInRow="PhaseID" msprop:Generator_ColumnPropNameInTable="PhaseIDColumn" msprop:Generator_UserColumnName="PhaseID" type="xs:int" minOccurs="0" />
+              <xs:element name="StartDate" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnStartDate" msprop:Generator_ColumnPropNameInRow="StartDate" msprop:Generator_ColumnPropNameInTable="StartDateColumn" msprop:Generator_UserColumnName="StartDate" type="xs:string" minOccurs="0" />
+              <xs:element name="EndDate" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnEndDate" msprop:Generator_ColumnPropNameInRow="EndDate" msprop:Generator_ColumnPropNameInTable="EndDateColumn" msprop:Generator_UserColumnName="EndDate" type="xs:string" minOccurs="0" />
+              <xs:element name="PriorStartDate" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnPriorStartDate" msprop:Generator_ColumnPropNameInRow="PriorStartDate" msprop:Generator_ColumnPropNameInTable="PriorStartDateColumn" msprop:Generator_UserColumnName="PriorStartDate" type="xs:string" minOccurs="0" />
+              <xs:element name="PriorEndDate" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnPriorEndDate" msprop:Generator_ColumnPropNameInRow="PriorEndDate" msprop:Generator_ColumnPropNameInTable="PriorEndDateColumn" msprop:Generator_UserColumnName="PriorEndDate" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Group2Summary" msprop:Generator_TableClassName="Group2SummaryDataTable" msprop:Generator_TableVarName="tableGroup2Summary" msprop:Generator_RowChangedName="Group2SummaryRowChanged" msprop:Generator_TablePropName="Group2Summary" msprop:Generator_RowDeletingName="Group2SummaryRowDeleting" msprop:Generator_RowChangingName="Group2SummaryRowChanging" msprop:Generator_RowEvHandlerName="Group2SummaryRowChangeEventHandler" msprop:Generator_RowDeletedName="Group2SummaryRowDeleted" msprop:Generator_RowClassName="Group2SummaryRow" msprop:Generator_UserTableName="Group2Summary" msprop:Generator_RowEvArgName="Group2SummaryRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="gr2Code" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columngr2Code" msprop:Generator_ColumnPropNameInRow="gr2Code" msprop:Generator_ColumnPropNameInTable="gr2CodeColumn" msprop:Generator_UserColumnName="gr2Code" type="xs:string" minOccurs="0" />
+              <xs:element name="gr2CatID" msprop:Generator_ColumnVarNameInTable="columngr2CatID" msprop:Generator_ColumnPropNameInRow="gr2CatID" msprop:Generator_ColumnPropNameInTable="gr2CatIDColumn" msprop:Generator_UserColumnName="gr2CatID" type="xs:string" minOccurs="0" />
+              <xs:element name="AuthorizedBudget" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnAuthorizedBudget" msprop:Generator_ColumnPropNameInRow="AuthorizedBudget" msprop:Generator_ColumnPropNameInTable="AuthorizedBudgetColumn" msprop:Generator_UserColumnName="AuthorizedBudget" type="xs:double" minOccurs="0" />
+              <xs:element name="ForecastedBudgetChange" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnForecastedBudgetChange" msprop:Generator_ColumnPropNameInRow="ForecastedBudgetChange" msprop:Generator_ColumnPropNameInTable="ForecastedBudgetChangeColumn" msprop:Generator_UserColumnName="ForecastedBudgetChange" type="xs:double" minOccurs="0" />
+              <xs:element name="CategoryID" msprop:Generator_ColumnVarNameInTable="columnCategoryID" msprop:Generator_ColumnPropNameInRow="CategoryID" msprop:Generator_ColumnPropNameInTable="CategoryIDColumn" msprop:Generator_UserColumnName="CategoryID" type="xs:string" />
+              <xs:element name="CategoryDescription" msprop:Generator_ColumnVarNameInTable="columnCategoryDescription" msprop:Generator_ColumnPropNameInRow="CategoryDescription" msprop:Generator_ColumnPropNameInTable="CategoryDescriptionColumn" msprop:Generator_UserColumnName="CategoryDescription" type="xs:string" minOccurs="0" />
+              <xs:element name="SubCategoryID" msprop:Generator_ColumnVarNameInTable="columnSubCategoryID" msprop:Generator_ColumnPropNameInRow="SubCategoryID" msprop:Generator_ColumnPropNameInTable="SubCategoryIDColumn" msprop:Generator_UserColumnName="SubCategoryID" type="xs:string" />
+              <xs:element name="SubCategoryDescription" msprop:Generator_ColumnVarNameInTable="columnSubCategoryDescription" msprop:Generator_ColumnPropNameInRow="SubCategoryDescription" msprop:Generator_ColumnPropNameInTable="SubCategoryDescriptionColumn" msprop:Generator_UserColumnName="SubCategoryDescription" type="xs:string" minOccurs="0" />
+              <xs:element name="Phase" msprop:Generator_ColumnVarNameInTable="columnPhase" msprop:Generator_ColumnPropNameInRow="Phase" msprop:Generator_ColumnPropNameInTable="PhaseColumn" msprop:Generator_UserColumnName="Phase" type="xs:string" minOccurs="0" />
+              <xs:element name="ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
+              <xs:element name="OrganizationID" msprop:Generator_ColumnVarNameInTable="columnOrganizationID" msprop:Generator_ColumnPropNameInRow="OrganizationID" msprop:Generator_ColumnPropNameInTable="OrganizationIDColumn" msprop:Generator_UserColumnName="OrganizationID" type="xs:int" minOccurs="0" />
+              <xs:element name="CreatedDate" msprop:Generator_ColumnVarNameInTable="columnCreatedDate" msprop:Generator_ColumnPropNameInRow="CreatedDate" msprop:Generator_ColumnPropNameInTable="CreatedDateColumn" msprop:Generator_UserColumnName="CreatedDate" type="xs:dateTime" />
+              <xs:element name="UpdatedDate" msprop:Generator_ColumnVarNameInTable="columnUpdatedDate" msprop:Generator_ColumnPropNameInRow="UpdatedDate" msprop:Generator_ColumnPropNameInTable="UpdatedDateColumn" msprop:Generator_UserColumnName="UpdatedDate" type="xs:dateTime" />
+              <xs:element name="CreatedBy" msprop:Generator_ColumnVarNameInTable="columnCreatedBy" msprop:Generator_ColumnPropNameInRow="CreatedBy" msprop:Generator_ColumnPropNameInTable="CreatedByColumn" msprop:Generator_UserColumnName="CreatedBy" type="xs:string" minOccurs="0" />
+              <xs:element name="UpdatedBy" msprop:Generator_ColumnVarNameInTable="columnUpdatedBy" msprop:Generator_ColumnPropNameInRow="UpdatedBy" msprop:Generator_ColumnPropNameInTable="UpdatedByColumn" msprop:Generator_UserColumnName="UpdatedBy" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TrendDetails" msprop:Generator_TableClassName="TrendDetailsDataTable" msprop:Generator_TableVarName="tableTrendDetails" msprop:Generator_TablePropName="TrendDetails" msprop:Generator_RowDeletingName="TrendDetailsRowDeleting" msprop:Generator_RowChangingName="TrendDetailsRowChanging" msprop:Generator_RowEvHandlerName="TrendDetailsRowChangeEventHandler" msprop:Generator_RowDeletedName="TrendDetailsRowDeleted" msprop:Generator_UserTableName="TrendDetails" msprop:Generator_RowChangedName="TrendDetailsRowChanged" msprop:Generator_RowEvArgName="TrendDetailsRowChangeEvent" msprop:Generator_RowClassName="TrendDetailsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TrendID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnTrendID" msprop:Generator_ColumnPropNameInRow="TrendID" msprop:Generator_ColumnPropNameInTable="TrendIDColumn" msprop:Generator_UserColumnName="TrendID" type="xs:int" />
+              <xs:element name="TrendNumber" msprop:Generator_ColumnVarNameInTable="columnTrendNumber" msprop:Generator_ColumnPropNameInRow="TrendNumber" msprop:Generator_ColumnPropNameInTable="TrendNumberColumn" msprop:Generator_UserColumnName="TrendNumber" type="xs:int" />
+              <xs:element name="ProjectID" msprop:Generator_ColumnVarNameInTable="columnProjectID" msprop:Generator_ColumnPropNameInRow="ProjectID" msprop:Generator_ColumnPropNameInTable="ProjectIDColumn" msprop:Generator_UserColumnName="ProjectID" type="xs:int" />
+              <xs:element name="TrendDescription" msprop:Generator_ColumnVarNameInTable="columnTrendDescription" msprop:Generator_ColumnPropNameInRow="TrendDescription" msprop:Generator_ColumnPropNameInTable="TrendDescriptionColumn" msprop:Generator_UserColumnName="TrendDescription" type="xs:string" />
+              <xs:element name="TrendJustification" msprop:Generator_ColumnVarNameInTable="columnTrendJustification" msprop:Generator_ColumnPropNameInRow="TrendJustification" msprop:Generator_ColumnPropNameInTable="TrendJustificationColumn" msprop:Generator_UserColumnName="TrendJustification" type="xs:string" minOccurs="0" />
+              <xs:element name="TrendImpact" msprop:Generator_ColumnVarNameInTable="columnTrendImpact" msprop:Generator_ColumnPropNameInRow="TrendImpact" msprop:Generator_ColumnPropNameInTable="TrendImpactColumn" msprop:Generator_UserColumnName="TrendImpact" type="xs:string" minOccurs="0" />
+              <xs:element name="ProjectName" msprop:Generator_ColumnVarNameInTable="columnProjectName" msprop:Generator_ColumnPropNameInRow="ProjectName" msprop:Generator_ColumnPropNameInTable="ProjectNameColumn" msprop:Generator_UserColumnName="ProjectName" type="xs:string" minOccurs="0" />
+              <xs:element name="ProjectManagerName" msprop:Generator_ColumnVarNameInTable="columnProjectManagerName" msprop:Generator_ColumnPropNameInRow="ProjectManagerName" msprop:Generator_ColumnPropNameInTable="ProjectManagerNameColumn" msprop:Generator_UserColumnName="ProjectManagerName" type="xs:string" />
+              <xs:element name="DirectorName" msprop:Generator_ColumnVarNameInTable="columnDirectorName" msprop:Generator_ColumnPropNameInRow="DirectorName" msprop:Generator_ColumnPropNameInTable="DirectorNameColumn" msprop:Generator_UserColumnName="DirectorName" type="xs:string" />
+              <xs:element name="SchedulerName" msprop:Generator_ColumnVarNameInTable="columnSchedulerName" msprop:Generator_ColumnPropNameInRow="SchedulerName" msprop:Generator_ColumnPropNameInTable="SchedulerNameColumn" msprop:Generator_UserColumnName="SchedulerName" type="xs:string" />
+              <xs:element name="VicePresidentName" msprop:Generator_ColumnVarNameInTable="columnVicePresidentName" msprop:Generator_ColumnPropNameInRow="VicePresidentName" msprop:Generator_ColumnPropNameInTable="VicePresidentNameColumn" msprop:Generator_UserColumnName="VicePresidentName" type="xs:string" />
+              <xs:element name="FinancialAnalystName" msprop:Generator_ColumnVarNameInTable="columnFinancialAnalystName" msprop:Generator_ColumnPropNameInRow="FinancialAnalystName" msprop:Generator_ColumnPropNameInTable="FinancialAnalystNameColumn" msprop:Generator_UserColumnName="FinancialAnalystName" type="xs:string" />
+              <xs:element name="CapitalProjectAssistantName" msprop:Generator_ColumnVarNameInTable="columnCapitalProjectAssistantName" msprop:Generator_ColumnPropNameInRow="CapitalProjectAssistantName" msprop:Generator_ColumnPropNameInTable="CapitalProjectAssistantNameColumn" msprop:Generator_UserColumnName="CapitalProjectAssistantName" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

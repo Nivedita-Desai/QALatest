@@ -1,0 +1,113 @@
+
+<div id="orgModal"  class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="goBack()">X</button>
+    <h3 class="modal-title">Organization</h3>
+</div>
+<div class="modal-body" ng-init="init()">
+
+    <!--<input id="address-bar" class="controls" type="text" style="margin-top:10px;width:30%;"
+           placeholder="Enter a location">-->
+
+    <div class="_form-group" >
+
+            <label class="label-control _bold">Organization Name</label>
+            <input class="form-control" placeholder="Organization Name" ng-model="selectedOrg.OrganizationName">
+
+            <!--<div id="dropdown-style">-->
+
+                <!--<select autofocus id="program" style="width:200px"></select><br><br>-->
+
+                <!--<select autofocus id="programElement" style="width:200px" ></select><br><br>-->
+
+                <!--<select autofocus id="project" style="width:200px" ></select>-->
+
+                <!--<div id="button-style"><br>-->
+                    <!--<button type="button" id = "new_location">New</button>-->
+                    <!--<button type="button" onClick="editBtnClick()">Edit</button>-->
+                    <!--<button type="button" onClick="viewBtnClick()">View</button>-->
+
+                <!--</div>-->
+
+                <!--<select autofocus id="projID" style="visibility:hidden"></select>-->
+            <!--</div>-->
+
+            <!--<div id="newbtn-section">-->
+                <!--<br><font color="white">Search Address:</font>-->
+                <!--<input id="address-bar" size="27" type="text" name="AddressBar" style="height:20px"><br><br>-->
+                <!--<font color="white">User Defined Address <br>-->
+                    <!--(Same as above ?)</font>-->
+                <!--<input type="checkbox" id="user-chkbox" name=others onclick="enable_text(this.checked)">-->
+                <!--<input type=text id="user-addr" size="27" style="height:20px"><br><br>-->
+
+
+
+            <!--</div>-->
+
+
+
+
+    </div>
+    <div class="_form-group">
+    <label class="label-control _bold">Address</label>
+    <textarea class="form-control" style="resize: none;" placeholder="Address" ng-model="selectedOrg.OrganizationAddress">
+        </textarea>
+        </div>
+    <div class="_form-group">
+        <label class="label-control _bold">Note</label>
+        <input class="form-control" placeholder="Note" ng-model="selectedOrg.Note">
+    </div>
+    <div class="_form-group">
+            <span class="colorpicker"></span>
+        <span class="bgbox"></span>
+        <span class="hexbox"></span>
+        <span class="clear"></span>
+        <span class="colorbox">
+            <b class="selected" style="background:#292421" title="Black"></b>
+            <b style="background:#B0171F" title="Red"></b>
+            <b style="background:#A49381" title="Sand"></b>
+            <b style="background:#626878" title="Charcoal"></b>
+            <b style="background:#2E436E" title="Navy Blue"></b>
+            <b style="background:#FF00FF " title="Pink"></b>
+
+
+        </span>
+    </div>
+    <!--<input id="pac-input" class="controls" type="text" placeholder="Search Box">-->
+    <!--<div class="_form-group">
+        <div id="map-canv" style = "height:600px;width:100%;"></div>
+    </div>-->
+
+
+
+
+
+</div>
+<!--<div class="c-modal-footer">-->
+    <!--<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="goBack()">Close</button>-->
+    <!--<button type="button" class="btn btn-info" ng-disabled="selectedOrg.OrganizationName === ''" ng-click="saveChanges()">Save</button>-->
+<!--</div>-->
+
+
+<div class="c-modal-footer">
+
+    <!--<button type="button" class="btn btn-default" id = "close_modal" data-dismiss="modal">Close</button>-->
+    <div class="row">
+        <div class="col-sm-2" ng-if="isOrgScreen">
+            <button type="button" id="delete_organization" class="btn btn-primary c-btn-delete " ng-disabled="selectedOrg.OrganizationID === ''" style="margin-left:10px;"
+                    data-toggle="modal" ng-click="deleteOrganization()"  >Delete</button>
+        </div>
+        <div class="col-sm-2" ng-if="!isOrgScreen">
+            <button type="button" id="delete_organization" class="btn btn-primary c-btn-delete " ng-disabled="selectedOrg.OrganizationID === ''" style="margin-left:10px;"
+                    data-toggle="modal" ng-click="deleteOrganization()"   href="#DeleteModal">Delete</button>
+        </div>
+        <div class="col-sm-5">
+            <button type="button" class="btn btn-primary c-btn-save" ng-disabled="selectedOrg.OrganizationName === ''"   id = "update_organization" ng-click="saveChanges()">Save</button>
+        </div>
+        <div class="col-sm-5">
+            <button type="button" class="btn btn-primary c-btn-back" data-dismiss="modal" ng-click="goBack()" id = "cancel_organziation">Cancel</button>
+        </div>
+
+    </div>
+    <!--<button type="button" class="btn btn-primary" id = "new_project">Create Project</button>-->
+</div>
+

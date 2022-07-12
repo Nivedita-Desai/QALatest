@@ -1,0 +1,120 @@
+﻿
+<head>
+    <link rel="stylesheet" href="assets/css/uploadStyle.css" type="text/css">
+</head>
+<!-- include style somewhere to do ng-class='green : response.response == response.success,
+    blues : response.response == response.duplicate,
+    red : response.response == response.error -->
+<style>
+    .sortable:after {
+        content: none !important;
+    }
+
+    .green {
+        color: green;
+    }
+
+    .blue {
+        color: blue;
+    }
+
+    .red {
+        color: red;
+    }
+
+    .indent {
+        padding-left: 30px;
+    }
+</style>
+<style type="text/css">
+    #loading {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: url(loader.gif) no-repeat center center; /*Luan here - making same pathing for IIS deployment, Original: ../../assets/js/select2/loader.gif*/
+        z-index: 9999;
+    }
+</style>
+<div class="container-fluid">
+    <div class="row  justify-content-between">
+        <div class="col-md-6 col-sm-6">
+
+
+
+            <div class="panel panel-default" style="width:60%; float:right">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        Actuals Upload
+                    </h3>
+                    <a href="#/app/wbs" class="exit-button">X</a>
+                </div>
+                <div class="panel-body panel-height">
+                    <div id="documentUpload">
+                        <form id="actualsForm">
+                            <div class="row" id="buttonRow" style="margin:0.3%;">
+                                <input class="fileInput" style="margin-top: 10px; margin-bottom: 15px; width: 425px;" id="actualFileUpload" ngf-max-size="5MB" ngf-multiple="true" type="file" name="file" value="Upload Files" multiple ngf-select="getTheFilesCosts($files)" />  <!--css changes by shweta-->
+                                <button id="uploadBtnCosts" class="btn btn-black" ng-click="uploadFilesCosts()">Upload</button>  <!--css changes by shweta-->
+                                <div id="loading" style="display:none;"></div> <!--Manasi 01-04-2021 -->
+                                <br>
+                                <br>
+                                <br>
+                                <table id="uploadResponse" style="text-align: left;">
+                                    <tr ng-repeat="response in responsesCosts track by $index">
+                                        <td ng-class="{'blue indent': response.class == 'blue',
+                                        'red indent': response.class == 'red',
+                                        'green indent': response.class == 'green',
+                                        'blue': response.class == 'blueFileName',
+                                        'red': response.class == 'redFileName',
+                                        'green': response.class == 'greenFileName',
+                                        }">
+                                            {{ response.text }}
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 text-center">
+
+            <div class="panel panel-default" style="width:60%">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        Timesheet Upload
+                    </h3>
+                    <a href="#/app/wbs" class="exit-button">X</a>
+                </div>
+                <div class="panel-body panel-height">
+                    <div id="documentUpload" style="height:400px;width:100%;padding:10px;">
+                        <form id="timesheetForm">
+                            <div class="row text-left" id="buttonRow" style="margin:0.3%;">
+                                <input class="fileInput" style="margin-top: 10px; margin-bottom: 15px; width: 425px;" id="timesheetFileUpload" ngf-max-size="5MB" ngf-multiple="true" type="file" name="file" value="Upload Files" multiple ngf-select="getTheFilesTimesheet($files)" />  <!--css changes by shweta-->
+                                <button id="uploadBtnTimesheet" class="btn btn-black" ng-click="uploadFilesTimesheet()">Upload</button>  <!--css changes by shweta-->
+                                <!-- clear file chosen -->
+                                <br>
+                                <br>
+                                <br>
+                                <table id="uploadResponse" style="text-align: left;">
+                                    <tr ng-repeat="response in responsesTimesheet track by $index">
+                                        <td ng-class="{'blue indent': response.class == 'blue',
+                                        'red indent': response.class == 'red',
+                                        'green indent': response.class == 'green',
+                                        'blue': response.class == 'blueFileName',
+                                        'red': response.class == 'redFileName',
+                                        'green': response.class == 'greenFileName',
+                                        }">
+                                            {{ response.text }}
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

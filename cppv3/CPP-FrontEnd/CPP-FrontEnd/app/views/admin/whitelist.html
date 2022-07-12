@@ -1,0 +1,69 @@
+﻿
+
+<div class="row" style="overflow-x: hidden">
+    <div class="col-centered" style="width: 1250px">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title" style="font-size:30px;">
+                   Project Whitelist
+                </h3>
+                <a href="#/app/wbs" class="exit-button">X</a>
+            </div>
+            <div class="form-group">
+                <label for="selectProject">Project Element</label>
+
+                <select ng-options="item as item.ProjectName for item in projectList track by item.ProjectID"
+                        class="input-medium form-control" ng-change="filterChangeProject()" 
+                        ng-model="filterProject" id="selectProject">
+                </select>
+            </div>
+
+            <div id="list" style="height:470px;width:100%;border: #cbcbcb;border-style: solid; border-width: thin;" class="picklist">
+                <div class="select available">
+                    <p>Blacklist:</p>
+                    <select ng-model="blacklist_pickList" ng-options="item as item.Name for item in availableBlacklist track by item.ID " 
+                            multiple="" size="15" id="selectEmployee"></select>
+                </div>
+                <div class="button-group">
+                    <button ng-click="addSelected(blacklist_pickList)" id="addProjectWhiteListBtn" type="button" class="btn btn-sm btn-block btn-primary add">add</button>
+                    <button ng-click="addAll()"id="addAllProjectWhiteListBtn" type="button" class="btn btn-sm btn-block btn-primary addAll">addAll</button>
+                    <button ng-click="removeSelected(whitelist_pickList)" id="removeProjectWhiteListBtn" type="button" class="btn btn-sm btn-block btn-info remove">Remove</button>
+                    <button ng-click="removeAll()"id="removeAllProjectWhiteListBtn" class="btn btn-sm btn-block btn-primary removeAll">removeAll</button>
+                </div>
+                <div class="select selected">
+                    <p>Whitelist:</p>
+                    <select ng-model="whitelist_pickList" ng-options="item as item.Name for item in whitelist track by item.ID"
+                            multiple="" size="15" id="selectEmployee2"></select>
+                </div>
+            </div>
+            
+            <div class="panel-footer" id="right_panel-footer" style="width: 16%; margin: 0 auto;">
+                <div class="row">
+                    <!--<div class="col-sm-4">
+                        <button type="button" class="btn btn-primary c-btn-delete" ng-click="delete()">Delete</button>
+                    </div>-->
+                    <div class="col-sm-4">
+                        <button type="button" class="btn btn-primary c-btn-save" ng-click="save()">Save</button>
+                    </div>
+                    <!--<div class="col-sm-4">
+                        <button type="button" class="btn btn-primary c-btn-back" ng-click="addRow()">New</button>
+                    </div>-->
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .applicable-format {
+        margin-top: 10px !important;
+        margin-left: 40px !important;
+    }
+
+    .sortable:after {
+        content: none !important;
+    }
+
+</style>

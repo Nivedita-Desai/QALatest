@@ -1,0 +1,334 @@
+﻿<head>
+    <style type="text/css">
+        .col-sm-7 {
+            margin-top: 0px;
+        }
+
+        .input-required {
+            border-color: #cc3f44 !important;
+        }
+
+        .label-required {
+            color: #cc3f44 !important;
+        }
+
+        div.requiredBefore .checkboxRequired:before {
+            content: " *";
+            color: blue;
+        }
+
+        div.required .control-label:after {
+            content: " *";
+            color: blue;
+        }
+
+        div.asterik label.label-required:before {
+            content: " *";
+            color: #cc3f44;
+        }
+
+        div.asterik input.input-required:before {
+            content: " *";
+            color: #cc3f44;
+        }
+
+        .inputAsterik:after {
+            content: " *";
+            color: #cc3f44;
+            margin-right: -10px;
+        }
+
+        .btn {
+            margin-bottom: 0;
+            border: 1px solid !important;
+        }
+
+        .modal-dialog {
+            height: 100%;
+            vertical-align: middle;
+            margin-top: 5%;
+            align-self: center;
+            width: 1600px;
+        }
+
+        .fa {
+            color: white !important;
+        }
+
+        /*.btn-info {
+            color: #fff;
+            background-color: #222;
+        }*/
+
+        @media (min-width: 768px) {
+            /*.modal-dialog {
+                width: 50%;
+                max-width: 500px;
+                vertical-align: middle;
+            }*/
+        }
+
+        .tooltip {
+            top: -9999px;
+            left: -9999px;
+        }
+
+
+        .tooltip-inner {
+            max-width: 500px;
+            background-color: white;
+            color: black;
+            font-weight: 500;
+            max-height: 600px;
+            overflow-y: auto;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+<!--LEGACY-->
+<section ng-show="false" id="projectdetail-view" style="height:100%;vertical-align:middle;  ">
+    <div class="row" id="draggable">
+        <form novalidate name="addForm" role="form" id="reportManagerForm">
+
+            <div class="col-xs-12 col-sm-12" style="padding:0;margin-right:-15px;">
+                <div class="gadget color-my" style="height: 675px;margin-top:-5%;margin-bottom:-20px;">
+
+                    <div id="reportManagerGadgetHeadID" class="gadget-head" style="display: block">
+                        <h3 class="modal-title">Cost Details</h3>
+                        <button class="pull-right" data-ng-click="exit('close')"
+                                style="background-color:red;color:white;border-radius:50px;width:40px;font-weight:bolder;margin-top:-5px;">
+                            X
+                        </button>
+                    </div>
+                    <div class="gadget-content" style="padding:10px;">
+
+                        <div class="col-sm-12 col-md-12 col-lg-12" style="margin-top:10px;">
+
+                            <table st-table="rowCollection" class="table table-striped" style="width:100%; padding: 0;">
+                                <thead>
+                                    <tr>
+                                        <th style="text-align:center !important;width:1%; right: 4px; padding-left: 0;"><input type="checkbox" ng-model="all" style="width:15px;height:15px;" /></th>
+                                        <th style="text-align:left !important;width:5%; padding-left:0;">PO Number</th>
+                                        <th style="text-align:left !important;width:15%; padding-left:0;">Project Name</th>
+                                        <th style="text-align:left !important;width:15%; padding-left:0;">Element Name</th>
+                                        <th style="text-align:left !important;width:10%;">Created on</th>
+                                        <th style="text-align:left !important;width:10%; left: 5px;">Status</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody style="max-height:600px;overflow-y:auto;">
+                                    <tr>
+                                        <td colspan="11" style="padding: 0;">
+                                            <div class="scrolable-table" style="overflow:auto;height:400px;overflow-x:hidden;">
+                                                <table class="table table-striped">
+                                                    <thead></thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="row in purchaseOrderDetails" ng-class="{selected : selectedRow.CostLineItemID == row.CostLineItemID}"
+                                                            ng-mouseover="selectRow(row)"
+                                                            ng-mouseleave="onMouseLeave(row)" style="text-align:center;">
+                                                            <td class="my-word-wrap" style="width:1%;text-align:left;"><input type="checkbox" style="width:15px;height:15px;" ng-model="row.check" ng-checked="all" /></td>
+                                                            <td class="my-word-wrap" style="text-align:left;width:5%;">
+                                                                <span data-toggle="tooltip" tooltip="{{row.PhaseDescription}}" tooltip-placement="top" tooltip-animation="false" tooltip-append-to-body="true">
+                                                                    {{row.PhaseDescription}}
+                                                                </span>
+                                                            </td>
+                                                            <td class="my-word-wrap" style="text-align:left;width:10%;">{{row.BudgetCategory}}</td>
+                                                            <td class="my-word-wrap" style="text-align:left;width:10%;">{{row.BudgetSubCategory}}</td>
+
+
+
+
+                                                        </tr>
+                                                    </tbody>
+
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+
+                                    <tr style="text-align:center;font-weight:bold;">
+                                        <td style="text-align:left;">Total: </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>{{total | currency}}</td>
+                                    </tr>
+
+
+                                </tbody>
+
+                            </table>
+
+                            <div ng-if="isLabor" uib-alert class="alert-warning">For Labor, 1 is full time ,0.5 is half time </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div style="margin-top:-60px;padding-left:10px;padding-right:10px;">
+                    <hr>
+                </div>
+                <div class="col-sm-12 pull-right" style="margin-right:5px;">
+
+                    <button class="btn btn-info" style="background-color:green" data-ng-click="save()">
+                        <i class="fa fa-file-pdf-o"></i>  Save
+                    </button>
+                    <button class="btn btn-info rmis-btn pull-right" data-ng-click="exit('close')">
+                        <i class="fa fa-hand-o-left"></i>  Back
+                    </button>
+
+                </div>
+            </div>
+
+        </form>
+    </div>
+</section>
+
+<div>
+    <div class="modal-header modal-header-green">
+        <button type="button" class="exit-button" data-dismiss="modal" aria-hidden="true" ng-click="exit('close')">X</button>
+        <!--<h3 class="modal-title">Purchase Order Details</h3>-->
+        <!--Added by Amruta 30-07-2021-->
+        <h4 style="display:inline-block">
+            Purchase Order List
+        </h4>
+        <!--<input class="wild-card-search pull-right" ng-model="SearchValue">
+        <span class="pull-right" style="margin-right:5px;font-weight:bold;">Search:</span>-->
+        <!--Added by Amruta 30-07-2021-->
+    </div>
+    <div class="modal-body block-view p-t-0">
+        <div class="col-sm-12 m-t-10 m-b-10">
+            <div style="display:inline-block;float:right;margin-right: 15px;">
+                <span style="margin-right:5px;font-size:18px;">Search:</span>
+                <input class="wild-card-search purchaseordersearch" ng-model="SearchValue">
+            </div>
+        </div>
+        <form novalidate name="addForm" role="form" id="reportManagerForm" class="m-0">
+            <!--<div class="col-sm-12 col-md-12 col-lg-12" style="margin-top:10px;">
+                <h4>Purchase Order : <input disabled="disabled" ng-model="purchaseOrder.PurchaseOrderNumber" /></h4>
+            </div>-->
+            <div class="col-sm-12 col-md-12 col-lg-12" style="margin-top:10px;">
+
+                <table st-table="rowCollection" class="table table-striped" style="width:100%; padding: 0;">
+                    <tbody style="max-height:600px;overflow-y:auto;">
+                        <tr>
+                            <td colspan="13" style="padding: 0;">
+                                <div class="scrolable-table" style="overflow:auto;height:450px;overflow-x:hidden;">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>PO Number</th>
+                                                <th>Project Name</th>
+                                                <th>Element Name</th>
+                                                <th>Created on</th>
+                                                <th>Status</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr ng-repeat="row in purchaseOrderList | filter: SearchValue" ng-class="{selected : selectedRow.ID == row.ID}"
+                                                ng-mouseover="selectRow(row)"
+                                                ng-mouseleave="onMouseLeave(row)"
+                                                style="text-align:center;">
+                                                <!--<td class="my-word-wrap" style="width:4%;text-align:left; vertical-align: middle;"><input type="checkbox" style="width:15px;height:15px;" ng-model="row.check" ng-checked="all" /></td>  -->
+                                                <td>
+                                                    <span class="jquery-tooltip-custom" title="{{row.PurchaseOrderNumber}}">
+                                                        {{row.PurchaseOrderNumber}}
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span class="jquery-tooltip-custom" title="{{row.projectName}}">
+                                                        {{row.projectName}}
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span class="jquery-tooltip-custom" title="{{row.projectElementName}}">
+                                                        {{row.projectElementName}}
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span class="jquery-tooltip-custom" title="{{row.CreatedDate}}">
+                                                        {{row.CreatedDate}}
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <div ng-if="row.Status=='Created'">
+                                                        <span class="jquery-tooltip-custom" title="{{row.Status}}" style="color:black;">
+                                                            {{row.Status}}
+                                                        </span>
+                                                    </div>
+                                                    <div ng-if="row.Status=='Approved'">
+                                                        <span class="jquery-tooltip-custom" title="{{row.Status}}" style="color:green;">
+                                                            {{row.Status}}
+                                                        </span>
+                                                    </div>
+                                                    <div ng-if="row.Status=='Rejected'">
+                                                        <span class="jquery-tooltip-custom" title="{{row.Status}}" style="color:red;">
+                                                            {{row.Status}}
+                                                        </span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <button type="submit" class="btn btn-dark btn-sm" ng-click="modifyPO(row.ID)" id="mod_{{row.ID}}"><i class="fa fa-pencil-square-o table-icons" aria-hidden="true"></i></button>
+                                                    <button type="submit" class="btn btn-dark btn-sm" ng-click="viewPO(row.ID)" id="{{row.ID}}"><i class="fa fa-eye table-icons" aria-hidden="true"></i></button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+
+
+
+
+
+                    </tbody>
+
+                </table>
+
+                <div ng-if="isLabor" uib-alert class="alert-warning">For Labor, 1 is full time ,0.5 is half time </div>
+
+            </div>
+        </form>
+    </div>
+
+
+</div>
+
+<script type="text/javascript">
+    //$('[data-toggle="tooltip"]').tooltip();
+    /*  $(function () {
+          $('#on').datetimepicker({
+              keepOpen:false
+          });
+      });*/
+    /*  $(".modal-dialog").draggable();*/
+    $(document).ready(function () {
+        $(".jquery-tooltip-custom").tooltip({ delay: 0, effect: "blind", duration: 100 });
+
+        $('.modal-dialog').draggable({
+            handle: ".modal-header"
+        });
+
+    });
+
+</script>
+<!DOCTYPE html>
+<style>
+</style>

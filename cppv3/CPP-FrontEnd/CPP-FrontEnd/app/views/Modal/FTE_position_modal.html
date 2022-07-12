@@ -1,0 +1,33 @@
+
+
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="modalInstance.close();">X</button>
+            <h3 class="modal-title">FTE Position</h3>
+        </div>
+        <div class="modal-body">
+            <div class="_form-group">
+                <label class="label-control _bold">Position ID</label>
+                <input class="form-control" placeholder="Position ID" ng-model="positionItem.PositionID">
+            </div>
+            <div class="_form-group">
+                <label class="label-control _bold">Title</label>
+                <input class="form-control" placeholder="Titile" ng-model="positionItem.PositionDescription">
+            </div>
+            <div class="_form-group">
+                <label class="control-label _bold">Min Rate</label>
+                <input class="form-control " placeholder="Minimum Rate" ng-model="positionItem.MinHourlyRate" currency>
+            </div>
+            <div class="_form-group">
+                <label class="label-control _bold">Max Rate</label>
+                <input class="form-control" placeholder="Maximum Rate" ng-model="positionItem.MaxHourlyRate" currency>
+            </div>
+            <div class="_form-group">
+                <label class="label-control _bold">Current Rate</label>
+                <input class="form-control" placeholder="Current Ratey"
+                       ng-model="positionItem.CurrentHourlyRate" currency>
+            </div>
+        </div>
+        <div class=" c-modal-footer">
+            <button type="button" class="btn btn-info" data-dismiss="modal" ng-click="modalInstance.close();">Close</button>
+            <button type="button" class="btn btn-info" ng-click="saveChanges()  ">Save</button>
+        </div>

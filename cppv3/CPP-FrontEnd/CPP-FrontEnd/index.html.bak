@@ -1,0 +1,379 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Capital Project Planner - Birdi Systems, Inc.">
+    <meta name="author" content="">
+
+    <title>Capital Project Planner - Birdi Systems, Inc</title>
+    <link rel="stylesheet" href="assets/css/custom.css?v=1.0.0">
+    <link rel="stylesheet" href="assets/css/rmis-custom.css?v=1.0.0">
+    <link rel="stylesheet" href="assets/css/fonts/linecons/css/linecons.css?v=1.0.0">
+    <link rel="stylesheet" href="assets/css/fonts/fontawesome/css/font-awesome.min.css?v=1.0.0">
+    <link rel="stylesheet" href="assets/css/bootstrap.min_BK.css?v=1.0.0">
+    <link rel="stylesheet" href="assets/css/xenon-core.css?v=1.0.0">
+    <link rel="stylesheet" href="assets/css/xenon-forms.css?v=1.0.0">
+    <link rel="stylesheet" href="assets/css/xenon-components.css?v=1.0.0">
+    <link rel="stylesheet" href="assets/css/xenon-skins.css?v=1.0.0">
+    <link rel="stylesheet" href="assets/js/jquery-ui/jquery-ui.css?v=1.0.0">
+    <!--<link rel="stylesheet" href="assets/groupable_dual_list/css/jquery.transfer.css?v=1.0.0" />-->	<!--Groupable dual list-->
+    <!--<link rel="stylesheet" href="assets/groupable_dual_list/icon_font/css/icon_font.css?v=1.0.0" />-->	<!--Groupable dual list-->
+    <link href="assets/css/picklist.css?v=1.0.0" rel="stylesheet"> <!--jQuery Picklist-->
+    <!--<script type="text/javascript">
+        google.charts.load('current', { packages: ['corechart'] });
+    </script>-->
+    <script src="assets/js/jquery-1.11.1.js?v=1.0.0"></script>
+    <script src="assets/js/jquery-ui/jquery-ui.js?v=1.0.0"></script>
+
+    <!--Luan experimental-->
+    <!--<script src="assets/groupable_dual_list/js/jquery.transfer.js?v=1.0.0"></script>--> <!--Groupable dual list-->
+    <!--<script src="assets/js/picklist.js?v=1.0.0"></script>--> <!--jQuery Picklist-->
+    <script src="assets/js/jquery.dataTables.min.js?v=1.0.0"></script> <!--Data table-->
+    <!--<link href="assets/js/dist/css/datepicker.min.css?v=1.0.0" rel="stylesheet" type="text/css">-->
+    <!--<script src="assets/js/dist/js/datepicker.min.js?v=1.0.0"></script>-->
+    <!--<script src="assets/js/dist/js/i18n/datepicker.en.js?v=1.0.0"></script>-->
+    <!--<script src="assets/js/SalsaCalendar/SalsaCalendar.min.js?v=1.0.0"></script>
+    <link rel="stylesheet" href="assets/js/SalsaCalendar/SalsaCalendar.min.css?v=1.0.0">-->
+
+
+    <script src="assets/js/bootstrap.min.js?v=1.0.0"></script>
+    <script src="assets/js/tooltip.js?v=1.0.0"></script>
+
+    <script src="assets/js/dhtmlxGantt/codebase/dhtmlxgantt.js?v=1.0.0"></script>
+    <script src="assets/js/dhtmlxGantt/codebase/ext/dhtmlxgantt_tooltip.js?v=1.0.0"></script>
+    <link rel="stylesheet" href="assets/js/dhtmlxGantt/codebase/dhtmlxgantt.css?v=1.0.0" type="text/css">
+
+    <!--Timemap -->
+    <script type="text/javascript" src="assets/js/timemap/lib/mxn/mxn.js?v=1.0.0"></script>
+    <script type="text/javascript" src="assets/js/timemap/lib/mxn/mxn.core.js?v=1.0.0"></script>
+    <script type="text/javascript" src="assets/js/timemap/lib/mxn/mxn.googlev3.core.js?v=1.0.0"></script>
+    <script type="text/javascript" src="assets/js/timemap/lib/timeline-1.2.js?v=1.0.0"></script>
+    <script type="text/javascript" src="assets/js/timemap/src/timemap.js?v=1.0.0"></script>
+    <script type="text/javascript" src="assets/js/timemap/src/manipulation.js?v=1.0.0"></script>
+    <script type="text/javascript" src="assets/js/timemap/src/loaders/json.js?v=1.0.0"></script>
+    <script type="text/javascript" src="assets/js/timemap/timemap_full.pack.js?v=1.0.0"></script>
+    <link type="text/css" href="assets/js/timemap/examples.css?v=1.0.0" rel="stylesheet" />
+    <!--<script type="text/javascript" src="assets/js/html2canvas.js?v=1.0.0"></script>
+    <script type="text/javascript" src="assets/js/jsPDF-1.2.60/dist/jspdf.debug.js?v=1.0.0"></script>
+    <script type="text/javascript" src="assets/js/jspdf-1.2.60/libs/png_support/png.js?v=1.0.0"></script>
+    <script type="text/javascript" src="assets/js/jsPDF-1.2.60/libs/png_support/zlib.js?v=1.0.0"></script>
+    <script type="text/javascript" src="assets/js/jsPDF-1.2.60/libs/FileSaver/fileSaver.js?v=1.0.0"></script>
+    <script type="text/javascript" src="assets/js/css-to-pdf-master/js/xepOnline.jqPlugin.js?v=1.0.0"></script>-->
+    <!-- Multiselect-->
+    <link rel="stylesheet" href="assets/css/bootstrap-multiselect.css?v=1.0.0" type="text/css">
+    <script type="text/javascript" src="assets/js/bootstrap-multiselect.js?v=1.0.0"></script>
+    <!---->
+    <!--dhx grid-->
+    <!--<link rel="stylesheet" href="bower_components/grid/codebase/grid.css?v=1.00.02" />
+    <script src="bower_components/grid/codebase/grid.js?v=1.00.02"></script>-->
+
+
+    <!-- Bootstrap select -->
+    <link rel="stylesheet" href="assets/css/bootstrap-select.css?v=1.0.0" type="text/css">
+    <script type="text/javascript" src="assets/js/bootstrap-select.js?v=1.0.0"></script>
+    <!---->
+
+    <script>
+        console.log = function () { "Overriding the console log" };
+        console.debug = function () { "Overriding the console log" };
+        var appHelper = {
+            // Vars (paths without trailing slash)
+            templatesDir: 'app/views',
+            assetsDir: 'assets',
+
+            // Methods
+            templatePath: function (view_name) {
+                return this.templatesDir + '/' + view_name + '.html';
+            },
+
+            assetPath: function (file_path) {
+                return this.assetsDir + '/' + file_path;
+            }
+        };
+    </script>
+
+
+
+
+</head>
+<body class="page-body" ng-controller="MainCtrl" ng-class="{'settings-pane-open': layoutOptions.settingsPane.isOpen, 'chat-open': layoutOptions.chat.isOpen, 'login-page': isLoginPage && isMainPage == false, 'login-light': isLightLoginPage && isMainPage == false, 'lockscreen-page': isLockscreenPage && isMainPage == false, 'right-sidebar': layoutOptions.sidebar.isRight, 'boxed-container': layoutOptions.container.isBoxed}">
+
+
+    <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1"></span>
+
+    <settings-pane></settings-pane>
+
+    <horizontal-menu ng-if="layoutOptions.horizontalMenu.isVisible"></horizontal-menu>
+
+    <div class="page-container" ui-view></div>
+    <div id="my-gantt" style="display:none;"></div>
+    <!-- Remove this code if you want to disable Loading Overlay in the beginning of document loading
+    <div class="page-loading-overlay">
+        <div class="loader-2"></div>
+    </div>
+    -->
+    <!-- Bottom Scripts -->
+    <script src="bower_components/angular/angular.js?v=1.0.0"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js?v=1.0.0"></script>
+    <script src="bower_components/angular-resource/angular-resource.js?v=1.0.0"></script>
+    <script src="assets/js/angular-ui/ui-bootstrap-tpls.min.js?v=1.0.0"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js?v=1.0.0"></script>
+    <script src="bower_components/oclazyload/dist/ocLazyLoad.min.js?v=1.0.0"></script>
+    <script src="bower_components/angular-fullscreen/src/angular-fullscreen.js?v=1.0.0"></script>
+    <script src="bower_components/angular-smart-table/dist/smart-table.js?v=1.0.0"></script>
+    <script src="bower_components/moment/moment.js?v=1.0.0"></script>
+    <!--<script src="assets/js/bootstrap-select-master"></script>-->
+    <script src="bower_components/angular-local-storage.js?v=1.0.0"></script>
+    <script src="bower_components/angular-moment/angular-moment.js?v=1.0.0"></script>
+    <script src="bower_components/angularjs-dropdown-multiselect/src/angularjs-dropdown-multiselect.js?v=1.0.0"></script>
+
+    <script src="assets/js/TweenMax.min.js?v=1.0.0"></script>
+    <script src="assets/js/joinable.js?v=1.0.0"></script>
+    <script src="assets/js/resizeable.js?v=1.0.0"></script>
+    <script src="assets/js/d3.v3.min.js?v=1.0.0"></script>
+    <script src="assets/js/ng-file-upload-bower-12.2.13/ng-file-upload-shim.min.js?v=1.0.0"></script>
+    <script src="assets/js/ng-file-upload-bower-12.2.13/ng-file-upload.min.js?v=1.0.0"></script>
+    <script src="assets/js/shim.min.js?v=1.0.0"></script>
+    <script src="assets/js/xlsx.full.min.js?v=1.0.0"></script>
+    <script src="assets/js/angular-idle.js?v=1.0.0"></script>
+    <!-- App -->
+    <script src="app/app.js?v=1.0.0"></script>
+    <script src="app/config_states.js?v=1.0.0"></script>
+    <script src="app/config_states_cpp.js?v=1.0.0"></script>
+    <script src="app/controllers.js?v=1.0.0"></script>
+    <script src="app/controllers/accessControlCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/accessControlModalCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/approvalMatrixCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/assetManagerCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/budgetCategoryCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/budgetCategoryModalCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/CompDetailModalCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/confirmationCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/constTimelineCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/editAssetModalCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/fundModalCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/fundTypeCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/passwordRecoveryCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/passwordUpdateCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/infoModalCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/newAssetModalCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/newCompModalCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/newHistoryModalCtrl.js?v=1.0.0"></script>
+    <!--<script src="app/controllers/passwordResetCtrl.js?v=1.0.0"></script>-->
+    <!--<script src="app/controllers/invalidLinkCtrl.js?v=1.0.0"></script>-->
+    <script src="app/controllers/locationCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/filedownloadCtrl.js"></script>
+    <script src="app/controllers/agilegridCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/loginCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/logDetailModalCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/orderController.js?v=1.0.0"></script>
+    <script src="app/controllers/organizationCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/organizationModalCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/phaseCodeCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/phaseCodeModalCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/positionCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/positionModalCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/ReportDetailModalCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/signupCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/TrendReportCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/CustomCostOverheadCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/ReportManagerCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/AdminReportManagerCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/PDFViewerCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/fundSourceCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/fundSourceModalCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/trendStatusCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/trendStatusModalCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/unitTypeCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/unitTypeModalCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/userCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/userModalCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/employeeCtrl.js?v=1.0.0"></script>
+    <!--<script src="app/controllers/employeeModalCtrl.js?v=1.0.0"></script>-->
+    <script src="app/controllers/VAModalCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/PdfModalCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/WBSCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/BOMCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/dashboardCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/changePasswordCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/ChangePasswordOnLoginCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/ODCTypeCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/MaterialCategoryCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/MaterialCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/SubcontractorTypeCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/TrendStatusCodeCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/SubcontractorCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/costOverheadCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/ProjectClassCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/ServiceClassCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/ProjectTypeCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/ProjectClassPhaseCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/ServiceToSubserviceCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/PurchaseOrderDetailModalCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/ModifyPODetailModalCtrl.js?v=1.0.0"></script>
+    <!-- Jermaine Here: Controllers; not on the fly-->
+    <script src="app/controllers/VendorCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/ManufacturerCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/InventoryCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/whitelistCtrl.js"></script>
+
+    <script src="app/controllers/POApprovalCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/ApproveRejectPOModalCtrl.js?v=1.0.0"></script>
+
+
+    <!--Luan here: Controllers for adding new stuff on the fly-->
+    <script src="app/controllers/addPositionModalCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/addEmployeeModalCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/addSubcontractorTypeModalCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/addSubcontractorModal.js?v=1.0.0"></script>
+    <script src="app/controllers/addMaterialCategoryModalCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/addMaterialModalCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/addODCTypeModalCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/addMainSubCategoryModalCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/TrendApprovalCodeCtrl.js?v=1.0.0"></script>
+
+    <!--BOM - Bill Of Materials-->
+    <script src="app/controllers/addBOMRequestModalCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/updateBOMRequestModalCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/receivedBOMModalCtrl.js?v=1.0.0"></script>
+
+
+
+    <script src="app/controllers/CostRowDetailCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/clientCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/clientPOCCtrl.js?v=1.0.0"></script>        <!--//Tanmay - 15/12/2021 -->
+    <script src="app/controllers/territoryCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/DocumentTypeCtrl.js?v=1.0.0"></script>
+    <script src="app/controllers/ActualsUploadCtrl.js?v=1.0.0"></script>
+    <script src="app/Gantt_Controller.js?v=1.0.0"></script>
+    <script src="app/ViewProgramElementGanttController.js?v=1.0.0"></script>  <!--Manasi 06-01-2021 -->
+    <script src="app/ViewContractGanttController.js?v=1.0.0"></script>  <!--Manasi 10-01-2021 -->
+    <script src="app/baseline_controller.js?v=1.0.0"></script>
+    <script src="app/future_project_controller.js?v=1.0.0"></script>
+    <script src="app/controllers/exitConfirmation.js?v=1.0.0"></script>
+    <script src="app/directives.js?v=1.0.0"></script>
+    <script src="app/factory.js?v=1.0.0"></script>
+    <script src="app/services.js?v=1.0.0"></script>
+    <script src="app/services/activity.js?v=1.0.0"></script>
+    <script src="app/services/approvalMatrix.js?v=1.0.0"></script>
+    <script src="app/services/authentication.js?v=1.0.0"></script>
+    <script src="app/services/category.js?v=1.0.0"></script>
+    <script src="app/services/cost.js?v=1.0.0"></script>
+    <script src="app/services/fundType.js?v=1.0.0"></script>
+    <script src="app/services/organization.js?v=1.0.0"></script>
+    <script src="app/services/costRow.js?v=1.0.0"></script>
+    <script src="app/services/phase.js?v=1.0.0"></script>
+    <script src="app/services/position.js?v=1.0.0"></script>
+    <script src="app/services/program.js?v=1.0.0"></script>
+    <script src="app/services/programElement.js?v=1.0.0"></script>
+    <script src="app/services/project.js?v=1.0.0"></script>
+    <script src="app/services/trend.js?v=1.0.0"></script>
+    <!----------------Swapnil 17-09-2020------------------------------------------------->
+
+    <script src="app/services/MFAConfiguration.js?v=1.0.0"></script>
+    <!---------------------------------------------------------------------------------------->
+    <!----------------Swapnil 17-06-2021------------------------------------------------->
+
+    <script src="app/services/version.js?v=1.0.0"></script>
+    <!---------------------------------------------------------------------------------------->
+    <script src="app/services/unitType.js?v=1.0.0"></script>
+    <script src="app/services/material.js?v=1.0.0"></script>
+    <script src="app/services/localStorage.js?v=1.0.0"></script>
+    <script src="app/services/projectScope.js?v=1.0.0"></script>
+    <script src="app/services/employee.js?v=1.0.0"></script>
+    <script src="app/services/odcType.js?v=1.0.0"></script>
+    <script src="app/services/material.js?v=1.0.0"></script>
+    <script src="app/services/materialCategory.js?v=1.0.0"></script>
+    <script src="app/services/subcontractor.js?v=1.0.0"></script>
+    <script src="app/services/costOverhead.js?v=1.0.0"></script>
+    <script src="app/services/costType.js?v=1.0.0"></script>
+    <script src="app/services/costRateType.js?v=1.0.0"></script>
+    <script src="app/services/costType_rateType.js?v=1.0.0"></script>
+    <script src="app/services/subcontractorType.js?v=1.0.0"></script>
+    <script src="app/services/trendStatusCode.js?v=1.0.0"></script>
+    <script src="app/services/projectClass.js?v=1.0.0"></script>
+    <script src="app/services/serviceClass.js?v=1.0.0"></script>
+    <script src="app/services/projectType.js?v=1.0.0"></script>
+    <script src="app/services/contract.js?v=1.0.0"></script>
+    <script src="app/services/milestone.js?v=1.0.0"></script>
+    <script src="app/services/changeOrder.js?v=1.0.0"></script>
+    <script src="app/services/programContract.js?v=1.0.0"></script>
+    <script src="app/services/projectClassPhase.js?v=1.0.0"></script>
+    <script src="app/services/serviceToSubserviceMapping.js?v=1.0.0"></script>
+    <script src="app/services/client.js?v=1.0.0"></script>
+    <script src="app/services/clientPOC.js?v=1.0.0"></script>        <!--Tanmay - 15/12/2021 -->
+    <script src="app/services/location.js?v=1.0.0"></script>
+    <script src="app/services/documentType.js?v=1.0.0"></script>
+    <script src="app/services/document.js?v=1.0.0"></script>
+    <script src="app/services/PurchaseOrder.js?v=1.0.0"></script>
+    <script src="app/services/PurchaseOrderDetail.js?v=1.0.0"></script>
+    <script src="app/services/uniqueIdentityNumber.js?v=1.0.0"></script>
+    <script src="app/services/wbs.js"></script>
+    <script src="app/services/userLicense.js"></script>
+    <!--<script src="app/services/Upload.js?v=1.0.0"></script>-->
+    <script src="app/services/projectNumber.js?v=1.0.0"></script>
+    <script src="app/services/projectElementNumber.js?v=1.0.0"></script>
+    <script src="app/services/TrendCostOverhead.js?v=1.0.0"></script>
+    <script src="app/filter.js?v=1.0.0"></script>
+    <script src="app/services/alert.js?v=1.0.0"></script>
+    <script src="app/services/session.js?v=1.0.0"></script>
+    <script src="app/services/LineOfBusiness.js?v=1.0.0"></script>
+    <script src="app/services/LobPhase.js?v=1.0.0"></script>
+    <script src="app/services/vendor.js?v=1.0.0"></script>
+    <script src="app/services/Manufacturer.js?v=1.0.0"></script>
+    <script src="app/services/Inventory.js?v=1.0.0"></script>
+    <script src="app/services/BOMRequest.js?v=1.0.0"></script>
+    <script src="app/services/projectWhiteList.js?v=1.0.0"></script>
+    <script src="app/services/ViewProjectGantt.js?v=1.0.0"></script>   <!--Manasi 06-01-2021-->
+    <script src="app/services/ViewContractGantt.js?v=1.0.0"></script><!--Manasi 06-01-2021-->
+    <script src="app/services/ViewGanttProjectCost.js?v=1.0.0"></script> <!--Manasi 14-01-2021-->
+    <script src="app/controllers/alertModalCtrl.js?v=1.0.0"></script>
+    <script src="app/model/ProjectMap.js?v=1.0.0"></script>
+    <script src="app/model/WBSTree.js?v=1.0.0"></script>
+    <script src="app/model/WBSTrendTree.js?v=1.0.0"></script>
+    <script src="assets/js/spinner/spin.js?v=1.0.0"></script>
+    <script src="assets/js/spinner/angular-spinner.js?v=1.0.0"></script>
+    <script src="assets/js/readable-range.js?v=1.0.0"></script>
+    <script src="assets/js/bootstrap-submenu.min.js?v=1.0.0"></script>
+
+    <link rel="stylesheet" href="assets/css/bootstrap-submenu.min.css?v=1.0.0">
+
+    <!-- Ng-grid-->
+    <link rel="stylesheet" href="assets/css/ng-grid.min.css?v=1.0.0">
+    <link rel="stylesheet" href="assets/css/gadget-panel.css?v=1.0.0">
+    <link rel="stylesheet" href="bower_components/glyphicons-only-bootstrap/css/bootstrap.min.css?v=1.0.0">
+
+    <!--<script src="assets/js/ui-grid.min.js?v=1.0.0"></script>-->
+    <!--<link rel ="stylesheet" href = "assets/css/ui-grid.min.css?v=1.0.0">-->
+    <script src="assets/js/ng-grid-2.0.14.min.js?v=1.0.0"></script>
+
+    <!--file saver-->
+    <script src="assets/js/FileSaver.js?v=1.0.0"></script>
+
+    <!--UI select-->
+    <link rel="stylesheet" href="assets/css/select.css?v=1.0.0" />
+    <script src="assets/js/select.js?v=1.0.0"></script>
+    <script src="assets/js/angular-sanitize.js?v=1.0.0"></script>
+
+    <!--UI GRID-->
+    <link rel="stylesheet" href="assets/css/ui-grid.min.css?v=1.0.0">
+    <script src="assets/js/ui-grid.min.js?v=1.0.0"></script>
+
+    <!-- JavaScripts initializations and stuff -->
+    <script src="assets/js/xenon-custom.js?v=1.0.0"></script>
+    <script src="app/controllers/ChartCtrl.js?v=1.0.0"></script>  <!--Manasi 15-09-2020-->
+
+
+</body>
+
+</html>
+
+<script>
+
+    gantt.init("my-gantt");
+    var dhtmlx = gantt;
+
+</script> 

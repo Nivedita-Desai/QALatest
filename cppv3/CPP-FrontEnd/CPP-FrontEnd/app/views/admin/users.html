@@ -1,0 +1,159 @@
+<!--<div class="row">-->
+    <!--<div class="col-centered" style="width: 1400px">-->
+        <!--<div class="panel panel-default">-->
+            <!--<div class="panel-heading">-->
+                <!--<h2 class="panel-title" style="font-size:30px;">Users</h2>-->
+            <!--</div>-->
+            <!--<div class="panel-body"  >-->
+                <!--<table class="table table-striped table-condensed c-admin-table" >-->
+
+                    <!--<thead>-->
+                    <!--<tr>-->
+                        <!--<th class="c-th">UserID</th>-->
+                        <!--<th class="c-th">First Name</th>-->
+                        <!--<th class="c-th">Middle Name</th>-->
+                        <!--<th class="c-th">Last Name</th>-->
+                        <!--<th class="c-th">email</th>-->
+                        <!--<th class="c-th">Role</th>-->
+                    <!--</tr>-->
+                    <!--</thead>-->
+                <!--</table>-->
+            <!--<div>-->
+                <!--<table class="table table-striped table-bordered c-admin-table">-->
+                    <!--<tbody>-->
+                    <!--<tr ng-repeat="u in userCollection" ng-click="setUser(u)" ng-dblclick="editUser()"-->
+                        <!--ng-class="{'selected':u.UserID === userItem.UserID}" >-->
+                        <!--<td class="c-table-text">{{u.UserID}}</td>-->
+                        <!--<td class="c-table-text">{{u.FirstName}}</td>-->
+                        <!--<td class="c-table-text">{{u.MiddleName}}</td>-->
+                        <!--<td class="c-table-text">{{u.LastName}}</td>-->
+                        <!--<td class="c-table-text">{{u.Email}}</td>-->
+                        <!--<td class="c-table-text">{{u.Role}}</td>-->
+                    <!--</tr>-->
+                    <!--</tbody>-->
+                <!--</table>-->
+            <!--</div>-->
+        <!--</div>-->
+            <!--<div class="panel-footer" id="right_panel-footer" style="text-align:center">-->
+                <!--<div class="btn-group">-->
+                    <!--<button type="button" class="btn btn-info btn-lg" ng-click="newUser()">Add</button>-->
+                    <!--<button type="button" class="btn btn-info btn-lg" ng-disabled="!userItem" ng-click="editUser()">Edit</button>-->
+                    <!--<button type="button" class="btn btn-info btn-lg" ng-disabled="!userItem" ng-click="deleteUser()">Delete</button>-->
+                <!--</div>-->
+
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+
+<head>
+    <!--<link data-require="bootstrap@*" data-semver="3.3.2" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />-->
+    <!--<script data-require="jquery@2.1.3" data-semver="2.1.3" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>-->
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.js"></script>-->
+    <link data-require="ui-select@0.11.1" data-semver="0.11.1" rel="stylesheet" href="https://cdn.rawgit.com/angular-ui/ui-select/v0.13.2/dist/select.css" />
+    <script data-require="ui-select@0.11.1" data-semver="0.11.1" src="https://cdn.rawgit.com/angular-ui/ui-select/v0.13.2/dist/select.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.min.css">
+
+    <!--<script src="https://cdn.rawgit.com/angular-ui/ui-grid.info/v3.0.7/release/3.0.7/ui-grid.min.js"></script>-->
+    <link rel="stylesheet" href="https://cdn.rawgit.com/angular-ui/ui-grid.info/v3.0.7/release/3.0.7/ui-grid.min.css" type="text/css" />
+
+    <!--<link rel="stylesheet" href="main.css" type="text/css" />-->
+
+    <style>
+        .ui-grid-cell {
+            overflow: visible;
+            z-index: 99999;
+        }
+
+        .ui-grid-cell, ui-select-wrap {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            /*white-space: normal;*/
+        }
+
+        /* Make sure the container doesn't shrink too small */
+        .ui-select-container {
+            min-width: 100px;
+        }
+
+        .ui-grid-row, .ui-grid-row .ui-grid-cell.roleListCol {
+            height: auto !important;
+        }
+        .ui-grid-row .ui-grid-cell.roleListCol {
+            border-right: 0;
+        }
+        .ui-grid-row .ui-grid-cell.c-col-Num {
+            border-left: 1px solid #d4d4d4
+        }
+    </style>
+</head>
+
+<div class="row">
+    <div class="col-centered" style="width: 1620px">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    User Management
+                    <!--<span>-->
+                    <!--<button type="button" class="btn btn-info btn-sm" ng-click="addRow()">-->
+                    <!--<i class="fa fa-plus"><label style="padding-left: 3px; ">Add</label></i></button>-->
+                    <!--</span>-->
+                </h3>
+                <a href="#/app/wbs" class="exit-button">X</a>
+            </div>
+            <div class="panel-body panel-height">
+                <!-- <div class="gridStyle" ng-grid="gridOptions" style="height:500px;">
+        </div>-->
+                <div class="gridStyle usermanagementtbl" ui-grid="gridOptions"  ui-grid-edit ui-grid-cellnav ui-grid-auto-resize style="height:500px;">
+                </div>
+            </div>
+
+            <!--<div ng-dropdown-multiselect=""
+    options="editDropdownOptionsArray" selected-model="COL_FIELD" extra-settings="example14settings"></div>-->
+            
+
+            <script type="text/ng-template" id="uiSelect">
+                
+                <ui-select-wrap>
+                    <ui-select multiple ng-model="MODEL_COL_FIELD" theme="select2" ng-disabled="disabled" append-to-body="true">
+                        <ui-select-match placeholder="Choose...">{{ $item }}</ui-select-match>
+                        <ui-select-choices repeat="item in col.colDef.editDropdownOptionsArray | filter: $select.search">
+                            <span>{{ item }}</span>
+                        </ui-select-choices>
+                    </ui-select>
+                </ui-select-wrap>
+            </script>
+
+            <script type="text/ng-template" id="multiCell">
+                <div class="ui-grid-cell-contents">
+                    {{ COL_FIELD.join(', ') }}
+                </div>
+            </script>
+            <div class="panel-footer text-center" id="right_panel-footer">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <button type="button" class="btn btn-primary c-btn-delete" ng-click="delete()">Delete</button>
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="button" class="btn btn-primary c-btn-save" ng-click="save()" id="save_User_Management">Save</button>
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="button" class="btn btn-primary c-btn-back" ng-click="addRow()">New</button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .sortable:after{
+        content : none !important;
+    }
+</style>

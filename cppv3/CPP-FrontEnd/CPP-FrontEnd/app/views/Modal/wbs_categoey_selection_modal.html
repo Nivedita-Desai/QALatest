@@ -1,0 +1,137 @@
+﻿<head>
+    <style type="text/css">
+        .col-sm-7 {
+            margin-top: 0px;
+        }
+
+        .input-required {
+            border-color: blue !important;
+        }
+
+        .label-required {
+            color: blue !important;
+        }
+
+
+        div.requiredBefore .checkboxRequired:before {
+            content: " *";
+            color: blue;
+        }
+
+        div.required .control-label:after {
+            content: " *";
+            color: blue;
+        }
+
+        div.asterik label.label-required:before {
+            content: " *";
+            color: #cc3f44;
+        }
+
+        div.asterik input.input-required:before {
+            content: " *";
+            color: #cc3f44;
+        }
+
+        .inputAsterik:after {
+            content: " *";
+            color: #cc3f44;
+            margin-right: -10px;
+        }
+
+        .btn {
+            margin-bottom: 0;
+            border: 1px solid !important;
+        }
+
+        .modal-dialog {
+            height: 100%;
+            vertical-align: middle;
+            margin-top: 5%;
+            align-self: center;
+        }
+
+        .fa {
+            color: white !important;
+        }
+
+        /*.btn-info {
+            color: #fff;
+            background-color: #222;
+        }*/
+
+        @media (min-width: 768px) {
+            /*.modal-dialog {
+                width: 50%;
+                max-width: 500px;
+                vertical-align: middle;
+            }*/
+        }
+    </style>
+</head>
+
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="goBackButtonCliked()">X</button>
+    <!--<h3 class="modal-title">Add New Category/Subcategory</h3>-->
+    <h3 class="modal-title">Add New Category/SubCategory</h3>  <!--Tanmay - 01/12/2021-->
+</div>
+<div class="modal-body" style="height:350px;">
+    <form novalidate name="addForm" role="form" id="reportManagerForm">
+        <div class="form-group required" style="padding-left:0;padding-right:0;"
+             ng-class="{ 'has-error' : addForm.MainCategory.$error.required}">
+
+            <!--<label class="control-label">Main Category </label>-->
+            <label class="control-label">Category </label> <!--Tanmay - 01/12/2021-->
+            <input ng-disabled="params.isSubCategory" class,="form-control" name="MainCategory" ng-model="category.CategoryDescription" required ng-blur="onMainTaskChange($event)" />
+        </div>
+
+        <div class="form-group required" style="padding-left:0;padding-right:0;"
+             ng-class="{ 'has-error' : addForm.MainCategoryID.$error.required}">
+
+            <!--<label class="control-label">Main Category ID </label>-->
+            <label class="control-label">Category ID </label> <!--Tanmay - 01/12/2021-->
+            <input class="form-control" name="MainCategoryID" ng-model="category.CategoryID" required disabled />  <!-- Manasi 11-02-2021    ng-disabled="params.isSubCategory" -->
+        </div>
+
+        <div class="form-group required" style="padding-left:0;padding-right:0;"
+             ng-class="{ 'has-error' : addForm.Subcategory.$error.required}">
+
+            <!--<label class="control-label">Sub Category </label>-->
+            <label class="control-label">SubCategory </label> <!--Tanmay - 01/12/2021-->
+            <input class="form-control" name="Subcategory" ng-model="category.SubCategoryDescription" required />
+        </div>
+
+        <div class="form-group required" style="padding-left:0;padding-right:0;"
+             ng-class="{ 'has-error' : addForm.SubcategoryID.$error.required}">
+
+            <!--<label class="control-label">Sub Category ID </label>-->
+            <label class="control-label">SubCategory ID </label> <!--Tanmay - 01/12/2021-->
+            <input class="form-control" name="SubcategoryID" ng-model="category.SubCategoryID" required disabled /> <!-- Manasi 11-02-2021-->
+        </div>
+    </form>
+</div>
+
+<div class="c-modal-footer">
+    <button type="button" class="btn btn-info w100" data-dismiss="modal" ng-click="goBackButtonCliked()" style="margin-bottom:10px;">Close</button>
+    <button type="button" class="btn btn-info w100" ng-click="save()" style="margin-bottom:10px;">Save</button>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+      //Dragging modal
+      $('.modal-dialog').draggable({
+          handle: ".modal-header"
+      });
+  });
+</script>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>

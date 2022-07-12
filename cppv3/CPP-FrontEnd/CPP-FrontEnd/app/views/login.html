@@ -1,0 +1,124 @@
+
+<style type="text/css">
+    #loading {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: url(loading_White.gif) no-repeat center center; /*Luan here - making same pathing for IIS deployment, Original: ../../assets/js/select2/loader.gif*/
+        z-index: 9999;
+    }
+</style>
+<div id="loading" style="display:none;"></div> <!--Manasi  -->
+<div class="login-bg">
+    <div class="login-box">
+        <div class="row">
+            <div class="col-md-12 text-center m-t-30">
+                <!--<img src="/assets/images/birdi_logo.png">-->
+                <img src="birdi_logo.png"/>
+                <div class="m-t-30"><h2>Capital Project Planner </h2> </div>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-md-12 text-center">
+                <!-- Errors container -->
+                <div class="errors-container">
+                </div>
+
+                <!-- Add class "fade-in-effect" for login form effect -->
+
+                <form method="post" role="form" ng-submit="submit()" id="login" class="login-form fade-in-effect  text-center">
+                    <div class="">
+                        <div class="input-icons">
+                            <!--<label class="control-label" for="username">Username</label>-->
+                            <i class="fa-user icon"></i>
+                            <input type="text" class="input-rounded" ng-model="loginData.userName" placeholder="Username" name="username" id="username" autocomplete="false" />
+
+                        </div>
+                    </div>
+                    <div class="m-t-30 p-b-30">
+                        <!--<label class="control-label"  for="passwd">Password</label>-->
+                        <div class="input-icons">
+                            <!--<label class="control-label" for="username">Username</label>-->
+                            <i class="fa-lock icon"></i>
+                            <input type="password" ng-model="loginData.password" class="input-rounded" placeholder="Password" name="passwd" id="passwd" autocomplete="false" />
+                            </div>
+                        </div>
+                        <div class="form-group m-t-30">
+                            <div class="btn-group">
+
+                                <button ng-click="login()" class="btn-login">
+                                    <i class="fa-lock"></i>
+                                    Login
+                                </button>
+                            </div>
+                        </div>
+
+                        <!--    <button ng-click="register()" class="btn btn-dark  text-left">
+                <i class="fa-angle-double-right"></i>
+                New User Registration
+            </button>
+        </div>
+    </div>
+            -->
+
+                        <div class="whitetext">
+                            <a href="" ng-click="recoverPassword()" style="color:white">Forgot your password?</a>
+
+                            <!--<div class="info-links">
+            <a href="">ToS</a> -
+            <a href="">Privacy Policy</a>
+        </div>-->
+
+                        </div>
+
+                        <!--<modal-dialog show='modalShown' width='440px'>
+        <div class="modal-header">
+            <h5 class="modal-title">{{modalTitle}}</h5>
+        </div>
+        <div class="modal-body">
+            <div id="draggable" class="loginALert">
+                <div>-->
+                        <!--<input type="text" name="licenseKeyTxt" id="licenseKeyTxt" />-->
+                        <!--<label class="txt-gray">Enter License Key:</label>
+                    <input style="width:100%;color:black; height:46px; text-align: left;" data-ng-model="licenseKeyTxt" class="m-b-10" />
+                    <button class="btn btn-info" style="background-color:green" data-ng-click="verifyLicense(licenseKeyTxt)" value="Submit" id="btnSubmit">Submit</button>
+
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button ng-click="verifyLicense()" focus-me="true">OK</button>
+            <button ng-click="cancel()">Cancel</button>
+        </div>
+    </modal-dialog>-->
+
+</form>
+                <div data-ng-hide="message == ''" class="alert alert-danger">
+                    {{message}}
+                </div>
+                <!--- External login
+                <div class="external-login">
+                    <a href="" class="facebook">
+                        <i class="fa-facebook"></i>
+                        Facebook Login
+                    </a>
+
+                    <!--
+                    <a href="<?php _hash(); ?>" class="twitter">
+                        <i class="fa-twitter"></i>
+                        Login with Twitter
+                    </a>
+
+                    <a href="<?php _hash(); ?>" class="gplus">
+                        <i class="fa-google-plus"></i>
+                        Login with Google Plus
+                    </a>
+                     -->
+            </div>
+
+        </div>
+
+    </div>
+</div>

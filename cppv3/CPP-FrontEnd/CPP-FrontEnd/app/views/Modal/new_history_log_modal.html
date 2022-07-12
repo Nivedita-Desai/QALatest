@@ -1,0 +1,41 @@
+<script>
+    $(function(){
+        $("#hlog_startdate").datepicker();
+        $("#hlog_enddate").datepicker();
+    });
+</script>
+
+<div class="modal-header" style="background-color: #7dbd89">
+    <h4>New History Log</h4>
+</div>
+
+<div class="modal-body">
+    <form>
+        <div class="_form-group">
+            <label for="" class="_control-label _bold">Description:</label>
+            <input ng-model="newLog.Description" type="text" class="form-control" id="hlog_description">
+        </div>
+        <div class="_form-group">
+            <label for="" class="_control-label _bold">Start Date:</label>
+            <input ng-model="newLog.StartDate" type="text" class="form-control" id="hlog_startdate">
+        </div>
+        <div class="_form-group">
+            <label for="" class="_control-label _bold">End Date:</label>
+            <input ng-model="newLog.EndDate" type="text" class="form-control" id="hlog_enddate">
+        </div>
+        <div class="_form-group">
+            <label for="" class="_control-label _bold">Cost:</label>
+            <input ng-model="newLog.Cost" blur-to-currency type="text" class="form-control" amount="hlog_cost">
+        </div>
+        <div class="_form-group" >
+            <label for="" class="_control-label _bold">Note: (optional)</label>
+            <input ng-model="newLog.Note" type="text" class="form-control" id="hlog_note">
+        </div>
+    </form>
+</div>
+
+<div class="modal-footer" style="padding:5px;">
+    <button type="button" class="btn-primary" ng-click="test()">TEST</button>
+    <button type="button" class="btn btn-primary c-btn-save" ng-click="save()">Save</button>
+    <button type="button" class="btn btn-primary c-btn-back" ng-click="cancel()">Cancel</button>
+</div>

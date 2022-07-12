@@ -1,0 +1,147 @@
+﻿<html ng-app="AngularChartExample">
+<!---->
+<head>
+    <!--<title>Angularchart Example</title>-->
+</head>
+<body>
+    <!--<div ng-view></div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="../../assets/js/chart.js"></script>-->
+    <div style="width: 1000px; height: 600px">
+        <canvas id="myChart"></canvas>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <script>
+        var ctx = document.getElementById("myChart").getContext('2d');
+        var myNewChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                "labels": [
+                    "09/21/2020",
+                    "09/28/2020",
+                    "10/05/2020"
+                ],
+                "datasets": [
+                    {
+                        "label": "Total Budget",
+                        "data": [
+                            20171.64,
+                            22002.04,
+                            19620.3
+                        ],
+                        "fill": false,
+                        "borderColor": "blue"
+                    },
+                    {
+                        "label": "ATD",
+                        "data": [
+                            20171.64,
+                            22002.04,
+                            0.0
+                        ],
+                        "fill": false,
+                        "borderColor": "red"
+                    },
+                    {
+                        "label": "BTD",
+                        "data": [
+                            20171.64,
+                            22002.04,
+                            0.0
+                        ],
+                        "fill": false,
+                        "borderColor": "green"
+                    },
+                    {
+                        "label": "BTC",
+                        "data": [
+                            0.0,
+                            0.0,
+                            19620.3
+                        ],
+                        "fill": false,
+                        "borderColor": "purple"
+                    },
+                    {
+                        "label": "EAC",
+                        "data": [
+                            0.0,
+                            0.0,
+                            19203.0
+                        ],
+                        "fill": false,
+                        "borderColor": "yellow"
+                    },
+                    {
+                        "label": "FTC",
+                        "data": [
+                            -20171.64,
+                            -22002.04,
+                            19203.0
+                        ],
+                        "fill": false,
+                        "borderColor": "black"
+                    }
+                ]
+            },
+            options: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                    labels: {
+                        boxWidth: 80,
+                        fontColor: 'rgb(60, 180, 100)'
+                    }
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: false,
+                    onHover: function (e, element) {
+                        if (item.length) {
+                            const data = item[0]._chart.config.data.datasets[0].data[item[0]._index];
+                            console.log(item, data);
+                        }
+                    }
+                }
+                //,
+                //tooltips: {
+                //    cornerRadius: 4,
+                //    caretSize: 4,
+                //    xPadding: 16,
+                //    yPadding: 10,
+                //    backgroundColor: 'rgba(0, 150, 100, 0.9)',
+                //    titleFontStyle: 'normal',
+                //    titleMarginBottom: 15,
+                //    intersect: true
+                //}
+            }
+        });
+
+    </script>
+
+    <!--<script>
+        function MainCtrl($scope, $http) {
+            debugger;
+            var projectId = 473;
+
+            $http.get('http://localhost:29986/api/Request/GetGraph/' + projectId + '/' ).success(function (response) {
+                debugger;
+                var data = response;
+                $scope.lineChartYData = data.yData;
+                $scope.lineChartXData = data.xData;
+            });
+
+        }
+    </script>
+    <script>
+        angular.module('AngularChartExample', ['AngularChart'], function ($routeProvider, $locationProvider) {
+            $routeProvider.when('/', {
+                template: '<chart title="Budget vs Actual vs Forecast Metrics Graph" xData="lineChartXData" yData="lineChartYData" xName="Time" yName="Amount" height="100%"></chart>',
+                controller: MainCtrl
+            })
+        })
+    </script>-->
+</body>
+</html>

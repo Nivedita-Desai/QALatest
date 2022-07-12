@@ -1,0 +1,13 @@
+{
+  "name": "dhx-grid-package",
+  "version": "6.5.2",
+  "description": "dhtmlxGrid widget",
+  "homepage": "https://docs.dhtmlx.com/grid",
+  "private": true,
+  "bugs": {
+    "url": "https://forum.dhtmlx.com",
+    "email": "support@dhtmlx.com"
+  },
+  "main": "codebase/grid.js",
+  "types": "codebase/grid.d.ts"
+}

@@ -1,0 +1,10 @@
+==================================================================================================================================
+UPDATE `cppdev19032021`.`modification_type` SET `ModType` = 'Schedule Impact' WHERE (`ModificationTypeId` = '2');
+UPDATE `cppdev19032021`.`modification_type` SET `ModType` = 'Value & Schedule Impact' WHERE (`ModificationTypeId` = '3');
+==================================================================================================================================
+ALTER TABLE `cppdev19032021`.`contract_modification` 
+ADD COLUMN `ScheduleImpact` INT NULL DEFAULT 0 AFTER `ModificationNumber`;
+==================================================================================================================================
+ALTER TABLE `cppdev19032021`.`change_order` 
+ADD COLUMN `ScheduleImpact` INT NULL DEFAULT 0 AFTER `DurationDate`;
+==================================================================================================================================

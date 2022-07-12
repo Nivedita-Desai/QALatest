@@ -1,0 +1,386 @@
+﻿<head>
+    <style type="text/css">
+        .col-sm-7 {
+            margin-top: 0px;
+        }
+
+        .input-required {
+            border-color: #cc3f44 !important;
+        }
+
+        .label-required {
+            color: #cc3f44 !important;
+        }
+
+        div.requiredBefore .checkboxRequired:before {
+            content: " *";
+            color: blue;
+        }
+
+        div.required .control-label:after {
+            content: " *";
+            color: blue;
+        }
+
+        div.asterik label.label-required:before {
+            content: " *";
+            color: #cc3f44;
+        }
+
+        div.asterik input.input-required:before {
+            content: " *";
+            color: #cc3f44;
+        }
+
+        .inputAsterik:after {
+            content: " *";
+            color: #cc3f44;
+            margin-right: -10px;
+        }
+
+        /*.btn {
+            margin-bottom: 0;
+            border: 1px solid !important;
+        }*/
+
+        .modal-dialog {
+            height: 100%;
+            vertical-align: middle;
+            margin-top: 5%;
+            align-self: center;
+            width: 1600px;
+        }
+
+        .fa {
+            color: white !important;
+        }
+
+        /*.btn-info {
+            color: #fff;
+            background-color: #222;
+        }*/
+
+        @media (min-width: 768px) {
+            /*.modal-dialog {
+                width: 50%;
+                max-width: 500px;
+                vertical-align: middle;
+            }*/
+        }
+
+        .tooltip {
+            top: -9999px;
+            left: -9999px;
+        }
+
+
+        .tooltip-inner {
+            max-width: 500px;
+            background-color: white;
+            color: black;
+            font-weight: 500;
+            max-height: 600px;
+            overflow-y: auto;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+<!--LEGACY-->
+
+
+<div>
+    <div class="modal-header modal-header-green">
+        <button type="button" class="exit-button" data-dismiss="modal" aria-hidden="true" ng-click="goBack('close')">X</button>
+        <h4 class="modal-title">&nbsp;</h4>
+        <!--<h3 class="modal-title">Purchase Order Details</h3>-->
+        <!--<input class="wild-card-search pull-right" ng-model="SearchValue">
+        <span class="pull-right" style="margin-right:5px;font-weight:bold;">Search:</span>-->
+    </div>
+    <div class="modal-body block-view p-t-0">
+        <div class="col-sm-12 m-t-10 m-b-10">
+            <!--Added by Amruta 30-07-2021-->
+            <h4 style="display:inline-block">
+                Purchase Order :
+                <input style="width:250px;display:inline-block;padding: 0px 5px 5px 5px;"
+                       readonly="readonly" type="text" class="" form-control ng-model="purchaseOrderDetails[0].PurchaseOrderNumber" />
+                &nbsp; &nbsp;
+                Cost Type :
+                <select style="width:250px; display:inline-block" class="form-control" ng-change="setCostType(costTypeSelect)" ng-model="costTypeSelect" data-ng-options="option.AbbreviatedName as option.Type for option in CostTypeList">
+                    <option value="">All</option>
+                </select>
+            </h4>
+            <div class="purchaseordersearch-wrap">
+                <span style="margin-right:5px;font-size:18px;">Search:</span>
+                <input class="wild-card-search purchaseordersearch" ng-model="SearchValue">
+            </div>
+            <!--<p ng-if="balanceerror" style="color:red; font-weight:600; margin-top:8px !important" class="text-center"> Requested Quantity cannot be more than available quantity for Purchase Order: {{curcostitemID}} </p>-->
+            <!--Added by Amruta 30-07-2021-->
+        </div>
+        <form novalidate name="addForm" role="form" id="reportManagerForm" class="m-0">
+            <!--<div class="col-sm-12 col-md-12 col-lg-12" style="margin-top:10px;">
+                <h4>Purchase Order : <input disabled="disabled" ng-model="purchaseOrder.PurchaseOrderNumber" /></h4>
+            </div>-->
+            <div class="col-sm-12 col-md-12 col-lg-12 m-t-10">
+                <table st-table="rowCollection" class="table table-striped" style="width:100%; padding: 0;">
+                    <tbody style="max-height:600px;overflow-y:auto;">
+                        <tr>
+                            <td colspan="15" style="padding: 0;">
+                                <div class="scrolable-table" style="overflow:auto;max-height:400px;overflow-x:hidden;">
+                                    <table class="table table-striped m-b-0">
+                                        <thead>
+                                            <tr>
+                                                <!--  <th style="text-align:center !important;width:1%; right: 4px; padding-left: 0;"><input type="checkbox" ng-model="all" style="width:15px;height:15px;" /></th>  -->
+                                                <th>Subservice</th>
+                                                <th>Category</th>
+                                                <th>SubCategory</th>
+                                                <th>Cost Code</th>
+                                                <th>Type</th>
+                                                <th>Employee Name</th>
+                                                <th width="350">Name</th>
+                                                <!--<th> Description</th>-->
+                                                <!--Added by Amruta 30-07-2021-->
+                                                <!--Added by Amruta 30-07-2021-->
+                                                <th>Quantity</th>
+                                                <th>UnitPrice</th>
+                                                <th>Cost</th>
+                                                <th>Balance</th>
+                                                <th>Requested</th>
+                                                <th>Total Cost</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr ng-if="costTypeSelect!=null" ng-repeat="row in purchaseOrderDetails | filter: {CostType: costTypeSelect}  | filter : SearchValue" ng-class="{selected : selectedRow.CostLineItemID == row.CostLineItemID}"
+                                                ng-mouseover="selectRow(row)"
+                                                ng-mouseleave="onMouseLeave(row)"
+                                                style="text-align:center;">
+                                                <!--<td class="my-word-wrap" style="width:4%;text-align:left; vertical-align: middle;"><input type="checkbox" style="width:15px;height:15px;" ng-model="row.check" ng-checked="all" /></td>  -->
+                                                <td>
+                                                    <span class="jquery-tooltip-custom" title="{{row.PhaseDescription}}">
+                                                        {{row.PhaseDescription}}
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span class="jquery-tooltip-custom" title="{{row.BudgetCategory}}">
+                                                        {{row.BudgetCategory}}
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span class="jquery-tooltip-custom" title="{{row.BudgetSubCategory}}">
+                                                        {{row.BudgetSubCategory}}
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span class="jquery-tooltip-custom" title="{{row.CostLineItemID}}">
+                                                        {{row.CostLineItemID}}
+                                                    </span>
+                                                </td>
+                                                <!--Modified by Amruta 03-08-2021-->
+                                                <td>
+                                                    <span ng-if="row.CostType == 'U'" class="jquery-tooltip-custom" title="{{row.CostType}}">
+                                                        Material
+                                                    </span>
+                                                    <span ng-if="row.CostType == 'L'" class="jquery-tooltip-custom" title="{{row.CostType}}">
+                                                        Subcontractor
+                                                    </span>
+                                                    <span ng-if="row.CostType == 'ODC'" class="jquery-tooltip-custom" title="{{row.CostType}}">
+                                                        {{row.CostType}}
+                                                    </span>
+                                                </td>
+
+                                                <td>
+                                                    <select multiple ng-disabled="!edit" ng-if="row.CostType == 'ODC'" style="width:200px; height:46px; font-size:16px !important; display:inline-block" data-ng-model="row.EmployeeID" data-ng-options="emp.ID as emp.Name for emp in row.emplist">
+                                                    </select>
+                                                    <span ng-if="row.CostType != 'ODC'" class="jquery-tooltip-custom" data-ng-model="row.EmployeeID">
+                                                        NA
+                                                    </span>
+                                                </td>
+                                                <!--Modified by Amruta 03-08-2021-->
+                                                <td>
+                                                    <span class="jquery-tooltip-custom" title="{{row.Name}}">
+                                                        {{row.Name}}
+                                                    </span>
+                                                </td>
+                                                <!--<td>
+                                                    <span class="jquery-tooltip-custom" title="{{row.Description}}">
+                                                        {{row.Description}}
+                                                    </span>
+                                                </td>-->
+
+                                                <td>
+                                                    <input ng-disabled="true" style="width:100%;color:black; height:46px; text-align: center;" data-ng-model="row.AmountOrQuantity" />
+                                                </td>
+
+                                                <td>
+                                                    <input ng-disabled="true" style="width:100%;color:black; height:46px; text-align: center;" ng-model="row.UnitPrice" />
+                                                </td>
+                                                <!--Modified by Amruta 03-08-2021-->
+                                                <td>
+                                                    <input ng-disabled="true" style="width:100%;color:black; height:46px; text-align: center;" data-ng-model="row.TotalCost" />
+
+                                                </td>
+                                                <td>
+                                                    <input ng-disabled="true" style="width:100%;color:black; height:46px; text-align: center;" data-ng-model="row.BalancedAmountOrQuantity" />
+                                                </td>
+                                                <td>
+                                                    <input max="{{row.BalancedAmountOrQuantity}}" min="0" name="balanced" style="width:100%;color:black; height:46px; text-align: center;" ng-change="calculateprice(row)" type="number" data-ng-model="row.RequestedAmountOrQuantity" />
+                                                </td>
+                                                <td>
+                                                    <input ng-disabled="true" style="width:100%;color:black; height:46px; text-align: center;" type="number" data-ng-model="row.TCost" />
+                                                </td>
+
+                                            </tr>
+
+
+                                            <tr ng-if="costTypeSelect==null" ng-repeat="row in purchaseOrderDetails | filter : SearchValue" ng-class="{selected : selectedRow.CostLineItemID == row.CostLineItemID}"
+                                                ng-mouseover="selectRow(row)"
+                                                ng-mouseleave="onMouseLeave(row)"
+                                                style="text-align:center;">
+                                                <!--   <td class="my-word-wrap" style="width:4%;text-align:left; vertical-align: middle;"><input type="checkbox" style="width:15px;height:15px;" ng-model="row.check" ng-checked="all" /></td>  -->
+                                                <td>
+                                                    <span class="jquery-tooltip-custom" title="{{row.PhaseDescription}}">
+                                                        {{row.PhaseDescription}}
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span class="jquery-tooltip-custom" title="{{row.BudgetCategory}}">
+                                                        {{row.BudgetCategory}}
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span class="jquery-tooltip-custom" title="{{row.BudgetSubCategory}}">
+                                                        {{row.BudgetSubCategory}}
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span class="jquery-tooltip-custom" title="{{row.CostLineItemID}}">
+                                                        {{row.CostLineItemID}}
+                                                    </span>
+                                                </td>
+                                                <!--Modified by Amruta 03-08-2021-->
+                                                <td>
+                                                    <span ng-if="row.CostType == 'U'" class="jquery-tooltip-custom" title="{{row.CostType}}">
+                                                        Material
+                                                    </span>
+                                                    <span ng-if="row.CostType == 'L'" class="jquery-tooltip-custom" title="{{row.CostType}}">
+                                                        Subcontractor
+                                                    </span>
+                                                    <span ng-if="row.CostType == 'ODC'" class="jquery-tooltip-custom" title="{{row.CostType}}">
+                                                        {{row.CostType}}
+                                                    </span>
+                                                </td>
+
+                                                <td>
+                                                    <select multiple ng-disabled="!edit" ng-if="row.CostType == 'ODC'" style="width:200px; height:46px; font-size:16px !important; display:inline-block" data-ng-model="row.EmployeeID" data-ng-options="emp.ID as emp.Name for emp in row.emplist">
+                                                    </select>
+                                                    <span ng-if="row.CostType != 'ODC'" class="jquery-tooltip-custom" data-ng-model="row.EmployeeID">
+                                                        NA
+                                                    </span>
+                                                </td>
+                                                <!--Modified by Amruta 03-08-2021-->
+                                                <td>
+                                                    <span class="jquery-tooltip-custom" title="{{row.Name}}">
+                                                        {{row.Name}}
+                                                    </span>
+                                                </td>
+                                                <!--<td>
+                                                    <span class="jquery-tooltip-custom" title="{{row.Description}}">
+                                                        {{row.Description}}
+                                                    </span>
+                                                </td>-->
+
+                                                <td>
+                                                    <input ng-disabled="true" style="width:100%;color:black; height:46px; text-align: center;" data-ng-model="row.AmountOrQuantity" />
+                                                </td>
+
+                                                <td>
+                                                    <input ng-disabled="true" style="width:100%;color:black; height:46px; text-align: center;" ng-model="row.UnitPrice" />
+                                                </td>
+                                                <!--Modified by Amruta 03-08-2021-->
+                                                <td>
+                                                    <input ng-disabled="true" style="width:100%;color:black; height:46px; text-align: center;" data-ng-model="row.TotalCost" />
+
+                                                </td>
+                                                <!--Modified by Amruta 03-08-2021-->
+                                                <td>
+                                                    <input ng-disabled="true" style="width:100%;color:black; height:46px; text-align: center;" data-ng-model="row.BalancedAmountOrQuantity" />
+                                                </td>
+                                                <td>
+                                                    <input ng-disabled="!edit" max="{{row.BalancedAmountOrQuantity}}" min="0" name="balanced" style="width:100%;color:black; height:46px; text-align: center;" ng-change="calculateprice(row)" type="number" data-ng-model="row.RequestedAmountOrQuantity" />
+                                                </td>
+                                                <td>
+                                                    <input ng-disabled="true" style="width:100%;color:black; height:46px; text-align: center;" type="number" data-ng-model="row.TCost" />
+                                                </td>
+
+                                            </tr>
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr style="text-align:center;font-weight:bold;">
+                            <!--<td colspan="2" style="text-align:left;">Vendor's Description: </td>-->
+                            <td colspan="14" style="text-align:left;padding:24px 10px;"> <span style="vertical-align:top">Vendor's Description :</span> <textarea ng-disabled="!edit" style="min-width: 90%" rows="1" ng-model="purchaseOrder.Description"></textarea></td>
+
+                        </tr>
+
+                        <tr style="text-align:center;font-weight:bold;">
+                            <!--<td colspan="2" style="text-align:left;">Justify </td>-->
+                            <td ng-disabled="viewPO" colspan="14" style="text-align:left;padding:24px 10px;"> <span style="vertical-align:top">Justification :</span> <textarea ng-disabled="viewPO" style="min-width: 93%" rows="1" ng-model="purchaseOrder.Reason"></textarea></td>
+
+                        </tr>
+
+                        <tr style="text-align:center;font-weight:bold;">
+                            <td colspan="13" style="text-align:right;">Total: </td>
+                            <td>{{total | currency}}</td>
+                        </tr>
+
+
+                    </tbody>
+
+                </table>
+
+                <div ng-if="isLabor" uib-alert class="alert-warning">For Labor, 1 is full time ,0.5 is half time </div>
+
+            </div>
+        </form>
+    </div>
+
+    <div class="c-modal-footer">
+        <button type="button" ng-disabled="viewPO" class="btn btn-primary c-btn-save m-b-10" ng-click="Approve()">Approve</button>
+        <button type="button" ng-disabled="viewPO" class="btn btn-primary c-btn-back m-b-10" ng-click="Reject()">Reject</button>
+
+        <button type="button" class="btn btn-black m-b-10" style="width:150px" data-dismiss="modal" ng-click="goBack('close')">Close</button>
+        <!--<button ng-if="edit" ng-disabled="balanceerror" type="button" class="btn btn-info" ng-click="save()">Save</button>-->
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    //$('[data-toggle="tooltip"]').tooltip();
+    /*  $(function () {
+          $('#on').datetimepicker({
+              keepOpen:false
+          });
+      });*/
+    /*  $(".modal-dialog").draggable();*/
+    $(document).ready(function () {
+        $(".jquery-tooltip-custom").tooltip({ delay: 0, effect: "blind", duration: 100 });
+
+        $('.modal-dialog').draggable({
+            handle: ".modal-header"
+        });
+
+    });
+
+</script>
+<!DOCTYPE html>
+<style>
+</style>

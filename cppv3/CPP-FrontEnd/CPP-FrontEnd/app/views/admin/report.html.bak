@@ -1,0 +1,348 @@
+﻿<head>
+    <style type="text/css">
+        .col-sm-7 {
+            margin-top: 0px;
+        }
+
+        .input-required {
+            border-color: #cc3f44 !important;
+        }
+
+        .label-required {
+            color: #cc3f44 !important;
+        }
+
+        div.asterik label.label-required:before {
+            content: " *";
+            color: #cc3f44;
+        }
+
+        div.asterik input.input-required:before {
+            content: " *";
+            color: #cc3f44;
+        }
+
+        .inputAsterik:after {
+            content: " *";
+            color: #cc3f44;
+            margin-right: -10px;
+        }
+
+        .btn {
+            margin-bottom: 0;
+            /*border: 1px solid !important;*/
+        }
+
+        .modal-dialog {
+            height: 100%;
+            vertical-align: middle;
+            margin-top: 5%;
+            align-self: center;
+        }
+
+        .fa {
+            color: white !important;
+        }
+
+        @media (min-width: 768px) {
+        }
+
+        .ui-select-choices-group-label {
+            padding-left: 5px;
+            font-weight: 900;
+        }
+    </style>
+</head>
+<div class="container" style="width:50%">
+    <div class="modal-header">
+        <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="goBack('close')">X</button>-->
+        <h3 class="modal-title">Admin Report Manager</h3>
+    </div>
+    <div class="modal-body" style="height:380px;">
+        <!--<div class="form-group required" style="padding-left:0;padding-right:0;"
+         ng-class="{ 'has-error' : reportManagerForm.reportType.$error.required}">
+
+        <label class="control-label">Report Type </label>
+        <ui-select ng-model="reportTypeFilter" name="reportType" on-select="selectReportType($item)" required>
+            <ui-select-match>
+                <span ng-bind="$select.selected"></span>
+            </ui-select-match>
+            <ui-select-choices repeat="item in (reportTypeList | filter: $select.search)">
+                <span ng-bind="item"></span>
+            </ui-select-choices>
+        </ui-select>
+    </div>-->
+
+        <div class="form-group required" style="padding-left:0;padding-right:0;"
+             ng-class="{ 'has-error' : reportManagerForm.reportType.$error.required}">
+
+            <label class="control-label">Report Type</label>
+            <ui-select ng-model="reportTypeFilter" name="reportType" on-select="selectReportType($item)" required>
+                <ui-select-match>
+                    <span ng-bind="$select.selected.filterName"></span>
+                </ui-select-match>
+                <ui-select-choices group-by="'reportGroup'" repeat="item in (reportTypeList | filter: $select.search)">
+                    <span ng-bind="item.filterName"></span>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+
+        <!--
+    <ui-select ng-model="person.selected" theme="bootstrap" ng-disabled="disabled" style="min-width: 300px;" title="Choose a person">
+        <ui-select-match placeholder="Select a person in the list or search his name/age...">
+            {{$select.selected.name}}
+        </ui-select-match>
+        <ui-select-choices group-by="'country'" repeat="person in people | propsFilter: {name: $select.search, age: $select.search}">
+            <div ng-bind-html="person.name | highlight: $select.search"></div>
+            <small>
+            email: {{person.email}}
+            age: <span ng-bind-html="''+person.age | highlight: $select.search"></span>
+            </small>
+        </ui-select-choices>
+    </ui-select>
+    -->
+        <!--Cost Type-->
+        <div ng-show="reportTypeFilter.filterName=='Inventory Export From CPP Into Jonas'" class="form-group required" style="padding-left:0;padding-right:0;"
+             ng-class="{ 'has-error' : reportManagerForm.costTypeFilter.$error.required}">
+
+            <label class="control-label">Cost Type </label>
+            <ui-select ng-model="$item" name="costTypeFilter" on-select="selectCostType($item)" required>
+                <ui-select-match allow-clear="true">
+                    <span ng-bind="selectedCostType.CostTypeName"></span>
+                </ui-select-match>
+                <ui-select-choices repeat="item.CostTypeID as item in (costTypeList | filter: $select.search) track by item.CostTypeID">
+                    <span ng-bind="item.CostTypeName"></span>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+
+
+        <!--Organization-->
+        <div ng-show="reportTypeFilter.filterName=='Customer Report'
+             || reportTypeFilter.filterName=='Work Breakdown Structure Admin Report'
+             || reportTypeFilter.filterName=='Employee Admin Report'
+             || reportTypeFilter.filterName=='Cost Type Report'" class="form-group required" style="padding-left:0;padding-right:0;"
+             ng-class="{ 'has-error' : reportManagerForm.organizationFilter.$error.required}">
+
+            <label class="control-label">Organization </label>
+            <ui-select ng-model="$item" name="organizationFilter" on-select="selectOrganization($item)" required>
+                <ui-select-match allow-clear="true">
+                    <span ng-bind="selectedOrganization.OrganizationName"></span>
+                </ui-select-match>
+                <ui-select-choices repeat="item.OrganizationID as item in (allOrganizationList | filter: $select.search) track by item.OrganizationID">
+                    <span ng-bind="item.OrganizationName"></span>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+
+        <!--Programs aka Super Program Elements-->
+        <div ng-show="(reportTypeFilter.filterName=='Project Element List Admin Report') || reportTypeFilter.filterName=='Trend Status Report'" class="form-group required" style="padding-left:0;padding-right:0;"
+             ng-class="{ 'has-error' : reportManagerForm.programFilter.$error.required}">
+
+            <label class="control-label">Contract </label>  <!--Manasi 16-02-2021-->
+            <ui-select ng-model="$item" name="programFilter" on-select="selectProgram($item)" required>
+                <ui-select-match allow-clear="true">
+                    <span ng-bind="selectedProgram.ProgramName"></span>
+                </ui-select-match>
+                <ui-select-choices repeat="item.ProgramID as item in (currentProgramList | filter: $select.search) track by item.ProgramID">
+                    <span ng-bind="item.ProgramName"></span>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+
+        <!--Program Elements aka Super Projects-->
+        <div ng-show="(reportTypeFilter.filterName=='Customer Report' && selectedOrganization)
+             || (reportTypeFilter.filterName=='Project Element List Admin Report' && selectedProgram)
+             || reportTypeFilter.filterName=='Sales Order Report'
+             || reportTypeFilter.filterName=='Purchase Order Report'
+			 || reportTypeFilter.filterName=='Project Export From CPP Into Jonas'
+			 || reportTypeFilter.filterName=='Baseline Export From CPP Into Jonas'
+			 || reportTypeFilter.filterName=='Baseline Pair Revenue Export From CPP Into Jonas'
+			 || reportTypeFilter.filterName=='Baseline One Total Revenue Export From CPP Into Jonas'
+             || reportTypeFilter.filterName=='Cost Type Report'
+             || reportTypeFilter.filterName=='Trend Status Report'" class="form-group required" style="padding-left:0;padding-right:0;"
+             ng-class="{ 'has-error' : reportManagerForm.programElementFilter.$error.required}">
+
+            <label class="control-label">Project </label>
+            <ui-select ng-model="$item" name="programElementFilter" on-select="selectProgramElement($item)" required>
+                <ui-select-match allow-clear="true">
+                    <span ng-bind="selectedProgramElement.ProgramElementName"></span>
+                </ui-select-match>
+                <ui-select-choices repeat="item.ProgramElementID as item in (currentProgramElementList | filter: $select.search) track by item.ProgramElementID">
+                    <span ng-bind="item.ProgramElementName"></span>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+
+        <!--Projects aka Project Elements-->
+        <div ng-show="(reportTypeFilter.filterName=='Customer Report'
+             || (reportTypeFilter.filterName=='Project Element List Admin Report' && selectedProgramElement)
+             || reportTypeFilter.filterName=='Sales Order Report'
+             || reportTypeFilter.filterName=='Purchase Order Report'
+			 || reportTypeFilter.filterName=='Baseline Export From CPP Into Jonas'
+			 || reportTypeFilter.filterName=='Baseline Pair Revenue Export From CPP Into Jonas'
+			 || reportTypeFilter.filterName=='Baseline One Total Revenue Export From CPP Into Jonas'
+             || reportTypeFilter.filterName=='Cost Type Report'
+             || reportTypeFilter.filterName=='Trend Status Report')
+             && selectedProgramElement" class="form-group required" style="padding-left:0;padding-right:0;"
+             ng-class="{ 'has-error' : reportManagerForm.projectFilter.$error.required}">
+
+            <label class="control-label">Project Element </label>
+            <ui-select ng-model="$item" name="projectFilter" on-select="selectProject($item)" required>
+                <ui-select-match allow-clear="true">
+                    <span ng-bind="selectedProject.ProjectName"></span>
+                </ui-select-match>
+                <ui-select-choices repeat="item.ProjectID as item in (currentProjectList | filter: $select.search) track by item.ProjectID">
+                    <span ng-bind="item.ProjectName"></span>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+
+        <!--Trends-->
+        <div ng-show="(reportTypeFilter.filterName=='Sales Order Report'
+             || reportTypeFilter.filterName=='Purchase Order Report')
+             && selectedProject" class="form-group required" style="padding-left:0;padding-right:0;"
+             ng-class="{ 'has-error' : reportManagerForm.trendFilter.$error.required}">
+
+            <label class="control-label">Trend </label>
+            <ui-select ng-model="$item" name="trendFilter" on-select="selectTrend($item)" required>
+                <ui-select-match allow-clear="true">
+                    <span ng-bind="selectedTrend.TrendNumberDescription"></span>
+                </ui-select-match>
+                <ui-select-choices repeat="item.TrendID as item in (currentTrendList | filter: $select.search) track by item.TrendID">
+                    <span ng-bind="item.TrendNumberDescription"></span>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+
+        <!--Start Date Jignesh 22-12-2020-->
+        <!--<div ng-show="(reportTypeFilter.filterName=='Cost Type Report')
+         && selectedProject" class="form-group required" style="padding-left:0;padding-right:0;"
+         ng-class="{ 'has-error' : reportManagerForm.trendFilter.$error.required}">
+
+        <label class="control-label">Start Date</label>
+        <div class="col-md-12" style="padding-left: 0;">
+            <input type="text" class="form-control" id="_start_date">
+        </div>
+    </div>-->
+        <div ng-show="(reportTypeFilter.filterName=='Trend Status Report')" class="form-group required" style="padding-left:0;padding-right:0;"
+             ng-class="{ 'has-error' : reportManagerForm.reportType.$error.required}">
+
+            <label class="control-label">Status</label>
+            <ui-select ng-model="$item" name="reportType" on-select="selectTrendStatus($item)" required>
+                <ui-select-match>
+                    <span ng-bind="$select.selected.filterName"></span>
+                </ui-select-match>
+                <ui-select-choices group-by="'reportGroup'" repeat="item in (trendStatusList | filter: $select.search)">
+                    <span ng-bind="item.filterName"></span>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+        <!--Material Categories-->
+        <div ng-show="reportTypeFilter.filterName=='Material Admin Report'"
+             class="form-group required" style="padding-left:0;padding-right:0;"
+             ng-class="{ 'has-error' : reportManagerForm.materialCategoryFilter.$error.required}">
+
+            <label class="control-label">Material Category </label>
+            <ui-select ng-model="selectedMaterialCategory.ID" name="materialCategoryFilter" on-select="selectMaterialCategory($item)" required>
+                <ui-select-match allow-clear="true">
+                    <span ng-bind="$select.selected.Name"></span>
+                </ui-select-match>
+                <ui-select-choices repeat="item.ID as item in (allMaterialCategoryList | filter: $select.search) track by item.ID">
+                    <span ng-bind="item.Name"></span>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+
+        <!--Subcontractor Types-->
+        <div ng-show="reportTypeFilter.filterName=='Subcontractor Admin Report'"
+             class="form-group required" style="padding-left:0;padding-right:0;"
+             ng-class="{ 'has-error' : reportManagerForm.subcontractorTypeFilter.$error.required}">
+
+            <label class="control-label">Subcontractor Type </label>
+            <ui-select ng-model="selectedTrend.SubcontractorTypeID" name="subcontractorTypeFilter" on-select="selectSubcontractorType($item)" required>
+                <ui-select-match allow-clear="true">
+                    <span ng-bind="$select.selected.SubcontractorTypeName"></span>
+                </ui-select-match>
+                <ui-select-choices repeat="item.SubcontractorTypeID as item in (allSubcontractorTypeList | filter: $select.search) track by item.SubcontractorTypeID">
+                    <span ng-bind="item.SubcontractorTypeName"></span>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+
+        <!--Positions-->
+        <div ng-show="reportTypeFilter.filterName=='Employee Admin Report'"
+             class="form-group required" style="padding-left:0;padding-right:0;"
+             ng-class="{ 'has-error' : reportManagerForm.positionFilter.$error.required}">
+
+            <label class="control-label">Position Title </label>
+            <ui-select ng-model="selectedPosition.Id" name="positionFilter" on-select="selectPosition($item)" required>
+                <ui-select-match allow-clear="true">
+                    <span ng-bind="$select.selected.PositionDescription"></span>
+                </ui-select-match>
+                <ui-select-choices repeat="item.Id as item in (allPositionList | filter: $select.search) track by item.Id">
+                    <span ng-bind="item.PositionDescription"></span>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+
+        <!--Project Class-->
+        <div ng-show="reportTypeFilter.filterName=='Work Breakdown Structure Admin Report' && selectedOrganization"
+             class="form-group required" style="padding-left:0;padding-right:0;"
+             ng-class="{ 'has-error' : reportManagerForm.projectClassFilter.$error.required}">
+
+            <label class="control-label">Division </label>
+            <ui-select ng-model="selectedProjectClass.ProjectClassID" name="projectClassFilter" on-select="selectProjectClass($item)" required>
+                <ui-select-match allow-clear="true">
+                    <span ng-bind="$select.selected.ProjectClassName"></span>
+                </ui-select-match>
+                <ui-select-choices repeat="item.ProjectClassID as item in (allProjectClassList | filter: $select.search) track by item.ProjectClassID">
+                    <span ng-bind="item.ProjectClassName"></span>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+
+
+        <!--Phase Codes-->
+        <div ng-show="reportTypeFilter.filterName=='Work Breakdown Structure Admin Report' && selectedProjectClass"
+             class="form-group required" style="padding-left:0;padding-right:0;"
+             ng-class="{ 'has-error' : reportManagerForm.phaseFilter.$error.required}">
+
+            <label class="control-label">Phase Code </label>
+            <ui-select ng-model="selectedPhase.PhaseID" name="phaseFilter" on-select="selectPhase($item)" required>
+                <ui-select-match allow-clear="true">
+                    <span ng-bind="$select.selected.Code"></span>
+                </ui-select-match>
+                <ui-select-choices repeat="item.PhaseID as item in (currentPhaseList | filter: $select.search) track by item.PhaseID">
+                    <span ng-bind="item.Code"></span>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+
+    </div>
+
+    <div class="c-modal-footer">
+        <button type="button" class="btn btn-info w100" data-dismiss="modal" ng-click="goBack('close')">Close</button><!--changes done by shweta 16-7-2020-->
+        <button type="button" class="btn btn-info w100" ng-click="generateReport()">Run</button><!--changes done by shweta 16-7-2020-->
+    </div>
+</div>
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+      //Dragging modal
+      $('.modal-dialog').draggable({
+          handle: ".modal-header"
+      });
+  });
+</script><!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>

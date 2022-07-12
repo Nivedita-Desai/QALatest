@@ -1,0 +1,30 @@
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="modalInstance.close();">X</button>
+    <h3 class="modal-title">Fund Type</h3>
+</div>
+<div class="modal-body">
+    <form>
+        <div class="_form-group">
+            <label class="control-label _bold">Fund Name</label>
+            <input class="form-control" placeholder="Fund" ng-model="fundItem.Fund">
+        </div>
+        <div class="_form-group">
+            <label class="control-label _bold" >Amount</label>
+            <input class="form-control" placeholder="Amount" ng-model="fundItem.Amount">
+        </div>
+        <div class="_form-group">
+            <label class="control-label _bold">Availability</label>
+            <input class="form-control " placeholder="Availability" ng-model="fundItem.Availability">
+        </div>
+        <div class="_form-group">
+            <label class="control-label _bold">Balance Remaining</label>
+            <input class="form-control " placeholder="Balance Remaining" ng-model="fundItem.BalanceRemaining">
+        </div>
+    </form>
+</div>
+<div class=" c-modal-footer">
+    <button type="button" class="btn btn-info" data-dismiss="modal" ng-click="goBack()">Close</button>
+    <button type="button" class="btn btn-info" ng-click="saveChanges()">Save</button>
+</div>
+

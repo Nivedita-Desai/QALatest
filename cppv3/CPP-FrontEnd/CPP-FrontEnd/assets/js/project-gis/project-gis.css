@@ -1,0 +1,92 @@
+	  #map-canvas {
+        width:1137px;
+        float:left;
+        padding:10px;
+        height:700px;
+      }
+	  #project-map-canvas {
+        width:100%;
+        float:left;
+          padding-top: 10px;
+          padding-right: 10px;
+          padding-left: 10px;
+          padding-bottom: 10px;
+          height:350px;
+      }
+      .trendTree
+      {
+          width:100%;
+      }
+      #map-style {
+        background-color:#3f3f3f;
+        height:700px;
+        width:300px;
+        float:right;
+        padding:10px;
+      }
+       #dropdown-style {
+        background-color:#3f3f3f;
+        height:100px;
+        width:285px;
+        float:right;
+        padding:10px;
+        margin-top: 20px;
+      }
+      
+      #newbtn-section {
+        background-color:#3f3f3f;
+        height:100px;
+        width:285px;
+        float:right;
+        padding:10px;
+        margin-top: 30px;
+      }
+      
+      #button-style {
+        background-color:#3f3f3f;
+        height:100px;
+        width:230px;
+        float:left;
+        padding:10px;
+        /*margin-top: 200px;*/
+      }
+      
+      .controls {
+        margin-top: 16px;
+        border: 1px solid transparent;
+        border-radius: 2px 0 0 2px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        height: 32px;
+        outline: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      }
+
+      #address-bar {
+        background-color: #fff;
+        padding: 0 11px 0 13px;
+        width: 210px;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        text-overflow: ellipsis;
+      }
+
+      #pac-input:focus {
+        border-color: #4d90fe;
+        margin-left: -1px;
+        padding-left: 14px;  /* Regular padding-left + 1. */
+        width: 401px;
+      }
+
+      .pac-container {
+        font-family: Roboto;
+      }
+      
+       input,select,button
+      {
+        -moz-border-radius: 7px;
+        /*border-radius: 7px;*/
+        border:solid 1px black; 
+        /*padding:5px;*/
+      }

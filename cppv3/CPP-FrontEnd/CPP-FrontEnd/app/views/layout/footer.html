@@ -1,0 +1,54 @@
+<!-- Main Footer -->
+<!-- Choose between footer styles: "footer-type-1" or "footer-type-2" -->
+<!-- Add class "sticky" to  always stick the footer to the end of page (if page contents is small) -->
+<!-- Or class "fixed" to  always fix the footer to the end of page -->
+<footer class="main-footer sticky footer-type-1" style="height:10px;">
+
+	<div class="footer-inner">
+
+		<!-- Add your copyright text here -->
+		<div class="footer-text" style="width: 100%">
+
+			<div style="float: left">&copy; 2022<strong> Birdi Systems, Inc.</strong></div> <!--Birdi, Inc.--><!--Manasi 16-02-2021-->
+			<div style="float: right"><strong>Capital Project Planner V2.0</strong></div>  <!--Manasi 16-02-2021-->
+			<!--shweta -3-9-2021-->
+			<!-- Manasi 01-04-2021-->
+			<div id="contract" style="background-color: #060; width: 25px; border: 1px solid #000000; height: 12px; margin-left: 100px; display: inline-block"></div><span id="contract" style="font-weight:bold;"> : Contract</span>
+			<div id="project" style="background-color: #ff9c42; width: 25px; border: 1px solid #000000; height: 12px; margin-left: 30px; display: inline-block "></div><span id="project" style="font-weight:bold;"> : Project</span>
+			<div id="closed" style="background-color: #2ca5c8; width: 25px; border: 1px solid #000000; height: 12px; margin-left: 30px; display: inline-block"></div><span id="closed" style="font-weight:bold;"> : Closed</span>
+			<div id="approved" style="background-color: #d41600; width: 25px; border: 1px solid #000000; height: 12px; margin-left: 30px; display: inline-block"></div><span id="approved" style="font-weight:bold;"> : Approved</span>
+			<div id="unapproved" style="background-color: #ffcc00; width: 25px; border: 1px solid #000000; height: 12px; margin-left: 30px; display: inline-block"></div><span id="unapproved" style="font-weight:bold;"> : Unapproved</span>
+
+		</div>
+
+
+		<!-- Go to Top Link, just add rel="go-top" to any link to add this functionality
+		<div class="go-up">
+
+			<a href="" rel="go-top">
+				<i class="fa-angle-up"></i>
+			</a>
+
+		</div>-->
+
+	</div>
+
+</footer>
+<script>
+
+	//$(document).ready(function () {
+	//	debugger;
+        var url = window.location.href;
+       var view_mode = localStorage.getItem('MODE');
+		if (view_mode == 'mindmap' || view_mode == '') {
+            //debugger;
+            $('#closed,#approved,#unapproved,#contract,#project').show();
+        }
+		else {
+			//debugger;
+            $('#closed,#approved,#unapproved,#contract,#project').hide();
+		}
+
+     
+ // });
+</script>

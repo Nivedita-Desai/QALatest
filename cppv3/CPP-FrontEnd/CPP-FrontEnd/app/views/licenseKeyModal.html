@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+        .col-sm-7 {
+            margin-top: 0px;
+        }
+
+        .input-required {
+            border-color: #cc3f44 !important;
+        }
+
+        .label-required {
+            color: #cc3f44 !important;
+        }
+
+        div.requiredBefore .checkboxRequired:before {
+            content: " *";
+            color: blue;
+        }
+
+        div.required .control-label:after {
+            content: " *";
+            color: blue;
+        }
+
+        div.asterik label.label-required:before {
+            content: " *";
+            color: #cc3f44;
+        }
+
+        div.asterik input.input-required:before {
+            content: " *";
+            color: #cc3f44;
+        }
+
+        .inputAsterik:after {
+            content: " *";
+            color: #cc3f44;
+            margin-right: -10px;
+        }
+
+        .btn {
+            border: 1px solid !important;
+        }
+
+        .modal-dialog {
+            height: 100%;
+            vertical-align: middle;
+            margin-top: 5%;
+            align-self: center;
+            width: 1600px;
+        }
+
+        .fa {
+            color: white !important;
+        }
+
+        /*.btn-info {
+                    color: #fff;
+                    background-color: #222;
+                }*/
+
+        @media (min-width: 768px) {
+            /*.modal-dialog {
+                        width: 50%;
+                        max-width: 500px;
+                        vertical-align: middle;
+                    }*/
+        }
+
+        .tooltip {
+            top: -9999px;
+            left: -9999px;
+        }
+
+
+        .tooltip-inner {
+            max-width: 500px;
+            background-color: white;
+            color: black;
+            font-weight: 500;
+            max-height: 600px;
+            overflow-y: auto;
+            border: 1px solid black;
+        }
+        .loginALert{
+            padding:10px 15px;
+        }
+    </style>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <!--<section ng-show="false" id="projectdetail-view" style="height:100%;vertical-align:middle;  ">-->
+        <div id="draggable" class="loginALert">
+            <div>
+                <!--<input type="text" name="licenseKeyTxt" id="licenseKeyTxt" />-->
+                <label class="txt-gray">Enter License Key:</label>
+                <input style="width:100%;color:black; height:46px; text-align: left;" data-ng-model="licenseKeyTxt" class="m-b-10" />
+                <div data-ng-hide="message == ''" class="alert alert-danger">
+                    {{message}}
+                </div>
+                <button class="btn btn-info" style="background-color:green" data-ng-click="verifyLicense(licenseKeyTxt,true)" value="Submit" id="btnSubmit">Submit</button>
+                <button class="btn btn-info" style="background-color:black" data-ng-click="closeModal()" value="Cancel" id="btnSubmit">Cancel</button>
+
+            </div>
+         </div>
+       <!-- </section>-->
+</body>
+</html>

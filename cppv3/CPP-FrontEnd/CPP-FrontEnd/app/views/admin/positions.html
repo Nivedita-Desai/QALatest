@@ -1,0 +1,87 @@
+<!--<div class="row">-->
+    <!--<div class="col-centered" style="width: 1000px">-->
+        <!--<div class="panel panel-default">-->
+            <!--<div class="panel-heading">-->
+                <!--<h3 class="panel-title" style="font-size:30px;">Positions</h3>-->
+            <!--</div>-->
+            <!--<div class="panel-body" >-->
+                <!--<table class="table table-striped table-condensed c-admin-table"  >-->
+                    <!--<thead>-->
+                    <!--<tr>-->
+                        <!--<th class="c-th" style="width:15%;">Position ID</th>-->
+                        <!--<th class="c-th">Title</th>-->
+                        <!--<th class="c-th">Min Rate</th>-->
+                        <!--<th class="c-th">Max Rate</th>-->
+                        <!--<th class="c-th">Current Rate</th>-->
+                    <!--</tr>-->
+                    <!--</thead>-->
+                <!--</table>-->
+                <!--<div style="overflow-y:auto;height:550px;">-->
+                    <!--<table class="table table-bordered c-admin-table table-striped">-->
+                        <!--<tbody>-->
+                            <!--<tr ng-repeat="p in positionCollection" ng-click="setPosition(p)" ng-dblclick="editPosition()"-->
+                                <!--ng-class="{'selected':p.PositionID === positionItem.PositionID}" >-->
+                                <!--<td class="c-table-text" style="width:15%;">{{p.PositionID}}</td>-->
+                                <!--<td class="c-table-text">{{p.PositionDescription}}</td>-->
+                                <!--<td class="c-table-text">{{p.MinHourlyRate | currency}}</td>-->
+                                <!--<td class="c-table-text">{{p.MaxHourlyRate | currency}}</td>-->
+                                <!--<td class="c-table-text">{{p.CurrentHourlyRate | currency}}</td>-->
+                            <!--</tr>-->
+                        <!--</tbody>-->
+                    <!--</table>-->
+                 <!--</div>-->
+            <!--</div>-->
+            <!--<div class="panel-footer" id="right_panel-footer" style="text-align:center">-->
+                <!--<div class="btn-group">-->
+                    <!--<button type="button" class="btn btn-info btn-lg" ng-click="newPosition()">Add</button>-->
+                    <!--<button type="button" class="btn btn-info btn-lg" ng-disabled="!positionItem" ng-click="editPosition()">Edit</button>-->
+                    <!--<button type="button" class="btn btn-info btn-lg" ng-disabled="!positionItem" ng-click="deletePosition()">Delete</button>-->
+                <!--</div>-->
+<!--asfasfasfasfsf-->
+            <!--</div>-->
+        <!--</dissv>-->
+    <!--</div>-->
+<!--</divss>-->
+
+
+<div class="row">
+    <div class="col-centered" style="width: 900px">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title" style="font-size:30px;">Position Titles
+    <!--<span>-->
+        <!--<button type="button" class="btn btn-info btn-sm" ng-click="addRow()">-->
+            <!--<i class="fa fa-plus"><label style="padding-left: 3px; ">Add</label></i></button>-->
+    <!--</span>-->
+                </h3>
+                <a href="#/app/wbs" class="exit-button">X</a>
+            </div>
+            <div class="panel-body"  style="height: 550px; overflow: auto">
+               <!-- <div class="gridStyle" ng-grid="gridOptions" style="height:500px;">
+                </div>-->
+                <div id="grid1" class="grid" ui-grid="gridOptions" ui-grid-edit ui-grid-cellnav style="height:500px;">
+                </div>
+            </div>
+            <div class="panel-footer" id="right_panel-footer" style="text-align:center">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <button type="button" class="btn btn-primary c-btn-delete"  ng-click="delete()">Delete</button>
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="button" class="btn btn-primary c-btn-save" ng-click="save()" id="save_Positions">Save</button>
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="button" class="btn btn-primary c-btn-back" ng-click="addRow()">New</button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .sortable:after{
+        content : none !important;
+    }
+</style>

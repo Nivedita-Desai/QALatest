@@ -1,0 +1,71 @@
+<script>
+    $(function(){
+        $("#asset_ad").datepicker();
+    });
+</script>
+
+<div class="modal-header">
+    <h4>{{asset.Name}}</h4>
+</div>
+
+<div class="modal-body">
+    <form>
+        <div class="_form-group" ng-hide="isComp" style="margin-bottom:5px;">
+            <label class="_control-label _bold" style="margin:0;">Facility</label>
+            <select class="form-control" id="facilityCollection">
+                <option value="{{editedItem.FacilityName}}">{{editedItem.FacilityName}}</option>
+                <option ng-repeat="option in facilityCollection" value="{{option.Name}}">{{option.Name}}</option>
+            </select>
+        </div>
+        <div class="_form-group" ng-hide="isComp" style="margin-bottom:5px;">
+            <label class="_control-label _bold" style="margin:0;">Location</label>
+            <select class="form-control" id="locationCollection">
+                <option value="{{editedItem.FacilityLocation}}">{{editedItem.FacilityLocation}}</option>
+                <option ng-repeat="option in locationCollection" value="{{option.Location}}">{{option.Location}}</option>
+            </select>
+        </div>
+        <div class="_form-group" style="margin-bottom:5px;">
+            <label class="_control-label _bold" style="margin:0;">Asset Name</label>
+            <input ng-model="editedItem.Name" type="text" class="form-control" id="asset_name">
+        </div>
+        <div class="_form-group" style="margin-bottom:5px;">
+            <label class="_control-label _bold" style="margin:0;">Tag</label>
+            <input ng-model="editedItem.Tag" type="text" class="form-control" id="asset_tag">
+        </div>
+        <div class="_form-group" style="margin-bottom:5px;">
+            <label class="_control-label _bold" style="margin:0;">Cost</label>
+            <input ng-model="editedItem.Cost" type="text" class="form-control" id="asset_cost">
+        </div>
+        <div class="_form-group" style="margin-bottom:5px;">
+            <label class="_control-label _bold" style="margin:0;">Acquisition Date</label>
+            <input ng-model="ad" type="text" class="form-control" id="asset_ad">
+        </div>
+        <div class="_form-group" ng-hide="isComp" style="margin-bottom:5px;">
+            <label class="_control-label _bold" style="margin:0;">Status</label>
+            <select class="form-control" id="statusCollection">
+                <option value="{{editedItem.Status}}">{{editedItem.Status}}</option>
+                <option ng-repeat="option in statusCollection" value="{{option.Status}}">{{option.Status}}</option>
+            </select>
+        </div>
+        <div class="_form-group" style="margin-bottom:5px;">
+            <label class="_control-label _bold" style="margin:0;">Notes</label>
+            <input ng-model="editedItem.Note" type="text" class="form-control" id="asset_notes">
+        </div>
+        <div class="_form-group" ng-hide="isNew" style="margin-bottom:5px;">
+            <label class="_control-label _bold" ng-show="isComp" style="margin:0;">Parent</label>
+            <select class="form-control" id="parentSelect" ng-show="isComp">
+                <option value="{{originalParent.Name}}">{{originalParent.Name}}</option>
+                <option ng-repeat="option in parentCollection" value="{{option.ParentName}}">{{option.ParentName}}</option>
+            </select>
+        </div>
+    </form>
+</div>
+
+<div class="modal-footer" style="padding:5px;">
+    <button type="button" class="btn btn-primary" ng-click="test()">TEST</button>
+    <button type="button" class="btn btn-primary" ng-click="test1()">TEST1</button>
+    <button type="button" class="btn btn-primary" ng-click="test2()">TEST2</button>
+
+    <button type="button" class="btn btn-primary c-btn-save" ng-click="save()">Save</button>
+    <button type="button" class="btn btn-primary c-btn-back" ng-click="cancel()">Cancel</button>
+</div>

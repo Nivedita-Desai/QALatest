@@ -1,0 +1,162 @@
+﻿<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="modalInstance.close('');">X</button>
+    <h3 class="modal-title">Custom Cost Overhead</h3>
+</div>
+<div class="modal-body">
+    <!--<div class="_form-group">
+        <form>
+            <fieldset class="scheduler-border" disabled>
+                <legend class="scheduler-border">Cost Summary :</legend>
+                <div class="form-row align-items-center">
+                    <div class="col-sm-6 ">
+                        <label class="control-label _bold">Labor </label>
+                        <input class="form-control" placeholder="Labor Cost Overhead" ng-model="ACItem.Role">
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label class="control-label _bold">Material</label>
+                        <input class="form-control" placeholder="Material Cost Overhead" ng-model="ACItem.Role">
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label class="control-label _bold">Subcontractor</label>
+                        <input class="form-control" placeholder="Subcontractor Cost Overhead" ng-model="ACItem.Role">
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label class="control-label _bold">ODC</label>
+                        <input class="form-control" placeholder="ODC Cost Overhead" ng-model="ACItem.Role">
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+    <div class="_form-group">
+        <form>
+            <fieldset class="scheduler-border" disabled>
+                <legend class="scheduler-border">Custom Cost Overhead:</legend>
+                <div class="form-row align-items-center">
+                    <div class="col-sm-6 ">
+                        <label class="control-label _bold">Labor </label>
+                        <input class="form-control" placeholder="Labor Cost Overhead" ng-model="ACItem.Role">
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label class="control-label _bold">Material</label>
+                        <input class="form-control" placeholder="Material Cost Overhead" ng-model="ACItem.Role">
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label class="control-label _bold">Subcontractor</label>
+                        <input class="form-control" placeholder="Subcontractor Cost Overhead" ng-model="ACItem.Role">
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label class="control-label _bold">ODC</label>
+                        <input class="form-control" placeholder="ODC Cost Overhead" ng-model="ACItem.Role">
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>-->
+
+    <table st-table="rowCollection" class="table table-striped">
+        <thead>
+            <tr>
+                <th style="text-align:left !important;">Cost Type</th>
+                <th>Raw Cost</th>
+                <th style="width: 25%;">Current Burden Cost</th>
+                <th>Cost Markup</th>
+                <th>New Burden Cost</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="row in rowCollection" ng-class="{selected : selectedRow.ID == row.ID}"
+                ng-mouseover="selectRow(row)" ng-mouseleave="onMouseLeave(row)" style="text-align:center;">
+                <td style="text-align:left">{{row.CostOverhead.CostType.Type}}</td>
+                <td>{{row.OriginalCost | currency}}</td>
+                <td>{{row.CurrentCost | currency}}</td>
+                <td>
+                    <input ng-model="row.CurrentMarkup" ng-disabled="disabledField"
+                           ng-change="changeMarkup(row)" style="color:black;width:100%;" />
+                </td>
+                <td>{{row.NewCost | currency}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table st-table="rowCollection" class="table table-striped">
+        <tbody>
+            <tr style="text-align:center; background-color:lightcyan; font-weight:bold;">
+                <td style="text-align:left;">Total</td>
+                <td>{{totalCost.OriginalCost | currency}}</td>
+                <td>{{totalCost.CurrentCost | currency}}</td>
+                <td></td>
+                <td>{{totalCost.NewCost | currency}}</td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <div class="_form-group" style="">
+                        <div class="col-xs-12 m-b-10" style="padding-left: 0;">
+                            <!--css changes by shweta-->
+                            <label for="program_element_project_number" class="control-label _bold required">Justification</label>
+                            <textarea ng-model="Justification" class="form-control" id="program_element_change_order_Reason_modal" rows="5" cols="50" ng-disabled="disabledField"></textarea>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+       <div>
+
+            ** Raw cost is the cost enter by the user without the company cost overhead. (Without the custom cost overhead)
+           <br />
+            ** Current Burden cost is the cost after the custom markup applied
+
+       </div>
+
+</div>
+
+<div class="c-modal-footer">
+    <button type="button" class="btn btn-info" data-dismiss="modal" ng-click="modalInstance.close('');">Close</button>
+    <button type="button" id="btnSaveCostOverhead" class="btn btn-info" ng-click="saveChanges()" ng-disabled="disabledField">Save</button>
+</div>
+
+
+<style>
+    .required:after {
+        content: " *";
+        color: red;
+    }
+    fieldset.scheduler-border {
+    border: 1px groove #ddd !important;
+    padding: 0 1.4em 1.4em 1.4em !important;
+    margin: 0 0 1.5em 0 !important;
+    -webkit-box-shadow:  0px 0px 0px 0px #000;
+            box-shadow:  0px 0px 0px 0px #000;
+}
+
+    legend.scheduler-border {
+        font-size: 1.2em !important;
+        font-weight: bold !important;
+        text-align: left !important;
+        width:auto;
+        padding:0 0;
+        border-bottom:none;
+    }
+    /*.selected{
+        background-color:red;
+    }*/
+</style>
+
+<script>
+    $(document).ready(function () {
+        //Dragging modal
+        $('.modal-dialog').draggable({
+            handle: ".modal-header"
+        });
+    });
+
+</script>

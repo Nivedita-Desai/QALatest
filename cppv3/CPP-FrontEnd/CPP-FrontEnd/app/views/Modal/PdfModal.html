@@ -1,0 +1,39 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="modalInstance.close();">X
+    </button>
+    <h3 class="modal-title">Report</h3>
+</div>
+<div class="modal-body" style="height:800px;">
+
+    <!--<embed src="{{content}}" width="100%" height="100%"></embed>-->
+    <div ng-show="pdfDiv" style="width:100%;height:100%">
+        <object data="{{content}}" style="width:100%;height:100%" type="application/pdf"></object>
+    </div>
+
+    <div ng-show="chartDiv" style="width:100%;height:100%">
+        <iframe ng-src="{{currentUrl}}" style="width:100%; height:100%"> <!--content--> </iframe>
+    </div>
+</div>
+<div class=" c-modal-footer">
+    <!--<button type = "button" class="btn btn-delete"></button>-->
+    <button type="button" class="btn btn-info" data-dismiss="modal" ng-click="modalInstance.close();">Close</button>
+    <!--<button type="button" id="save" class="btn btn-info" ng-click="saveChanges()">Save</button>-->
+</div>
+<!--<span spinner-theme="black" us-spinner spinner-on="showSpinner2" spinner-key="spinner-6">
+</span>-->
+
+
+<style>
+    .modal-lg{
+        width:1500px;
+    }
+</style>
+
+<script>
+    $(document).ready(function () {
+     
+        $('.modal-dialog').draggable({
+            handle: ".modal-header"
+        });
+    });
+</script>

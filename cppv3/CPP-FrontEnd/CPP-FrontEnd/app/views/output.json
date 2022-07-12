@@ -1,0 +1,18 @@
+{
+  "result": [
+    {
+      "Lat": "34.0453113",
+      "text": "Historic Core DTLA",
+      "Lon": "-118.2501836",
+      "bicyclistCount": "26",
+      "date": "2014-10-15"
+    },
+    {
+      "Lat": "34.0444899",
+      "text": "Spring @ 7",
+      "Lon": "-118.2523059",
+      "bicyclistCount": "16",
+      "date": "2014-10-26"
+    }
+  ]
+}

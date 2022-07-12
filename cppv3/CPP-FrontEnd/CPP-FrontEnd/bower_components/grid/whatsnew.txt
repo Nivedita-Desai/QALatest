@@ -1,0 +1,221 @@
+Version 6.5.2 (July 14, 2020)
+----------------------------
+
+#### Fixes
+
+- Fixed types in d.ts
+- Issue with the editCell method
+- Issue with the removeRowCss method
+
+Version 6.5.1 (June 16, 2020)
+----------------------------
+
+Version 6.5.0 (June 16, 2020)
+----------------------------
+
+### New functionality
+
+- TypeScript support
+- Angular demo is added
+- The ability to drag and drop columns in Grid using the dragItem configuration property of Grid, or via the draggable configuration option of a Grid column (Pro)
+- New BeforeColumnDrag and BeforeColumnDrop events are added (Pro)
+- The ability to align data in a column as well as in the header of a column
+- The ability to show/hide tooltips while hovering over the content of a column via the tooltip configuration property
+
+### Updates
+
+- The ability to adjust the width of columns to the width of their footer
+
+Version 6.4.4 (May 19, 2020)
+----------------------------
+
+### Fixes
+
+- Fix the incorrect work of the `destructor` method when combo filters are not specified
+
+Version 6.4.3 (April 29, 2020)
+----------------------------
+
+### Fixes
+
+- Fix issues with the `CellClick, CellMouseOver, CellMouseDown, CellDblClick, CellRightClick` events of Grid when its columns are hidden
+- Fix issue with the keyboard navigation when columns are hidden
+- Fix the incorrect work of the `selection` module when Grid columns are hidden
+- Fix the incorrect work of the filtering blocks when columns are hidden
+- Fix the issue with the redrawing of the table when sizes of a Grid column are changed dynamically
+- Fix the issue with the redrawing of Grid columns when the columns have different sizes
+- Fix the issue with the `combo` filters when several grids are initialized in the app
+- Fix the behavior of spans in the frozen columns
+- Fix the behavior of editors
+- Fix the behavior of selection in Grid. The `outerClick` is deleted
+
+Version 6.4.2 (March 3, 2020)
+----------------------------
+
+### Fixes
+
+- The issue with virtualization behavior in Grid when interacting with Tabbar
+- The issue with clicking on a frozen column
+- The issue with export data to Excel
+
+Version 6.4.1 (January 30, 2020)
+----------------------------
+
+### Fixes
+
+- Behavior of lazy load
+- The issue with the template configuration option in a column
+
+Version 6.4.0 (January 28, 2020)
+----------------------------
+
+### New functionality
+
+- The ability to adjust the size of Grid columns to the size of Grid via the autoWidth configuration property
+- The possibility to adjust the width of columns to the width of their content automatically using the adjust configuration option
+- The ability to select multiple rows or cells of Grid using the multiselection property
+- The possibility to set selection to multiple cells/rows of Grid via the setCell() method of the selection object
+- New additional arrow keyboard shortcuts are added to Keyboard navigation
+- The ability to sort content of any Grid column by clicking on its header via the sortable property
+- The getSortingState method that allows getting the current state of sorting data in Grid is added
+- The possibility to check visibility of a column via the isColumnHidden method
+- The ability to enable dynamic loading of data in Grid
+- The AfterKeyDown and BeforeKeyDown events are added
+
+Version 6.3.1 (December 18, 2019)
+----------------------------
+
+### Fixes
+
+- Issue with starting editing Grid columns with the help of the keynavigation when the editing: false property is set in the configuration of a column
+
+Version 6.3.0 (December 12, 2019)
+----------------------------
+
+### New functionality
+
+- Keyboard navigation
+- The possibility to finish editing of a cell via the editEnd() method
+- The ability to add custom elements into Grid cells using the htmlEnable property
+
+### Fixes
+
+- Issues with event system
+
+Version 6.2.3 (November 19, 2019)
+----------------------------
+
+Version 6.2.2 (November 5, 2019)
+----------------------------
+
+###Fixes
+
+- Issues with selection
+
+Version 6.2.1 (October 25, 2019)
+----------------------------
+
+###Fixes
+
+- Issue with the combo filters
+
+Version 6.2.0 (October 23, 2019)
+----------------------------
+
+### New functionality
+
+- The possibility to show and hide a column via the showColumn() and hideColumn() methods
+- A new comboFilter for the header/footer content of a column
+- New checkbox and combobox editors for the cells of a column
+- The ability to set min and max width to columns
+- The possibility to change the width of columns via the resizable property
+- Drag-n-drop of rows between Grids via the dragMode property
+- Export to CSV format
+
+### Updates
+
+- Accelerating Grid speed to 2.5x
+
+### Fixes
+
+- Issues with boolean type in a cell
+- Issue with selection on frozen columns
+
+Version 6.1.7 (October 10, 2019)
+----------------------------
+
+### Fixes
+
+- Issue with editor on a frozen columns
+
+Version 6.1.6 (September 26, 2019)
+----------------------------
+
+### Fixes
+
+- Issue with the header rowspans
+
+Version 6.1.5 (September 12, 2019)
+----------------------------
+
+Version 6.1.4 (September 5, 2019)
+----------------------------
+
+### Fixes
+
+- Issues with date sorting
+- Issue with filters
+
+Version 6.1.3 (August 29, 2019)
+----------------------------
+
+Version 6.1.2 (August 22, 2019)
+----------------------------
+
+Version 6.1.1 (August 16, 2019)
+----------------------------
+
+Version 6.1.0 (August 15, 2019)
+----------------------------
+
+### New functionality
+
+- Editing the whole Grid or separate columns via the configuration object
+- Editing certain cells via the API method
+- New editing-related events: BeforeEditStart, BeforeEditEnd, AfterEditStart, AfterEditEnd
+- The possibility to define the type of an editor for a column
+- A new type:"date" for a column
+- The ability to add vertical span into the columns headers
+- The possibility to enable automatic adding of an empty row to the end of the Grid
+
+Version 6.0.4 (August 6, 2019)
+----------------------------
+
+### Fixes
+
+- Issue with the load() method of Datacollection
+- Issue with the sort() method of Datacollection
+- Styles fixes
+
+Version 6.0.3 (July 19, 2019)
+----------------------------
+
+### Fixes
+
+- Issue with header filters
+- Issue with frozen columns
+- Styles fixes
+
+Version 6.0.2 (July 11, 2019)
+----------------------------
+
+### Fixes
+
+- Styles fixes
+
+Version 6.0.1 (July 5, 2019)
+----------------------------
+
+### Fixes
+
+- Styles fixes

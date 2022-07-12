@@ -1,0 +1,83 @@
+<!--<div class="row">-->
+    <!--<div class="col-centered" style="width: 650px">-->
+        <!--<div class="panel panel-default">-->
+            <!--<div class="panel-heading">-->
+                <!--<h3 class="panel-title" style="font-size:30px;">Phase Code</h3>-->
+            <!--</div>-->
+            <!--<div class="panel-body"  >-->
+                <!--<table class="table table-striped c-admin-table "  >-->
+
+                    <!--<thead>-->
+                    <!--<tr>-->
+
+                        <!--<th class="c-th">Phase Description</th>-->
+                        <!--<th class="c-th">Phase Code</th>-->
+                    <!--</tr>-->
+                    <!--</thead>-->
+                <!--</table>-->
+                <!--<div style="overflow-y:auto;height:550px;">-->
+                    <!--<table id = "phase-table" class="table table-bordered table-striped c-admin-table">-->
+                        <!--<tbody>-->
+                            <!--<tr ng-repeat="p in phaseCodeCollection" ng-click="setPhaseCode(p)" ng-dblclick="editPhaseCode()"-->
+                                <!--ng-class="{'selected':p.PhaseID === phaseCodeItem.PhaseID}">-->
+                                <!--&lt;!&ndash;<div ng-bind-html = "phaseDescriptionHTML"></div>&ndash;&gt;-->
+                                <!--<td class="c-table-text"  ng-click="editItem(p)">{{p.PhaseDescription}}</td>-->
+                                <!--<td class="c-table-text">{{p.Code}}</td>-->
+                            <!--</tr>-->
+                        <!--</tbody>-->
+                    <!--</table>-->
+                <!--</div>-->
+            <!--<div class="panel-footer" id="right_panel-footer" style="text-align:center">-->
+                <!--<div class="btn-group">-->
+                    <!--<button type="button" class="btn btn-info btn-lg" ng-click="newPhaseCode()">Add</button>-->
+                    <!--<button type="button" class="btn btn-info btn-lg" ng-disabled="!phaseCodeItem" ng-click="editPhaseCode()">Edit</button>-->
+                    <!--<button type="button" class="btn btn-info btn-lg" ng-disabled="!phaseCodeItem" ng-click="deletePhaseCode()">Delete</button>-->
+                <!--</div>-->
+
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+
+<div class="row">
+    <div class="col-centered" style="width: 900px">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title" style="font-size:30px;">Project Subservices
+    <!--<span>-->
+        <!--<button type="button" class="btn btn-info btn-sm" ng-click="addRow()">-->
+            <!--<i class="fa fa-plus"><label style="padding-left: 3px; ">Add</label></i></button>-->
+    <!--</span>-->
+                </h3>
+                <a href="#/app/wbs" class="exit-button">X</a>
+            </div>
+            <div class="panel-body"  style="height: 550px; overflow: auto">
+               <!-- <div class="gridStyle" ng-grid="gridOptions" style="height:500px;">
+                </div>-->
+                <div id="grid1" class="grid" ui-grid="gridOptions" ui-grid-edit ui-grid-cellnav style="height:500px;">
+                </div>
+            </div>
+            <div class="panel-footer" id="right_panel-footer" style="text-align:center">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <button type="button" class="btn btn-primary c-btn-delete"  ng-click="delete()">Delete</button>
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="button" class="btn btn-primary c-btn-save" ng-click="save()" id="save_Phase_Code">Save</button>
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="button" class="btn btn-primary c-btn-back" ng-click="addRow()">New</button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .sortable:after{
+        content : none !important;
+    }
+</style>

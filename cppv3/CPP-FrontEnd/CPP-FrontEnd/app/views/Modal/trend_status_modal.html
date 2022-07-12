@@ -1,0 +1,25 @@
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="modalInstance.close();">X</button>
+    <h3 class="modal-title">Trend Status</h3>
+</div>
+<div class="modal-body">
+    <div class="_form-group">
+        <label class="label-control _bold">Status ID</label>
+        <input class="form-control" placeholder="Status ID" ng-model="statusItem.StatusID">
+    </div>
+    <div class="_form-group">
+        <label class="label-control _bold" >Title</label>
+        <input class="form-control" placeholder="Titile" ng-model="statusItem.StatusDescription">
+    </div>
+    <div class="_form-group">
+        <label class="control-label _bold ">Description</label>
+        <input class="form-control " placeholder="Description">
+    </div>
+
+</div>
+<div class=" c-modal-footer">
+    <button type="button" class="btn btn-info" data-dismiss="modal" ng-click="goBack()">Close</button>
+    <button type="button" class="btn btn-info" ng-click="saveChanges()">Save</button>
+</div>
+

@@ -1,0 +1,447 @@
+﻿<head>
+    <style type="text/css">
+        .col-sm-7 {
+            margin-top: 0px;
+        }
+
+        .input-required {
+            border-color: #cc3f44 !important;
+        }
+
+        .label-required {
+            color: #cc3f44 !important;
+        }
+
+        div.requiredBefore .checkboxRequired:before {
+            content: " *";
+            color: blue;
+        }
+
+        div.required .control-label:after {
+            content: " *";
+            color: blue;
+        }
+
+        div.asterik label.label-required:before {
+            content: " *";
+            color: #cc3f44;
+        }
+
+        div.asterik input.input-required:before {
+            content: " *";
+            color: #cc3f44;
+        }
+
+        .inputAsterik:after {
+            content: " *";
+            color: #cc3f44;
+            margin-right: -10px;
+        }
+
+        .btn {
+            margin-bottom: 0;
+            border: 1px solid !important;
+        }
+
+        .modal-dialog {
+            height: 100%;
+            vertical-align: middle;
+            margin-top: 5%;
+            align-self: center;
+            width:1200px;
+        }
+
+        .fa {
+            color: white !important;
+        }
+
+
+        /*.btn-info {
+            color: #fff;
+            background-color: #222;
+        }*/
+
+        @media (min-width: 768px) {
+            /*.modal-dialog {
+                width: 50%;
+                max-width: 500px;
+                vertical-align: middle;
+            }*/
+        }
+    </style>
+</head>
+<script>
+    $(document).ready(function () {
+        // alert();
+        // $(".modal-content").css({ "margin-left": "-20%" });
+    });
+</script>
+<section ng-show="false" id="projectdetail-view" style="height:100%;vertical-align:middle;  ">
+    <!--  <script type="text/ng-template" id="myModalContent.html"> -->
+    <div class="row" id="draggable">
+        <form novalidate name="addForm" role="form" id="reportManagerForm">
+
+            <div class="col-xs-12 col-sm-12" style="padding:0;margin-right:-15px;">
+                <div class="gadget color-my" style="height: 675px;margin-top:-5%;margin-bottom:-20px;">
+
+                    <div id="reportManagerGadgetHeadID" class="gadget-head" style="display: block">
+                        <h3 class="modal-title">Cost Details</h3>
+                        <button class="pull-right" data-ng-click="goBack('close')"
+                                style="background-color:red;color:white;border-radius:50px;width:40px;font-weight:bolder;margin-top:-5px;">
+                            X
+                        </button>
+                    </div>
+                    <div class="gadget-content" style="padding:10px;">
+                        <div>
+                            <!--Type : <span>{{data[0].TypeStr}}</span>
+                            <br />
+                            Name : <span>{{data[0].Name}}</span>
+                            <br />
+                            Cost Code : <span>{{data[0].LineItem}}</span>-->
+                            <dl class="row" style="padding-left:2%;">
+                                <dt class="col-sm-3">
+                                    Type
+                                    <span data-ng-show="params.CostType === 'F'"> (Position)</span>
+                                    <span data-ng-show="params.CostType === 'L'"> (Subcontractor Type)</span>
+                                    <span data-ng-show="params.CostType === 'U'"> (Material Category)</span>
+                                </dt>
+                                <dd class="col-sm-3">{{params.Type.name}}</dd>
+                                <!--<dt class="col-sm-2">Category</dt>-->
+                                <dt class="col-sm-2">Task</dt> <!--Manasi-->
+                                <dd class="col-sm-4">{{params.selectedActivity.BudgetCategory}}</dd>
+
+
+                                <dt class="col-sm-3" data-ng-if="params.Name">
+                                    Name
+                                    <span data-ng-show="params.CostType === 'F'"> (Employee)</span>
+                                    <span data-ng-show="params.CostType === 'L'"> (Subcontractor)</span>
+                                    <span data-ng-show="params.CostType === 'U'"> (Material)</span>
+                                </dt>
+                                <dd class="col-sm-3" data-ng-if="params.Name">{{params.Name.name}}</dd>
+                                <!--<dt class="col-sm-2">Sub Category</dt>-->
+                                <dt class="col-sm-2">Sub Task</dt> <!--Manasi-->
+                                <dd class="col-sm-4">{{params.selectedActivity.BudgetSubCategory}}</dd>
+
+                                <dt class="col-sm-3">Cost Code</dt>
+                                <dd class="col-sm-9">{{data[0].LineItem}}</dd>
+                            </dl>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+
+                            <table st-table="rowCollection" class="table table-striped" style="width:100%;">
+                                <thead>
+                                    <tr>
+
+                                        <th style="text-align:left !important;">Start Date</th>
+                                        <th>End Date</th>
+                                        <th>Cell Value</th>
+                                        <th>Unit Cost</th>
+                                        <th># of Units</th>
+
+                                        <th>Budget</th>
+                                    </tr>
+                                </thead>
+                                <tbody style="max-height:300px;overflow-y:auto;">
+                                    <tr>
+                                        <td colspan="9">
+                                            <div class="scrolable-table" style="overflow:auto;height:300px;overflow-x:hidden;">
+                                                <table class="table table-striped">
+                                                    <thead></thead>
+                                                    <tbody >
+                                                        <tr ng-repeat="row in data" ng-class="{selected : selectedRow.ID == row.ID}"
+                                                            ng-mouseover="selectRow(row)" ng-if="!row.isActual"
+                                                            ng-mouseleave="onMouseLeave(row)" style="text-align:center;">
+                                                            <td style="text-align:left">{{row.StartDate}}</td>
+                                                            <td>{{row.EndDate}}</td>
+                                                            <td><input ng-model="row.CellValue" ng-disabled="row.isActual" ng-change="CalcualteTotalCost(row)" style="color:black;width:100%;text-align:center;" /></td>
+
+                                                            <!--<td>{{row.BaseRate | currency}}</td>-->
+                                                            <!-- Manasi 05-08-2020-->
+                                                            <td data-ng-show="params.CostType === 'F'">{{RoundToTwo(row.OriginalRate)}}</td>
+                                                            <td data-ng-show="params.CostType === 'L'">N/A</td>
+                                                            <td data-ng-show="params.CostType === 'ODC'">N/A</td>
+                                                            <td data-ng-show="params.CostType === 'U'">{{RoundToTwo(row.OriginalRate)}}</td>
+
+                                                            <!--<td>{{row.FTEHours * 8}}</td>-->
+                                                            <!-- Manasi 05-08-2020-->
+                                                            <td data-ng-show="params.CostType === 'F'">{{RoundToTwo(RoundToTwo(row.FTEHours) * 8)}}</td>
+                                                            <td data-ng-show="params.CostType === 'L'">N/A</td>
+                                                            <td data-ng-show="params.CostType === 'ODC'">N/A</td>
+                                                            <td data-ng-show="params.CostType === 'U'">{{RoundToTwo(row.CellValue)}}</td>
+
+                                                            <!--<td>{{row.TotalCost |  currency}}</td>-->
+                                                            <!-- Manasi 05-08-2020-->
+                                                            <td data-ng-show="params.CostType === 'F'">{{RoundToTwo(RoundToTwo(row.OriginalRate) * RoundToTwo(row.FTEHours) * 8) | currency}}</td>
+                                                            <td data-ng-show="params.CostType === 'U'">{{RoundToTwo(RoundToTwo(row.OriginalRate) * RoundToTwo(row.CellValue)) | currency}}</td>
+                                                            <td data-ng-show="params.CostType === 'L'">{{RoundToTwo(row.OriginalCost) | currency}}</td>
+                                                            <td data-ng-show="params.CostType === 'ODC'">{{RoundToTwo(row.OriginalCost) | currency}}</td>
+                                                        </tr>
+                                                    </tbody>
+
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+
+                                    <tr style="text-align:center;font-weight:bold;">
+                                        <td style="text-align:left;">Total: </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>{{total | currency}}</td>
+                                    </tr>
+
+
+                                </tbody>
+
+                            </table>
+
+                            <div ng-if="isLabor" uib-alert class="alert-warning">For Labor, 1 is full time ,0.5 is half time </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div style="margin-top:-60px;padding-left:10px;padding-right:10px;">
+                    <hr>
+                </div>
+                <div class="col-sm-12 pull-right" style="margin-right:5px;">
+
+                    <button class="btn btn-info rmis-btn pull-right" data-ng-click="save()">
+                        <i class="fa fa-file-pdf-o"></i>  Save
+                    </button>
+                    <button class="btn btn-info rmis-btn pull-right" data-ng-click="goBack('close')">
+                        <i class="fa fa-hand-o-left"></i>  Back
+                    </button>
+
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+    <!-- Modal-content-->
+
+</section>
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="goBack('close')">X</button>
+    <!--<h3 class="modal-title">Purchase Order Details</h3>-->
+    <h3 class="modal-title">Cost Details</h3>
+</div>
+<div class="modal-body" style="height:640px; padding-top:0;">
+    <form novalidate name="addForm" role="form" id="reportManagerForm">
+        <div class="gadget-content" style="padding:10px;">
+            <div class="col-sm-12 col-md-12 col-lg-12" style="padding-bottom:10px">
+                <label class="col-sm-2 col-md-2 col-lg-2" style="font-weight:bold;">
+                    Type
+                    <span data-ng-show="params.CostType === 'F'"> (Position)</span>
+                    <span data-ng-show="params.CostType === 'L'"> (Subcontractor Type)</span>
+                    <span data-ng-show="params.CostType === 'U'"> (Material Category)</span>
+                </label>
+
+                <input disabled ng-model="params.Type.name" class="col-sm-4 col-md-4 col-lg-4" style="padding-left:1px;" />
+
+                <label class="col-sm-2 col-md-2 col-lg-2" style="left:40px; font-weight:bold">
+                    Task<!--Category-->
+                </label>
+
+                <input disabled ng-model="params.selectedActivity.BudgetCategory" class="col-sm-4 col-md-4 col-lg-4" style="padding-left:1px;" />
+            </div>
+
+            <div class="col-sm-12 col-md-12 col-lg-12" style="padding-bottom:10px">
+                <label class="col-sm-2 col-md-2 col-lg-2" style="font-weight:bold;">
+                    Name
+                    <span data-ng-show="params.CostType === 'F'"> (Employee)</span>
+                    <span data-ng-show="params.CostType === 'L'"> (Subcontractor)</span>
+                    <span data-ng-show="params.CostType === 'U'"> (Material)</span>
+                </label>
+
+                <input disabled ng-model="params.Name.name" class="col-sm-4 col-md-4 col-lg-4" style="padding-left:1px;" />
+
+                <label class="col-sm-2 col-md-2 col-lg-2" style="left:40px; font-weight:bold;">
+                    SubTask<!--Subcategory-->
+                </label>
+
+                <input disabled ng-model="params.selectedActivity.BudgetSubCategory" class="col-sm-4 col-md-4 col-lg-4" style="padding-left:1px;" />
+            </div>
+
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <label class="col-sm-2 col-md-2 col-lg-2" style="font-weight:bold;">
+                    Cost Code
+                </label>
+
+                <input disabled ng-model="data[0].LineItem" class="col-sm-4 col-md-4 col-lg-4" style="padding-left:1px;" />
+            </div>
+
+            <div class="col-sm-12 col-md-12 col-lg-12" style="padding-top:15px;">
+                <hr />
+            </div>
+
+            <!--<dl class="row" style="padding-left:2%;">
+                <dt class="col-sm-3">
+                    Type
+                    <span data-ng-show="params.CostType === 'F'"> (Position)</span>
+                    <span data-ng-show="params.CostType === 'L'"> (Subcontractor Type)</span>
+                    <span data-ng-show="params.CostType === 'U'"> (Material Category)</span>
+                </dt>
+                <dd class="col-sm-3">{{params.Type.name}}</dd>
+                <dt class="col-sm-2">Category</dt>
+                <dd class="col-sm-4">{{params.selectedActivity.BudgetCategory}}</dd>
+
+
+                <dt class="col-sm-3" data-ng-if="params.Name">
+                    Name
+                    <span data-ng-show="params.CostType === 'F'"> (Employee)</span>
+                    <span data-ng-show="params.CostType === 'L'"> (Subcontractor)</span>
+                    <span data-ng-show="params.CostType === 'U'"> (Material)</span>
+                </dt>
+                <dd class="col-sm-3" data-ng-if="params.Name">{{params.Name.name}}</dd>
+                <dt class="col-sm-2">Sub Category</dt>
+                <dd class="col-sm-4">{{params.selectedActivity.BudgetSubCategory}}</dd>
+
+                <dt class="col-sm-3">Cost Code</dt>
+                <dd class="col-sm-9">{{data[0].LineItem}}</dd>
+            </dl>-->
+            <div class="col-sm-12 col-md-12 col-lg-12" style="padding:0;">
+
+                <table st-table="rowCollection" class="table table-striped" style="width:100%;">
+                    <thead>
+                        <tr>
+
+                            <th style="text-align:left !important; left: 12px;">Start Date</th>
+                            <th style="left:14px;">End Date</th>
+                            <th style="left:3px;">Cell Value</th>
+                            <th>Unit Cost</th>
+                            <th># of Units</th>
+                            <th style="right:25px;">Budget</th>
+                        </tr>
+                    </thead>
+                    <tbody style="max-height:300px;overflow-y:auto;">
+                        <tr>
+                            <td colspan="9">
+                                <div class="scrolable-table" style="overflow:auto;height:300px;overflow-x:hidden;">
+                                    <table class="table table-striped">
+                                        <thead></thead>
+
+                                        <tbody style="display:none;">
+                                            <tr ng-repeat="row in data" ng-class="{selected : selectedRow.ID == row.ID}"
+                                                ng-mouseover="selectRow(row)" ng-if="!row.isActual"
+                                                ng-mouseleave="onMouseLeave(row)" style="text-align:center;">
+                                                <td style="text-align:left">{{row.StartDate}}</td>
+                                                <td>{{row.EndDate}}</td>
+                                                <td><input ng-model="row.CellValue" ng-disabled="row.isActual" ng-change="CalcualteTotalCost(row)" style="color:black;width:100%;text-align:center;" /></td>
+
+                                                <!--<td>{{row.BaseRate | currency}}</td>-->
+                                                <!-- Manasi 05-08-2020-->
+                                                <td data-ng-show="params.CostType === 'F'">{{RoundToTwo(row.OriginalRate)}}</td>
+                                                <td data-ng-show="params.CostType === 'L'">N/A</td>
+                                                <td data-ng-show="params.CostType === 'ODC'">N/A</td>
+                                                <td data-ng-show="params.CostType === 'U'">{{RoundToTwo(row.OriginalRate)}}</td>
+
+                                                <!--<td>{{row.FTEHours * 8}}</td>-->
+                                                <!-- Manasi 05-08-2020-->
+                                                <td data-ng-show="params.CostType === 'F'">{{RoundToTwo(RoundToTwo(row.FTEHours) * 8)}}</td>
+                                                <td data-ng-show="params.CostType === 'L'">N/A</td>
+                                                <td data-ng-show="params.CostType === 'ODC'">N/A</td>
+                                                <td data-ng-show="params.CostType === 'U'">{{RoundToTwo(row.CellValue)}}</td>
+
+                                                <!--<td>{{row.TotalCost |  currency}}</td>-->
+                                                <!-- Manasi 05-08-2020-->
+                                                <td data-ng-show="params.CostType === 'F'">{{RoundToTwo(RoundToTwo(row.OriginalRate) * RoundToTwo(row.FTEHours) * 8) | currency}}</td>
+                                                <td data-ng-show="params.CostType === 'U'">{{RoundToTwo(RoundToTwo(row.OriginalRate) * RoundToTwo(row.CellValue)) | currency}}</td>
+                                                <td data-ng-show="params.CostType === 'L'">{{RoundToTwo(row.OriginalCost)  | currency}}</td>
+                                                <td data-ng-show="params.CostType === 'ODC'">{{RoundToTwo(row.OriginalCost)  | currency}}</td>
+                                            </tr>
+                                        </tbody>
+
+
+                                        <tbody>
+                                            <tr ng-repeat="row in data" ng-class="{selected : selectedRow.ID == row.ID}"
+                                                ng-mouseover="selectRow(row)" ng-if="!row.isActual"
+                                                ng-mouseleave="onMouseLeave(row)" style="text-align:center;">
+                                                <td style="text-align:left">{{row.StartDate}}</td>
+                                                <td>{{row.EndDate}}</td>
+                                                <td><input ng-model="row.CellValue" ng-disabled="row.isActual" ng-change="CalcualteTotalCost(row)" style="color:black;width:100%;text-align:center;" /></td>
+
+                                                <!--<td>{{row.BaseRate | currency}}</td>-->
+                                                <!-- Manasi 05-08-2020-->
+                                                <td data-ng-show="params.CostType === 'F'">{{row.OriginalRate | number:2}}</td>
+                                                <td data-ng-show="params.CostType === 'L'">N/A</td>
+                                                <td data-ng-show="params.CostType === 'ODC'">N/A</td>
+                                                <td data-ng-show="params.CostType === 'U'">{{row.OriginalRate | number:2}}</td>
+
+                                                <!--<td>{{row.FTEHours * 8}}</td>-->
+                                                <!-- Manasi 05-08-2020-->
+                                                <td data-ng-show="params.CostType === 'F'">{{(row.FTEHours * 8)| number:2}}</td>
+                                                <td data-ng-show="params.CostType === 'L'">N/A</td>
+                                                <td data-ng-show="params.CostType === 'ODC'">N/A</td>
+                                                <td data-ng-show="params.CostType === 'U'">{{row.CellValue| number:2}}</td>
+
+                                                <td>{{row.TotalCost |  currency}}</td>
+                                                <!--<td data-ng-show="params.CostType === 'F'">{{((row.OriginalRate) * ((row.FTEHours) * 8))| number:2 | currency}}</td>
+    <td data-ng-show="params.CostType === 'U'">{{((row.OriginalRate) * (row.CellValue))| number:2 | currency}}</td>
+    <td data-ng-show="params.CostType === 'L'">{{row.OriginalCost | number:2 | currency}}</td>
+    <td data-ng-show="params.CostType === 'ODC'">{{row.OriginalCost| number:2  | currency}}</td>-->
+
+
+                                                <!--<td data-ng-show="params.CostType === 'F'">{{((row.OriginalRate | number) * ((row.FTEHours | number) * 8)) | number:2 | currency}}</td>
+                                                <td data-ng-show="params.CostType === 'U'">{{((row.OriginalRate | number) * (row.CellValue | number)) | number: 2 | currency}}</td>
+                                                <td data-ng-show="params.CostType === 'L'">{{(row.OriginalCost | number : 2)  | currency}}</td>
+                                                <td data-ng-show="params.CostType === 'ODC'">{{(row.OriginalCost | number:2)  | currency}}</td>-->
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+
+
+                        <tr style="text-align:center;font-weight:bold; background-color:lightcyan">
+                            <td style="text-align:left; padding-left:30px;">Total: </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td style="text-align:left; padding-left:25px;">{{total | currency}}</td>
+                        </tr>
+
+
+                    </tbody>
+
+                </table>
+
+                <div ng-if="isLabor" uib-alert class="alert-warning">For Labor, 1 is full time ,0.5 is half time </div>
+
+            </div>
+
+        </div>
+    </form>
+</div>
+
+<div class="c-modal-footer" style="padding-bottom:10px;">
+    <button type="button" class="btn btn-info" data-dismiss="modal" ng-click="goBack('close')">Close</button>
+    <button type="button" class="btn btn-info" ng-click="save()">Save</button>
+</div>
+
+<script type="text/javascript">
+    /*  $(function () {
+          $('#on').datetimepicker({
+              keepOpen:false
+          });
+      });*/
+    /*  $(".modal-dialog").draggable();*/
+    $(document).ready(function () {
+        $('.modal-dialog').draggable({
+            handle: "#reportManagerGadgetHeadID"
+        });
+
+    });
+
+</script><!DOCTYPE html>
+<style>
+</style>

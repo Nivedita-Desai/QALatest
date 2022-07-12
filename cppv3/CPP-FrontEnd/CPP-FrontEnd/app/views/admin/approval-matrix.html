@@ -1,0 +1,168 @@
+<style>
+    .myButton {
+        background-color: #44c767;
+        -moz-border-radius: 28px;
+        -webkit-border-radius: 28px;
+        border-radius: 28px;
+        border: 1px solid #18ab29;
+        display: inline-block;
+        cursor: pointer;
+        color: #ffffff;
+        font-family: Arial;
+        font-size: 17px;
+        padding: 10px 31px;
+        text-decoration: none;
+        text-shadow: 0px 1px 0px #2f6627;
+    }
+
+        .myButton:hover {
+            background-color: #5cbf2a;
+        }
+
+        .myButton:active {
+            position: relative;
+            top: 1px;
+        }
+
+    .required:after {
+        content: " *";
+        color: red;
+    }
+
+
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 70px;
+        height: 25px;
+    }
+
+    .radio-inline.custom-control.custom-checkbox {
+        padding-left: 0;
+    }
+
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .switchslider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    .switchslider:before {
+        position: absolute;
+        content: "";
+        height: 18px;
+        width: 18px;
+        left: 6px;
+        bottom: 3px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    input:checked + .switchslider {
+        background-color: #4CAF50;
+    }
+
+    input:focus + .switchslider {
+        box-shadow: 0 0 1px #4CAF50;
+    }
+
+    input:checked + .switchslider:before {
+        -webkit-transform: translateX(40px);
+        -ms-transform: translateX(40px);
+        transform: translateX(40px);
+    }
+
+    /* Rounded sliders */
+    .switchslider.round {
+        border-radius: 50px;
+        margin-bottom: 0;
+        height: auto;
+    }
+
+    .switchslider.round:before {
+        border-radius: 50%;
+    }
+</style>
+<div class="row">
+    <div class="col-centered" style="width: 900px">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    Trend Approval Requirements <!--Project Approval Requirements-->  <!--Manasi-->
+                    <!--<span>-->
+                    <!--<button type="button" class="btn btn-info btn-sm" ng-click="addRow()">-->
+                    <!--<i class="fa fa-plus"><label style="padding-left: 3px; ">Add</label></i></button>-->
+                    <!--</span>-->
+                </h3>
+                <a href="#/app/wbs" class="exit-button">X</a>
+            </div>
+            <div class="panel-body panel-height">
+                <!-- <div class="gridStyle" ng-grid="gridOptions" style="height:500px;">
+     </div>-->
+                <div class="row m-b-15">
+                    <div class="col-sm-4">
+
+                        <label class="custom-control-label" for="">Enable MFA</label>
+                        <br />
+                        <div class="radio-inline custom-control custom-checkbox">
+                            <label class="switch">
+                                <input type="checkbox" value="" id="chkEnableMFA">
+                                <span class="switchslider round"></span>
+                            </label>
+                        </div>
+                        <!--<input ng-click="" ng-checked="true" type="checkbox" value="" id="chkEnableMFA">-->
+
+                    </div>
+                    <div class="col-sm-4">
+
+                        <label for="" class="">No days for reminder mail</label>
+                        <input type="text" class="form-control" id="txtNoDaysForReminderMail">
+
+                    </div>
+                    <div class="col-sm-4">
+
+                        <label for="" class="">Approval code validity (in min)</label>
+                        <input type="text" class="form-control" id="txtNoOfMinForValidityCode">
+
+                    </div>
+                </div>
+                    
+                    <div id="grid1" class="gird" ui-grid="gridOptions" ui-grid-edit ui-grid-cellnav style="height:500px;">
+                    </div>
+                </div>
+                <div class="panel-footer" id="right_panel-footer">
+                    <div class="row text-center">
+                        <div class="col-sm-4">
+                            <button type="button" class="btn btn-primary c-btn-delete" ng-click="delete()">Delete</button>
+                        </div>
+                        <div class="col-sm-4">
+                            <button type="button" class="btn btn-primary c-btn-save" ng-click="save()" id="save_Approval_Matrix">Save</button>
+                        </div>
+                        <div class="col-sm-4">
+                            <button type="button" class="btn btn-primary c-btn-back" ng-click="addRow()">New</button>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+    </div>
+</div>
+<style>
+    .sortable:after {
+        content: none !important;
+    }
+</style>

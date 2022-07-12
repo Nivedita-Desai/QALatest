@@ -1,0 +1,321 @@
+<style>
+    .label-margin{
+        margin-left:10px;
+        margin-right:3px;
+    }
+    .c-input-sm{
+        width:100px;
+    }
+
+</style>
+<section id="dashboard-view" class="mainbar" >
+    <section class="matter">
+        <div class="container-non-responsive" >
+            <div class="row row-padding" style="width: 106%; margin-left:-50px;margin-top:-25px;margin-bottom:-5%;">
+
+                <!--Filter and Project List-->
+                <div class="col-xs-9" st-table="projectList" st-safe-src="plist"   >
+
+                    <!--Filter-->
+                    <div class="row row-padding" style="width:106%; margin-left: -2.2%">
+
+                        <!--Filter Project List-->
+                        <div class="col-sm-9 " >
+                            <div class="gadget color-my" style="padding:5px;height:86px;">
+                                <div class="gadget-head" style="display: block">
+                                    <h3>Filter</h3>
+                                    <a href="#" class="refresh">Refresh</a>
+                                </div>
+                                <div class="gadget-content" >
+                                    <form class="form form-horizontal">
+                                        <div class="form-group"  style="padding-top:3px;">
+
+                                            <div class="col-md-12">
+                                                <label class="label-margin" style="width:5%;">Program</label>
+                                                <input class="input-small c-input-sm" st-search="name"  style="width:10%;">
+
+
+                                                <label class="label-margin" style="width:5%;">Project</label> <!--Original: Program Element-->
+                                                <input class="input-small c-input-sm" st-search="ProgramElement.name"  style="width:10%;">
+
+
+                                                <label class="label-margin" style="width:5%;">Project Element Name</label> <!--Original: Project Name-->
+                                                <input class="input-small c-input-sm" st-search="fullName"  style="width:10%;">
+
+
+                                                <label class="label-margin" style="width:3%;">From</label>
+                                                <input type="text" data-provide="datepicker"
+                                                       class=" input-small c-input-sm "
+                                                       id="fromDate"
+                                                       st-search="OccDate"
+                                                       st-input-event="change"
+                                                       data-ng-model="startDate" is-open="opened1"
+                                                       max-date="'2015-06-22'"
+                                                       style="width: 9%;"
+                                                       close-text="Close"/>
+
+
+                                                <label class="label-margin" style="width:3%;">To</label>
+                                                <input type="text"
+                                                       class=" c-input-sm" data-provide="datepicker"
+                                                       id="toDate"
+                                                       st-search="ToDate"
+                                                       st-input-event="change"
+                                                       data-ng-model="endDate" is-open="opened2"
+                                                       max-date="'2015-06-22'"
+                                                       style="width: 9%;"
+                                                       close-text="Close"/>
+
+
+                                                <label class="label-margin" style="width:5%;">Cost</label>
+                                                <input class="input-small c-input-sm" st-search="CauseDT.DisplayValue"  style="width:10%;">
+
+                                            </div>
+
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Filter Organization List-->
+                        <div class="col-sm-3" style="margin-left:-1.5%;">
+                            <div class="gadget color-my" style="height: 86px; padding:5px;">
+                                <div class="gadget-head" style="display: block">
+                                    <h3>Organization</h3>
+                                    <a href="#" class="refresh">Refresh</a>
+                                </div>
+                                <div class="gadget-content">
+                                    <form class="form form-horizontal" role="form">
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                <label class="label-margin">Organization</label>
+                                                <select class="input-medium c-input-md" ng-model="filterOrg" style="width:35%;">
+                                                    <option data-ng-repeat="filterOrg in organizationList" value="{{filterOrg.OrganizationID}}">
+                                                        {{filterOrg.OrganizationName}}
+                                                    </option>
+                                                </select>
+
+                                                <button class="btn btn-default btn-xs btn-icon" style="width:35%;" ng-click="selectOrganization(filterOrg)"><i class="fa fa-pencil"></i> Generate</button>
+                                            </div>
+
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!--Project List-->
+                    <div class="row row-padding">
+                        <div class="gadget color-my" style="height: 733px;">
+                            <div class="gadget-head" style="display: block">
+                                <h3>Project List
+                                    <small style="color:white;"  ng-show="projectList.length" class="page-title-subtle-white" >[ {{projectList.length}}  Records(s) ]</small>
+                                </h3>
+
+                                <input class="wild-card-search pull-right" >
+                                <span class="pull-right" style="margin-right:5px;font-weight:bold;">Search:</span>
+                                <!--<a href="#" class="refresh">Refresh</a>-->
+                            </div>
+                            <div class="gadget-content  " style="height: 91%;" >
+                                <table  class="table  table-condensed" data-sort-name="name" data-sort-order="desc" style="height: 99%; width: 100%;">
+                                    <thead>
+                                        <tr>
+                                            <th class="th-c sortable" st-sort="Program.name" scope="col" style="position: relative; width: 18%;" data-sortable="true">
+                                                Program
+                                            </th>
+                                            <th class="th-c sortable" st-sort="ProgramElement.name" scope="col" style="position: relative; width: 17%;" data-sortable="true">
+                                                Project <!--Original: Program Element-->
+                                            </th>
+                                            <th class="th-c sortable" st-sort="name" scope="col" style="position: relative; width: 16%;" data-sortable="true">
+                                                Project Element Name <!--Original: Program Element-->
+                                            </th>
+                                            <th class="th-c sortable" st-sort="CurrentStartDate" scope="col" style="position: relative; width: 14%;" data-sortable="true" data-field="name">
+                                                Start Date
+                                            </th>
+                                            <th class="th-c sortable" st-sort="CurrentEndDate" scope="col" style="position: relative; width: 14%;" data-sortable="true">
+                                                End Date
+                                            </th>
+                                            <th class="th-c sortable" st-sort="CurrentCost" scope="col" style="position: relative; width: 14%;" data-sortable="true">
+                                                Cost
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr style="background-color:white !important;">
+                                            <td colspan="9">
+                                                <div class="scrolable-table"  style="overflow:auto;height:99%;">
+                                                    <table class="table striped   table-condensed table-responsive table-bordered">
+                                                        <tbody>
+                                                        <tr ng-if="projectList.length" class="fade-selection-animation" ng-dblclick="getSelectedProject(p)" ng-click="setProjectDetails(p)" data-ng-repeat="p in projectList" ng-class=" {selected: p.ProjectID === selectedProject.ProjectID}">
+                                                            <td style ="width:18%;  font-size:13px;">
+                                                                {{p.Program.name}}
+                                                            </td>
+                                                            <td style ="width:17%;  font-size:13px;">
+                                                                {{p.ProgramElement.name}}
+                                                            </td>
+                                                            <td style ="width:16%; font-size:13px;">
+                                                                {{p.name}}
+                                                            </td>
+                                                            <td style ="width:14%;  font-size:13px;">
+                                                                {{p.CurrentStartDate| date:'MM/dd/yyyy'}}
+                                                            </td>
+                                                            <td style ="width:14%;  font-size:13px;">
+                                                                {{p.CurrentEndDate| date:'MM/dd/yyyy'}}
+                                                            </td>
+                                                            <td style ="width:14%;  font-size:13px; text-align:right;">
+                                                                {{p.CurrentCost| currency:'$'}}
+                                                            </td>
+                                                        </tr>
+                                                        <tr ng-if="!projectList.length" style="color:white;width:100%;">
+                                                            <td style ="width:100%; font-size:15px; text-align:center; background-color:#9FAFD1;" >No data available in table</td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot></tfoot>
+                                </table>
+                            </div>
+
+                            <div class="clearfix text-center">
+                                <div class="btn-group">
+                                    <!--<button class="btn btn-xs btn-info" ng-click="createNewClaim('new')" ><i class="fa fa-plus"></i>&nbsp;  Claim</button>-->
+                                    <!--<button class="btn btn-xs btn-info" ng-click="getClaimDetails(selectedClaim)" >Open</button>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!--Alerts and Graphs-->
+                <div class="col-xs-3">
+
+                    <!-- Alerts -->
+                    <div class="row row-padding" style="margin-bottom:-1%;">
+                        <div class="gadget color-my" style="height: 275px;">
+                            <div class="gadget-head" style="display: block">
+                                <h3>Alerts
+                                    <small style="color:white;"  ng-show="selectedProject.Alerts.length" class="page-title-subtle-white" >[ {{selectedProject.Alerts.length}}  Records(s) ]</small>
+                                </h3>
+
+                                <a href="#" class="refresh">Refresh</a>
+                            </div>
+                            <div class="gadget-content" style="height: 75%;margin-bottom:1%;">
+                                <table  class="table table-condensed" st-table="alist" st-safe-src="selectedProject.Alerts" data-sort-name="name" data-sort-order="desc" style="height: 99%; width: 100%;">
+                                    <thead>
+                                    <tr>
+                                        <th class="th-c sortable" st-sort="AlertDateTime" scope="col" style="position: relative; width: 25%;" data-sortable="true">
+                                            Rcvd.
+                                        </th>
+                                        <th class="th-c sortable" st-sort="AlertTitle" scope="col" style="position: relative; width: 45%;" data-sortable="true">
+                                            Title
+                                        </th>
+                                        <th class="th-c sortable" st-sort="AlertType" scope="col" style="position: relative; width: 30%;" data-sortable="true">
+                                            Type
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr style="background-color:white !important;">
+                                        <td colspan="9">
+                                            <div class="scrolable-table"  style="overflow:auto;height:99%;">
+                                                <table class="table striped   table-condensed table-responsive table-bordered">
+                                                    <tbody>
+                                                    <tr ng-if="selectedProject.Alerts.length"  class="fade-selection-animation" ng-dblclick="getAlertInfo(alert)" data-ng-repeat="alert in alist">
+                                                        <td style ="width:25%;  font-size:13px;">{{alert.AlertDateTime|date:'MM/dd/yyyy'}}</td>
+                                                        <td style ="width:45%;  font-size:13px;">{{alert.AlertTitle}}</td>
+                                                        <td style ="width:30%;  font-size:13px; text-align:center;">{{alert.AlertType}}</td>
+                                                    </tr>
+                                                    <tr ng-if="!selectedProject.Alerts.length" style="color:white;width:100%;">
+                                                        <td style ="width:100%; font-size:15px; text-align:center; background-color:#9FAFD1;" >No data available in table</td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div style="text-align:center;">
+                                Showing alerts for: {{filterAlertsText}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Total Cost (Pie Chart) -->
+                    <div class="row row-padding" style="margin-bottom:-1%;">
+                        <div class="gadget color-my" style="height: 270px;">
+                            <div class="gadget-head" style="display: block">
+                                <h3>Total Cost
+                                    <small style="color:white;"  ng-show="selectedClaim.ClaimCalendars.length" class="page-title-subtle-white" >[ {{selectedClaim.ClaimCalendars.length}}  Records(s) ]</small>
+                                </h3>
+                                <a href="#" class="refresh">Refresh</a>
+                            </div>
+                            <div class="gadget-content" style="height: 74%;margin-bottom:1%;">
+                                <div id="piechart" style="width:100%;height:100%;"></div>
+                            </div>
+                            <div style="text-align: center;">
+                                <select class="input-medium c-input-md" ng-model="tccmain" style="width:30%;" ng-change="updateSubOptions()">
+                                    <option value="Org">Organization</option>
+                                    <option value="Prg">Programs</option>
+                                    <option value="Prj">Projects</option>
+                                </select>
+                                <select class="input medium c-input-md" ng-model="tccsubselect" style="width:30%;" ng-change="selectPieGraphInfo(tccmain,tccsubselect)">
+                                    <option data-ng-repeat="items in tccsub" value="{{items.ID}}">
+                                        {{items.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cost Projection (Dot Graph) -->
+                    <div class="row row-padding" style="margin-bottom:-1%;">
+                        <div class="gadget color-my" style="height: 270px;">
+                            <div class="gadget-head" style="display: block">
+                                <h3>Cost Projection
+                                    <small style="color:white;"  ng-show="selectedClaim.ClaimTransactions.length" class="page-title-subtle-white" >[ {{selectedClaim.ClaimTransactions.length}}  Records(s) ]</small>
+                                </h3>
+                                <a href="#" class="refresh">Refresh</a>
+                            </div>
+                            <div class="gadget-content" style="height: 74%;margin-bottom:1%;">
+                                <div id="linechart" style="width:100%;height:100%;"></div>
+                            </div>
+                            <div style="text-align:center;margin-top:-3px;">
+                                Budget to date: {{budgetToDate | currency : $ : 2}}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!--<span id="spin" us-spinner="{color:'white',length:0, radius:56,width:17}"-->
+              <!--class="fademe" spinner-key="spinner-1"  spinner-on="showSpinner">-->
+        <!--</span>-->
+
+    </section>
+</section>
+
+<script>
+
+    $(document).ready(function(){
+        $('#fromDate').on('change',function(){
+            $('.datepicker').hide();
+        })
+
+        $('#toDate').on('change',function(){
+            $('.datepicker').hide();
+        })
+    });
+</script>
+
+

@@ -1,0 +1,232 @@
+﻿<head>
+    <style type="text/css">
+        .col-sm-7 {
+            margin-top: 0px;
+        }
+
+        .input-required {
+            border-color: blue !important;
+        }
+
+        .label-required {
+            color: blue !important;
+        }
+
+
+        div.requiredBefore .checkboxRequired:before {
+            content: " *";
+            color: blue;
+        }
+
+        div.required .control-label:after {
+            content: " *";
+            color: blue;
+        }
+
+        div.asterik label.label-required:before {
+            content: " *";
+            color: #cc3f44;
+        }
+
+        div.asterik input.input-required:before {
+            content: " *";
+            color: #cc3f44;
+        }
+
+        .inputAsterik:after {
+            content: " *";
+            color: #cc3f44;
+            margin-right: -10px;
+        }
+
+        .btn {
+            margin-bottom: 0;
+            border: 1px solid !important;
+        }
+
+        .modal-dialog {
+            height: 100%;
+            vertical-align: middle;
+            margin-top: 5%;
+            align-self: center;
+        }
+
+        .fa {
+            color: white !important;
+        }
+
+        /*.btn-info {
+            color: #fff;
+            background-color: #222;
+        }*/
+
+        @media (min-width: 768px) {
+            /*.modal-dialog {
+                width: 50%;
+                max-width: 500px;
+                vertical-align: middle;
+            }*/
+        }
+    </style>
+</head>
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="goBack('close')">X</button>
+    <h3 class="modal-title">{{title}}</h3>
+</div>
+<div class="modal-body">
+    <!--style="height:400px;"-->
+    <form novalidate name="addForm" role="form" id="reportManagerForm">
+
+        <div class="form-group required" style="padding-left:0;padding-right:0;"
+             ng-class="{ 'has-error' : addForm.ProgramElement.$error.required}">
+
+            <label class="control-label">Project Number</label>
+            <ui-select ng-model="selectedProgramElement.ProgramElementID" name="ProjectNumber" on-select="onProjectNumberSelect($item)" required>
+                <ui-select-match placeholder="">
+                    <span ng-bind="$select.selected.DisplayName"></span>
+                </ui-select-match>
+                <ui-select-choices repeat="item.ProgramElementID as item in (params.allProgramElementList | filter: $select.search) track by item.ProgramElementID">
+                    <span ng-bind="item.DisplayName"></span>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+
+        <div class="form-group required" style="padding-left:0;padding-right:0;"
+             ng-class="{ 'has-error' : addForm.Project.$error.required}">
+
+            <label class="control-label">Project Element Number</label>
+            <ui-select ng-model="selectedProject.ProjectID" name="ProjectElementNumber" on-select="onProjectElementNumberSelect($item)" required>
+                <ui-select-match placeholder="">
+                    <span ng-bind="$select.selected.DisplayName"></span>
+                </ui-select-match>
+                <ui-select-choices repeat="item.ProjectID as item in (currentProjectList | filter: $select.search) track by item.ProjectID">
+                    <span ng-bind="item.DisplayName"></span>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+
+        <div class="form-group required" style="padding-left:0;padding-right:0;"
+             ng-class="{ 'has-error' : addForm.Manufacturer.$error.required}">
+
+            <label class="control-label">Manufacturer</label>
+            <ui-select ng-model="selectedManufacturer.ManufacturerID" name="ManufacturerName" on-select="onManufacturerNameSelect($item)" required>
+                <ui-select-match placeholder="">
+                    <span ng-bind="$select.selected.ManufacturerName"></span>
+                </ui-select-match>
+                <ui-select-choices repeat="item.ManufacturerID as item in (params.allManufacturerList | filter: $select.search) track by item.ManufacturerID">
+                    <span ng-bind="item.ManufacturerName"></span>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+
+        <div class="form-group required" style="padding-left:0;padding-right:0;"
+             ng-class="{ 'has-error' : addForm.Material.$error.required}">
+
+            <label class="control-label">Part #</label>
+            <ui-select ng-model="selectedMaterial.MaterialID" name="PartNumber" on-select="onPartNumberSelect($item)" required>
+                <ui-select-match placeholder="">
+                    <span ng-bind="$select.selected.Name"></span>
+                </ui-select-match>
+                <ui-select-choices repeat="item.ID as item in (params.allMaterialList | filter: $select.search) track by item.ID">
+                    <span ng-bind="item.Name"></span>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+
+
+        <div class="form-group required" style="padding-left:0;padding-right:0;"
+             ng-class="{ 'has-error' : addForm.Name.$error.required}">
+            <label class="control-label">Description </label>
+            <input disabled="disabled" class="form-control" name="Name" ng-model="selectedMaterial.Description" required />
+        </div>
+
+        <div class="form-group required" style="padding-left:0;padding-right:0;"
+             ng-class="{ 'has-error' : addForm.Name.$error.required}">
+            <label class="control-label">U/M </label>
+            <input disabled="disabled" class="form-control" name="Name" ng-model="selectedMaterial.UnitType" required />
+        </div>
+
+        <div class="form-group required" style="padding-left:0;padding-right:0;"
+             ng-class="{ 'has-error' : addForm.Cost.$error.required}">
+            <label class="control-label">Unit Cost </label>
+            <input disabled="disabled" class="form-control" name="Cost" ng-model="selectedMaterial.Cost" required />
+        </div>
+
+        <div class="form-group required" style="padding-left:0;padding-right:0;"
+             ng-class="{ 'has-error' : addForm.Cost.$error.required}">
+            <label class="control-label">Available Qty. </label>
+            <input disabled="disabled" class="form-control" name="Cost" ng-model="availableQty" required />
+        </div>
+
+        <div class="form-group required" style="padding-left:0;padding-right:0;"
+             ng-class="{ 'has-error' : addForm.Cost.$error.required}">
+            <label class="control-label">Requested Qty. </label>
+            <input class="form-control" name="Cost" ng-model="requestedQty" required />
+        </div>
+
+        <div class="form-group required" style="padding-left:0;padding-right:0;"
+             ng-class="{ 'has-error' : addForm.Cost.$error.required}">
+            <label class="control-label">Requested Date </label>
+            <input id="requestedDateID" class="form-control" name="Cost" ng-model="requestedDate" required />
+        </div>
+
+        <div class="form-group required" style="padding-left:0;padding-right:0;"
+             ng-class="{ 'has-error' : addForm.Cost.$error.required}">
+            <label class="control-label">Actual Release Date </label>
+            <input id="actualReleaseDateID" class="form-control" name="Cost" ng-model="actualReleaseDate" required />
+        </div>
+
+        <div ng-show="params.mode=='update' || params.mode=='received'" class="form-group required" style="padding-left:0;padding-right:0;"
+             ng-class="{ 'has-error' : addForm.Vendor.$error.required}">
+
+            <label class="control-label">Vendor</label>
+            <ui-select ng-model="selectedVendor.VendorID" name="VendorName" on-select="onVendorNameSelect($item)" required>
+                <ui-select-match placeholder="">
+                    <span ng-bind="$select.selected.VendorName"></span>
+                </ui-select-match>
+                <ui-select-choices repeat="item.VendorID as item in (params.allVendorList | filter: $select.search) track by item.VendorID">
+                    <span ng-bind="item.VendorName"></span>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+
+        <div ng-show="params.mode=='update' || params.mode=='received'" class="form-group required" style="padding-left:0;padding-right:0;"
+             ng-class="{ 'has-error' : addForm.Name.$error.required}">
+            <label class="control-label">Purchase Order # </label>
+            <input class="form-control" name="Name" ng-model="purchaseOrderNumber" required />
+        </div>
+
+        <div ng-show="params.mode=='received'" class="form-group required" style="padding-left:0;padding-right:0;"
+             ng-class="{ 'has-error' : addForm.Name.$error.required}">
+            <label class="control-label">Serial # </label>
+            <input class="form-control" name="Name" ng-model="serialNumber" required />
+        </div>
+
+    </form>
+</div>
+
+<div class="c-modal-footer">
+    <button type="button" class="btn btn-info w100" data-dismiss="modal" ng-click="goBack('close')">Close</button>
+    <button type="button" class="btn btn-info w100" ng-click="save()">Save</button>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+      //Dragging modal
+      $('.modal-dialog').draggable({
+          handle: ".modal-header"
+      });
+  });
+</script><!DOCTYPE html>
+
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>
